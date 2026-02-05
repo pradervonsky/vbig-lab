@@ -451,17 +451,17 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
         }
 
         .wave-blue {
-          background: #3a69d6ab;
+          background: #3a69d6b7;
           animation: wave1 5s ease-in-out infinite;
         }
 
         .wave-grey {
-          background: #ffffff37;
+          background: #ffffff35;
           animation: wave2 6s ease-in-out infinite;
         }
 
         .wave-light {
-          background: #333333b9;
+          background: #0d0d0d;
           animation: wave3 7s ease-in-out infinite;
         }
 
@@ -514,9 +514,6 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
                 ? "linear-gradient(135deg, #3a6ad6 0%, #2a5ac6 100%)"
                 : "rgba(128, 128, 128, 0.3)",
               cursor: isLoaded ? "pointer" : "not-allowed",
-              boxShadow: isLoaded
-                ? "0 4px 20px rgba(58, 106, 214, 0.3)"
-                : "none",
             }}
             onClick={isLoaded ? onStart : undefined}
             disabled={!isLoaded}
@@ -598,7 +595,6 @@ const styles: Record<string, CSSProperties> = {
     fontWeight: 600,
     border: "none",
     borderRadius: "12px",
-    boxShadow: "0 4px 20px rgba(58, 106, 214, 0.3)",
     letterSpacing: "0.5px",
     minWidth: "200px",
   },
@@ -609,7 +605,7 @@ const styles: Record<string, CSSProperties> = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: "linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%)",
+    background: "linear-gradient(145deg, #1e1e1e 0%, #1a1a1a 100%)",
   },
   vbigContainer: {
     position: "relative",
@@ -618,17 +614,17 @@ const styles: Record<string, CSSProperties> = {
     gap: "20px",
   },
   vbigLetter: {
-    fontSize: "140px",
+    fontSize: "180px",
     fontWeight: 900,
     color: "#fff",
     letterSpacing: "10px",
   },
   githubButton: {
     position: "absolute",
-    top: "24px",
+    top: "40px",
     right: "-10px",
-    width: "32px",
-    height: "32px",
+    width: "40px",
+    height: "40px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
