@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { InsightModal } from "@/components/InsightModal";
+import { LandingPage } from "@/components/LandingPage";
 import type { CSSProperties } from "react";
 
 /* =======================
@@ -10,6 +11,7 @@ import type { CSSProperties } from "react";
 ======================= */
 
 export default function HomePage() {
+  const [showLanding, setShowLanding] = useState(true);
   const [dashboards, setDashboards] = useState<any[]>([]);
   const [selected, setSelected] = useState<any | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,6 +67,10 @@ export default function HomePage() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentDashboards = filteredDashboards.slice(startIndex, endIndex);
+
+  if (showLanding) {
+    return <LandingPage onStart={() => setShowLanding(false)} />;
+  }
 
   return (
     <>
