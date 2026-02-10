@@ -2,10 +2,37 @@
 
 import { useState, useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
+import { supabase } from "@/lib/supabase";
 
 export function LandingPage({ onStart }: { onStart: () => void }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const [waveIntensity, setWaveIntensity] = useState(1);
+
+  // Login form state
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+      return;
+    }
+
+    onStart();
+  }
   const containerRef = useRef<HTMLDivElement>(null);
   const lastMoveTime = useRef(Date.now());
 
@@ -497,6 +524,134 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
         .github-button:hover {
           transform: scale(1) translateY(-2px);
         }
+
+        .vbig-container {
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vbig-container.login-active {
+          transform: translateY(-55%);
+        }
+
+        @keyframes waveLogin {
+          0% {
+            clip-path: polygon(
+              0% 49.5%, 10% 47%, 20% 51%, 30% 49.5%, 40% 51.5%, 50% 51%, 60% 47%, 70% 49.5%, 80% 51.5%, 90% 51%, 100% 49.5%,
+              100% 100%, 0% 100%
+            );
+          }
+          50% {
+            clip-path: polygon(
+              0% 51.5%, 10% 51%, 20% 47%, 30% 51%, 40% 49.5%, 50% 51.5%, 60% 51%, 70% 47%, 80% 49.5%, 90% 51.5%, 100% 51%,
+              100% 100%, 0% 100%
+            );
+          }
+          100% {
+            clip-path: polygon(
+              0% 49.5%, 10% 47%, 20% 51%, 30% 49.5%, 40% 51.5%, 50% 51%, 60% 47%, 70% 49.5%, 80% 51.5%, 90% 51%, 100% 49.5%,
+              100% 100%, 0% 100%
+            );
+          }
+        }
+
+        .wave-login-bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #3a69d6b7;
+          clip-path: polygon(
+            0% 50%, 10% 50%, 20% 50%, 30% 50%, 40% 50%, 50% 50%, 60% 50%, 70% 50%, 80% 50%, 90% 50%, 100% 50%,
+            100% 50%, 0% 50%
+          );
+          transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 15;
+        }
+
+        .wave-login-bg.visible {
+          clip-path: polygon(
+            0% 49.5%, 10% 47%, 20% 51%, 30% 49.5%, 40% 51.5%, 50% 51%, 60% 47%, 70% 49.5%, 80% 51.5%, 90% 51%, 100% 49.5%,
+            100% 100%, 0% 100%
+          );
+          animation: waveLogin 5s ease-in-out 0.6s infinite;
+        }
+
+        .login-form-container {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 60%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 20;
+          opacity: 0;
+          transform: translateY(20px);
+          pointer-events: none;
+          transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+        }
+
+        .login-form-container.visible {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: all;
+        }
+
+        .login-input {
+          width: 100%;
+          padding: 14px 16px;
+          font-size: 15px;
+          background: rgba(0, 0, 0, 0.15);
+          border: 1px solid rgba(0, 0, 0, 0.25);
+          border-radius: 10px;
+          color: #fff;
+          outline: none;
+          transition: all 0.2s ease;
+        }
+
+        .login-input:focus {
+          border-color: rgba(0, 0, 0, 0.4);
+          background: rgba(0, 0, 0, 0.2);
+        }
+
+        .login-input:-webkit-autofill,
+        .login-input:-webkit-autofill:hover,
+        .login-input:-webkit-autofill:focus {
+          -webkit-text-fill-color: #fff;
+          -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.15) inset;
+          box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.15) inset;
+          transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .login-input::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        .login-submit {
+          width: 100%;
+          padding: 14px 32px;
+          font-size: 16px;
+          font-weight: 600;
+          background: rgba(0, 0, 0, 0.2);
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          border-radius: 10px;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .login-submit:hover:not(:disabled) {
+          background: rgba(0, 0, 0, 0.3);
+          transform: translateY(-2px);
+        }
+
+        .login-submit:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
       `}</style>
 
       <div style={styles.container}>
@@ -515,7 +670,7 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
                 : "rgba(128, 128, 128, 0.3)",
               cursor: isLoaded ? "pointer" : "not-allowed",
             }}
-            onClick={isLoaded ? onStart : undefined}
+            onClick={isLoaded ? () => setShowLogin(true) : undefined}
             disabled={!isLoaded}
           >
             {isLoaded ? "Start →" : "Loading..."}
@@ -524,13 +679,16 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
 
         {/* Right Container */}
         <div ref={containerRef} style={styles.rightContainer}>
-          <div style={styles.vbigContainer}>
+          <div
+            style={styles.vbigContainer}
+            className={`vbig-container${showLogin ? " login-active" : ""}`}
+          >
             <span style={styles.vbigLetter}>V</span>
             <span style={styles.vbigLetter}>B</span>
             <span style={styles.vbigLetter}>I</span>
             <span style={styles.vbigLetter}>G</span>
             <a
-              href="https://github.com/pradervonsky/vbig-eval"
+              href="https://github.com/pradervonsky/vbig-lab"
               target="_blank"
               rel="noopener noreferrer"
               style={styles.githubButton}
@@ -547,9 +705,67 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
               </svg>
             </a>
           </div>
+
+          {/* Login Form */}
+          <div className={`login-form-container${showLogin ? " visible" : ""}`}>
+            <form onSubmit={handleLogin} style={{ width: "60%", maxWidth: "320px" }}>
+              <div style={{ marginBottom: "16px" }}>
+                <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.8)", marginBottom: "8px" }}>
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="login-input"
+                  placeholder="your@email.com"
+                  required
+                  autoFocus={showLogin}
+                />
+              </div>
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.8)", marginBottom: "8px" }}>
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="login-input"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+              {error && (
+                <div style={{
+                  padding: "12px",
+                  background: "rgba(220, 53, 69, 0.2)",
+                  border: "1px solid rgba(220, 53, 69, 0.4)",
+                  borderRadius: "8px",
+                  color: "#ff6b6b",
+                  fontSize: "13px",
+                  marginBottom: "16px",
+                  textAlign: "center"
+                }}>
+                  {error}
+                </div>
+              )}
+              <button
+                type="submit"
+                className="login-submit"
+                disabled={loading}
+              >
+                {loading ? "Signing in..." : "Sign in"}
+              </button>
+            </form>
+          </div>
+
           <div className="wave wave-light" style={waveStyle3}></div>
           <div className="wave wave-grey" style={waveStyle2}></div>
           <div className="wave wave-blue" style={waveStyle1}></div>
+
+          {/* Login background wave */}
+          <div className={`wave-login-bg${showLogin ? " visible" : ""}`}></div>
         </div>
       </div>
     </>
@@ -583,9 +799,9 @@ const styles: Record<string, CSSProperties> = {
   subtitle: {
     fontSize: "20px",
     color: "rgba(255, 255, 255, 0.6)",
-    margin: "0 0 40px 0",
+    margin: "0 0 20px 0",
     maxWidth: "720px",
-    lineHeight: "1.25",
+    lineHeight: "1.5",
   },
   startButton: {
     background: "linear-gradient(135deg, #3a6ad6 0%, #2a5ac6 100%)",

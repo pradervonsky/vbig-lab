@@ -12,15 +12,37 @@ import type { CSSProperties } from "react";
 
 export default function HomePage() {
   const [showLanding, setShowLanding] = useState(true);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const [isSigningOut, setIsSigningOut] = useState(false);
   const [dashboards, setDashboards] = useState<any[]>([]);
   const [selected, setSelected] = useState<any | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "completed">("all");
   const itemsPerPage = 10;
 
+  // Check for existing session on load
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setShowLanding(false);
+      }
+      setIsCheckingAuth(false);
+    });
+  }, []);
+
   useEffect(() => {
     loadDashboards();
   }, []);
+
+  async function handleSignOut() {
+    setIsSigningOut(true);
+    await supabase.auth.signOut();
+    // Wait for fade-out animation to complete
+    setTimeout(() => {
+      setShowLanding(true);
+      setIsSigningOut(false);
+    }, 400);
+  }
 
   async function loadDashboards() {
     const { data } = await supabase
@@ -68,6 +90,11 @@ export default function HomePage() {
   const endIndex = startIndex + itemsPerPage;
   const currentDashboards = filteredDashboards.slice(startIndex, endIndex);
 
+  // Show nothing while checking auth to prevent flash
+  if (isCheckingAuth) {
+    return null;
+  }
+
   if (showLanding) {
     return <LandingPage onStart={() => setShowLanding(false)} />;
   }
@@ -86,8 +113,23 @@ export default function HomePage() {
           }
         }
 
+        @keyframes fadeOutDown {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+        }
+
         .dashboard-card {
           animation: fadeInUp 0.5s ease-out;
+        }
+
+        .dashboard-card.signing-out {
+          animation: fadeOutDown 0.4s ease-in forwards;
         }
 
         .dashboard-table {
@@ -183,10 +225,16 @@ export default function HomePage() {
           background: rgba(255, 255, 255, 0.08) !important;
           color: rgba(255, 255, 255, 0.9);
         }
+
+        .signout-btn:hover {
+          background: rgba(220, 53, 69, 0.2) !important;
+          border-color: rgba(220, 53, 69, 0.4) !important;
+          color: #ff6b6b !important;
+        }
       `}</style>
 
       <div style={styles.container}>
-        <div style={styles.card} className="dashboard-card">
+        <div style={styles.card} className={`dashboard-card${isSigningOut ? " signing-out" : ""}`}>
           <div style={styles.header}>
             <h1 style={styles.title}>Insight Generation Platform</h1>
             <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
@@ -240,6 +288,13 @@ export default function HomePage() {
                 <span style={{ fontSize: "16px", opacity: 0.7 }}>{totalCount}</span>
                 <span style={{ fontSize: "12px", opacity: 0.5, marginLeft: "6px" }}>completed</span>
               </div>
+              <button
+                className="signout-btn"
+                style={styles.signOutButton}
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </button>
             </div>
           </div>
 
@@ -358,7 +413,7 @@ export default function HomePage() {
 
           <div style={styles.footer}>
             <a
-              href="https://github.com/pradervonsky/vbig-eval"
+              href="https://github.com/pradervonsky/vbig-lab"
               target="_blank"
               rel="noopener noreferrer"
               style={styles.footerLink}
@@ -529,5 +584,16 @@ const styles: Record<string, CSSProperties> = {
     textDecoration: "none",
     transition: "all 0.2s ease",
     borderBottom: "1px solid transparent",
+  },
+  signOutButton: {
+    padding: "10px 16px",
+    borderRadius: "10px",
+    fontSize: "13px",
+    fontWeight: 500,
+    color: "rgba(255, 255, 255, 0.6)",
+    background: "transparent",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    cursor: "pointer",
+    transition: "all 0.2s ease",
   },
 };
