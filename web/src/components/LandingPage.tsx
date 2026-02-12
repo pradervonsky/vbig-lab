@@ -14,6 +14,20 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [launched, setLaunched] = useState(false);
+  const [aborting, setAborting] = useState(false);
+  const prevReady = useRef(false);
+
+  const isReady = !!(email && password.length >= 3);
+
+  useEffect(() => {
+    if (prevReady.current && !isReady && !launched) {
+      setAborting(true);
+      const timer = setTimeout(() => setAborting(false), 500);
+      return () => clearTimeout(timer);
+    }
+    prevReady.current = isReady;
+  }, [isReady, launched]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -26,12 +40,23 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
     });
 
     if (error) {
-      setError(error.message);
+      setError("invalid");
       setLoading(false);
       return;
     }
 
-    onStart();
+    setLaunched(true);
+    setTimeout(() => onStart(), 600);
+  }
+
+  function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(e.target.value);
+    if (error) setError("");
+  }
+
+  function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setPassword(e.target.value);
+    if (error) setError("");
   }
   const containerRef = useRef<HTMLDivElement>(null);
   const lastMoveTime = useRef(Date.now());
@@ -483,12 +508,12 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
         }
 
         .wave-grey {
-          background: #ffffff35;
+          background: #102a61b9;
           animation: wave2 6s ease-in-out infinite;
         }
 
         .wave-light {
-          background: #0d0d0d;
+          background: #00000077;
           animation: wave3 7s ease-in-out infinite;
         }
 
@@ -582,7 +607,7 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
           bottom: 0;
           left: 0;
           right: 0;
-          height: 60%;
+          height: 77.5%;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -600,57 +625,325 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
           pointer-events: all;
         }
 
-        .login-input {
+        .submarine {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 100%;
-          padding: 14px 16px;
-          font-size: 15px;
-          background: rgba(0, 0, 0, 0.15);
-          border: 1px solid rgba(0, 0, 0, 0.25);
-          border-radius: 10px;
+          right: -25px;
+          transform: translateY(120%) rotate(15deg);
+          opacity: 0;
+          transition: transform 0.5s ease-in-out 0.3s, opacity 0.2s ease-in-out 0.3s;
+        }
+
+        .login-form-container.visible .submarine {
+          transform: translateY(0);
+          opacity: 1;
+          animation: subFloat 4s ease-in-out 0.8s infinite;
+        }
+
+        .sub-art {
+          white-space: pre;
+          font-size: 12px;
+          line-height: 1.1;
+          color: rgba(255, 255, 255, 0.45);
+          z-index: 2;
+          user-select: none;
+          pointer-events: none;
+          text-align: center;
+          width: fit-content;
+          margin: 0 auto;
+        }
+
+        .sub-art-row {
+          display: flex;
+          align-items: center;
+          width: 100%;
+        }
+
+        .sub-art-input {
+          flex: 1;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 4px;
           color: #fff;
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 12px;
+          font-weight: 600;
+          padding: 2px 4px;
           outline: none;
+          text-align: center;
+          pointer-events: auto;
+          user-select: auto;
           transition: all 0.2s ease;
         }
 
-        .login-input:focus {
-          border-color: rgba(0, 0, 0, 0.4);
-          background: rgba(0, 0, 0, 0.2);
+        .sub-art-input:focus {
+          border-color: rgba(255, 255, 255, 0.5);
+          background: rgba(255, 255, 255, 0.15);
         }
 
-        .login-input:-webkit-autofill,
-        .login-input:-webkit-autofill:hover,
-        .login-input:-webkit-autofill:focus {
+        .sub-art-input:-webkit-autofill,
+        .sub-art-input:-webkit-autofill:hover,
+        .sub-art-input:-webkit-autofill:focus {
           -webkit-text-fill-color: #fff;
-          -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.15) inset;
-          box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.15) inset;
+          -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.08) inset;
+          box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.08) inset;
           transition: background-color 5000s ease-in-out 0s;
         }
 
-        .login-input::placeholder {
+        .sub-art-input::placeholder {
           color: rgba(255, 255, 255, 0.5);
         }
 
-        .login-submit {
-          width: 100%;
-          padding: 14px 32px;
-          font-size: 16px;
-          font-weight: 600;
-          background: rgba(0, 0, 0, 0.2);
-          border: 1px solid rgba(0, 0, 0, 0.3);
-          border-radius: 10px;
+        .sub-missile {
+          position: relative;
+          margin-top: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transform: translateY(-25px) scale(0.95);
+          pointer-events: none;
+          transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+        }
+
+        .sub-missile.ready {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          pointer-events: all;
+          animation: torpedoFloat 2s ease-in-out 0.5s infinite;
+          transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .sub-missile button {
+          min-width: 150px;
+          position: relative;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 20px 4px 4px 20px;
           color: #fff;
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 12px;
+          font-weight: 600;
+          padding: 8px 28px 8px 24px;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
+          letter-spacing: 1px;
         }
 
-        .login-submit:hover:not(:disabled) {
-          background: rgba(0, 0, 0, 0.3);
-          transform: translateY(-2px);
+        .sub-missile button::after {
+          content: '+';
+          position: absolute;
+          right: -16px;
+          top: 50%;
+          font-size: 33px;
+          font-weight: 700;
+          color: rgba(255, 255, 255, 0.25);
+          transform-origin: center;
+          animation: propellerSpin 0.3s linear infinite;
         }
 
-        .login-submit:disabled {
+        .sub-missile button:hover:not(:disabled) {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.4);
+          transform: translateX(-3px);
+        }
+
+        .sub-missile button:disabled {
           opacity: 0.6;
           cursor: not-allowed;
+        }
+
+        .sub-missile button.has-error {
+          background: rgba(220, 53, 69, 0.25);
+          border-color: rgba(220, 53, 69, 0.5);
+          color: #ff6b6b;
+          opacity: 1;
+        }
+
+        .sub-missile button.has-error::after {
+          color: rgba(220, 53, 69, 0.5);
+        }
+
+        .sub-missile.aborting {
+          animation: torpedoAbort 0.3s ease-in forwards !important;
+          pointer-events: none;
+        }
+
+        .sub-missile.aborting button {
+          background: rgba(0, 0, 0, 0.4);
+          border-color: rgba(0, 0, 0, 0.2);
+          color: rgba(255, 255, 255, 0.3);
+        }
+
+        .sub-missile.aborting button::after {
+          color: rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes torpedoAbort {
+          0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+          20% { transform: translateY(8px) rotate(-5deg); opacity: 0.8; }
+          100% { transform: translateY(120px) rotate(-30deg); opacity: 0; }
+        }
+
+        .sub-missile.launched {
+          animation: torpedoLaunch 0.5s ease-in forwards !important;
+        }
+
+        @keyframes torpedoLaunch {
+          0% { transform: translate(0, 0); opacity: 1; }
+          100% { transform: translate(-120vw, 0); opacity: 0; }
+        }
+
+        .missile-bubbles {
+          position: absolute;
+          right: -10px;
+          top: 50%;
+        }
+
+        .missile-bubbles .mb {
+          position: absolute;
+          border-radius: 50%;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          background: rgba(255, 255, 255, 0.04);
+        }
+
+        .mb1 {
+          width: 5px;
+          height: 5px;
+          animation: missileB1 1.2s ease-out infinite;
+        }
+
+        .mb2 {
+          width: 3px;
+          height: 3px;
+          top: -4px;
+          animation: missileB2 0.6s ease-out 0.2s infinite;
+        }
+
+        .mb3 {
+          width: 4px;
+          height: 4px;
+          top: 5px;
+          animation: missileB3 0.5s ease-out 0.1s infinite;
+        }
+
+        .mb4 {
+          width: 3px;
+          height: 3px;
+          top: -8px;
+          animation: missileB4 0.7s ease-out 0.4s infinite;
+        }
+
+        .mb5 {
+          width: 4px;
+          height: 4px;
+          top: 8px;
+          animation: missileB5 1s ease-out 0.3s infinite;
+        }
+
+        @keyframes torpedoFloat {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          30% { transform: translate(-3px, -5px) rotate(-0.9deg); }
+          60% { transform: translate(2px, 7px) rotate(0.9deg); }
+          100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        @keyframes propellerSpin {
+          0% { transform: translateY(-50%) rotate(0deg); }
+          100% { transform: translateY(-50%) rotate(360deg); }
+        }
+
+        @keyframes missileB1 {
+          0% { transform: translate(0, 0); opacity: 0; }
+          10% { opacity: 0.6; }
+          100% { transform: translate(40px, -10px); opacity: 0; }
+        }
+
+        @keyframes missileB2 {
+          0% { transform: translate(0, 0); opacity: 0; }
+          10% { opacity: 0.4; }
+          100% { transform: translate(30px, -18px); opacity: 0; }
+        }
+
+        @keyframes missileB3 {
+          0% { transform: translate(0, 0); opacity: 0; }
+          10% { opacity: 0.5; }
+          100% { transform: translate(35px, 8px); opacity: 0; }
+        }
+
+        @keyframes missileB4 {
+          0% { transform: translate(0, 0); opacity: 0; }
+          10% { opacity: 0.5; }
+          100% { transform: translate(28px, -22px); opacity: 0; }
+        }
+
+        @keyframes missileB5 {
+          0% { transform: translate(0, 0); opacity: 0; }
+          10% { opacity: 0.4; }
+          100% { transform: translate(42px, 12px); opacity: 0; }
+        }
+
+        .sub-bubbles {
+          position: absolute;
+          left: calc(57.5% + 120px);
+          top: 85%;
+          z-index: 1;
+        }
+
+        .bubble {
+          position: absolute;
+          border-radius: 50%;
+          border: 1.5px solid rgba(255, 255, 255, 0.3);
+          background: rgba(255, 255, 255, 0.05);
+        }
+
+        .b1 {
+          width: 8px;
+          height: 8px;
+          animation: bubbleFloat1 1.5s ease-out 0.7s infinite;
+        }
+
+        .b2 {
+          width: 5px;
+          height: 5px;
+          top: -12px;
+          animation: bubbleFloat2 1s ease-out 0.5s infinite;
+        }
+
+        .b3 {
+          width: 7px;
+          height: 7px;
+          top: 10px;
+          animation: bubbleFloat3 2s ease-out 0.8s infinite;
+        }
+
+        @keyframes subFloat {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          25% { transform: translate(2px, -2px) rotate(0deg); }
+          50% { transform: translate(0px, -4px) rotate(0deg); }
+          75% { transform: translate(-2px, -6px) rotate(0deg); }
+          100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        @keyframes bubbleFloat1 {
+          0% { transform: translate(0, 0); opacity: 0; }
+          15% { opacity: 0.7; }
+          100% { transform: translate(60px, -15px); opacity: 0; }
+        }
+
+        @keyframes bubbleFloat2 {
+          0% { transform: translate(0, 0); opacity: 0; }
+          15% { opacity: 0.5; }
+          100% { transform: translate(40px, -25px); opacity: 0; }
+        }
+
+        @keyframes bubbleFloat3 {
+          0% { transform: translate(0, 0); opacity: 0; }
+          15% { opacity: 0.6; }
+          100% { transform: translate(55px, 8px); opacity: 0; }
         }
       `}</style>
 
@@ -706,57 +999,64 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
             </a>
           </div>
 
-          {/* Login Form */}
+          {/* Login Form - Submarine */}
           <div className={`login-form-container${showLogin ? " visible" : ""}`}>
-            <form onSubmit={handleLogin} style={{ width: "60%", maxWidth: "320px" }}>
-              <div style={{ marginBottom: "16px" }}>
-                <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.8)", marginBottom: "8px" }}>
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="login-input"
-                  placeholder="your@email.com"
-                  required
-                  autoFocus={showLogin}
-                />
+            <div className="submarine">
+              {/* Bubbles - behind submarine */}
+              <div className="sub-bubbles">
+                <span className="bubble b1"></span>
+                <span className="bubble b2"></span>
+                <span className="bubble b3"></span>
               </div>
-              <div style={{ marginBottom: "20px" }}>
-                <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.8)", marginBottom: "8px" }}>
-                  Password
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="login-input"
-                  placeholder="••••••••"
-                  required
-                />
-              </div>
-              {error && (
-                <div style={{
-                  padding: "12px",
-                  background: "rgba(220, 53, 69, 0.2)",
-                  border: "1px solid rgba(220, 53, 69, 0.4)",
-                  borderRadius: "8px",
-                  color: "#ff6b6b",
-                  fontSize: "13px",
-                  marginBottom: "16px",
-                  textAlign: "center"
-                }}>
-                  {error}
+
+              {/* Submarine art with embedded inputs */}
+              <div className="sub-art">
+                <div>{`
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠻⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⣠⣤⣤⣤⣤⣤⣤⣤⣿⣿⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣿⣿⣧⣤⣤⣤⣤⣤⣄⣀⣀⡀⠀⠀⣼⣿⡟⠀⣿⣿⠁⠀⠀⠀
+⠀⠀⠀⢠⣾⣿⡿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣤⣀⣿⣿⠀⠀⠀⠀
+⠀⠀⢰⣿⡿⠋⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣄⠀⠀`}</div>
+                <div className="sub-art-row">
+                  <span>⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</span>
+                  <input type="email" value={email} onChange={handleEmailChange} className="sub-art-input" placeholder="email" required autoFocus={showLogin} form="login-form" />
+                  <span>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀</span>
                 </div>
-              )}
-              <button
-                type="submit"
-                className="login-submit"
-                disabled={loading}
-              >
-                {loading ? "Signing in..." : "Sign in"}
-              </button>
+                <div>⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀</div>
+                <div className="sub-art-row">
+                  <span>⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</span>
+                  <input type="password" value={password} onChange={handlePasswordChange} className="sub-art-input" placeholder="password" required form="login-form" />
+                  <span>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀</span>
+                </div>
+                <div>{`⠀⠀⠻⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠀⠀
+⠀       ⠻⣿⣷⣶⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣴⣶⣶⣶⣿⣿⣿⢿⣿⣿⠛⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀   ⠉⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠉⠉⠉⠀⠀⠀⢻⣿⣧  ⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀`}</div>
+              </div>
+            </div>
+
+            {/* Missile button - below submarine */}
+            <form id="login-form" onSubmit={handleLogin}>
+              <div className={`sub-missile${isReady ? " ready" : ""}${aborting ? " aborting" : ""}${launched ? " launched" : ""}`}>
+                <button type="submit" disabled={loading || launched} className={error ? "has-error" : ""}>
+                  {error ? error : loading ? "launching!" : "sign in"}
+                </button>
+                <div className="missile-bubbles">
+                  <span className="mb mb1"></span>
+                  <span className="mb mb2"></span>
+                  <span className="mb mb3"></span>
+                  <span className="mb mb4"></span>
+                  <span className="mb mb5"></span>
+                </div>
+              </div>
             </form>
           </div>
 
