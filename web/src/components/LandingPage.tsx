@@ -16,9 +16,17 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
   const [loading, setLoading] = useState(false);
   const [launched, setLaunched] = useState(false);
   const [aborting, setAborting] = useState(false);
+  const [missileEnabled, setMissileEnabled] = useState(false);
   const prevReady = useRef(false);
 
-  const isReady = !!(email && password.length >= 3);
+  useEffect(() => {
+    if (showLogin) {
+      const timer = setTimeout(() => setMissileEnabled(true), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [showLogin]);
+
+  const isReady = missileEnabled && !!(email && password.length >= 3);
 
   useEffect(() => {
     if (prevReady.current && !isReady && !launched) {
