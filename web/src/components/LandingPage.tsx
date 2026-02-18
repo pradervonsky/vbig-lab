@@ -21,7 +21,7 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
 
   useEffect(() => {
     if (showLogin) {
-      const timer = setTimeout(() => setMissileEnabled(true), 1500);
+      const timer = setTimeout(() => setMissileEnabled(true), 1000);
       return () => clearTimeout(timer);
     }
   }, [showLogin]);
@@ -642,7 +642,7 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
           right: -25px;
           transform: translateY(120%) rotate(15deg);
           opacity: 0;
-          transition: transform 0.5s ease-in-out 0.3s, opacity 0.2s ease-in-out 0.3s;
+          transition: transform 0.5s ease-in-out 0.3s, opacity 0.5s ease-in-out 0.3s;
         }
 
         .login-form-container.visible .submarine {

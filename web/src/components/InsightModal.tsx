@@ -12,9 +12,7 @@ export function InsightModal({
   onClose: () => void;
 }) {
   const [expected, setExpected] = useState<boolean | null>(null);
-  const [p1, setP1] = useState("");
-  const [p2, setP2] = useState("");
-  const [p3, setP3] = useState("");
+  const [insight, setInsight] = useState("");
   const [isClosing, setIsClosing] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -23,9 +21,7 @@ export function InsightModal({
     if (dashboard.human_insights && dashboard.human_insights.length > 0) {
       const insight = dashboard.human_insights[0];
       setExpected(insight.expected_dataset);
-      setP1(insight.insight_part_1 || "");
-      setP2(insight.insight_part_2 || "");
-      setP3(insight.insight_part_3 || "");
+      setInsight(insight.insight_part_1 || "");
     }
   }, [dashboard]);
 
@@ -43,9 +39,7 @@ export function InsightModal({
   async function save() {
     const insightData = {
       expected_dataset: expected,
-      insight_part_1: p1,
-      insight_part_2: p2,
-      insight_part_3: p3,
+      insight_part_1: insight,
       updated_at: new Date().toISOString(),
     };
 
@@ -266,31 +260,14 @@ export function InsightModal({
 
           <div style={styles.insightGrid}>
             <div style={styles.textareaWrapper}>
-              <label style={styles.label}>Insight Part 1</label>
+              <div style={styles.labelRow}>
+                <label style={styles.label}>Insight</label>
+                <span style={styles.charCounter}>{insight.length} characters</span>
+              </div>
               <textarea
-                placeholder="Describe the first key insight..."
-                value={p1}
-                onChange={(e) => setP1(e.target.value)}
-                style={styles.textarea}
-                className="insight-textarea"
-              />
-            </div>
-            <div style={styles.textareaWrapper}>
-              <label style={styles.label}>Insight Part 2</label>
-              <textarea
-                placeholder="Describe the second key insight..."
-                value={p2}
-                onChange={(e) => setP2(e.target.value)}
-                style={styles.textarea}
-                className="insight-textarea"
-              />
-            </div>
-            <div style={styles.textareaWrapper}>
-              <label style={styles.label}>Insight Part 3</label>
-              <textarea
-                placeholder="Describe the third key insight..."
-                value={p3}
-                onChange={(e) => setP3(e.target.value)}
+                placeholder="Describe the key insights from this dashboard..."
+                value={insight}
+                onChange={(e) => setInsight(e.target.value)}
                 style={styles.textarea}
                 className="insight-textarea"
               />
@@ -439,6 +416,18 @@ const styles: Record<string, CSSProperties> = {
     display: "flex",
     flexDirection: "column",
     gap: "8px",
+    flex: 1,
+  },
+  labelRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  charCounter: {
+    fontSize: "12px",
+    fontWeight: 500,
+    color: "rgba(255, 255, 255, 0.4)",
+    fontVariantNumeric: "tabular-nums",
   },
   label: {
     fontSize: "14px",
