@@ -66,7 +66,10 @@ export default function HomePage() {
       // unfinished first
       if (aDone !== bDone) return aDone ? 1 : -1;
 
-      // oldest first
+      // completed: latest updated_at first; pending: oldest created_at first
+      if (aDone && bDone) {
+        return new Date(b.human_insights[0].updated_at).getTime() - new Date(a.human_insights[0].updated_at).getTime();
+      }
       return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
     });
 
@@ -321,12 +324,21 @@ export default function HomePage() {
                     <td>{d.dashboard_name}</td>
                     <td>{d.dashboard_author}</td>
                     <td>
-                      {new Date(d.created_at).toLocaleDateString()}{" "}
-                      {new Date(d.created_at).toLocaleTimeString([], {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: false
-                      })}
+                      {(() => {
+                        const timestamp = done
+                          ? d.human_insights[0].updated_at
+                          : d.created_at;
+                        return (
+                          <>
+                            {new Date(timestamp).toLocaleDateString()}{" "}
+                            {new Date(timestamp).toLocaleTimeString([], {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: false
+                            })}
+                          </>
+                        );
+                      })()}
                     </td>
                     <td>
                       <span
