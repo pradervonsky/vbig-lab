@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import { InsightModal } from "@/components/InsightModal";
 import { LandingPage } from "@/components/LandingPage";
@@ -18,7 +18,16 @@ export default function HomePage() {
   const [selected, setSelected] = useState<any | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "completed">("all");
+  const [sessionWarning, setSessionWarning] = useState(false);
+  const [warningCountdown, setWarningCountdown] = useState(60);
   const itemsPerPage = 10;
+
+  const TIMEOUT_MS = 15 * 60 * 1000;   // 15 minutes
+  const WARNING_MS = 14 * 60 * 1000;   // warn at 14 minutes (1 min before)
+  const lastActivity = useRef(Date.now());
+  const warningTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const logoutTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const countdownInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Check for existing session on load
   useEffect(() => {
@@ -43,6 +52,49 @@ export default function HomePage() {
       setIsSigningOut(false);
     }, 400);
   }
+
+  const clearTimers = useCallback(() => {
+    if (warningTimer.current) clearTimeout(warningTimer.current);
+    if (logoutTimer.current) clearTimeout(logoutTimer.current);
+    if (countdownInterval.current) clearInterval(countdownInterval.current);
+  }, []);
+
+  const startTimers = useCallback(() => {
+    clearTimers();
+    warningTimer.current = setTimeout(() => {
+      setSessionWarning(true);
+      setWarningCountdown(60);
+      countdownInterval.current = setInterval(() => {
+        setWarningCountdown(prev => prev - 1);
+      }, 1000);
+    }, WARNING_MS);
+
+    logoutTimer.current = setTimeout(() => {
+      clearTimers();
+      setSessionWarning(false);
+      handleSignOut();
+    }, TIMEOUT_MS);
+  }, [clearTimers]);
+
+  const resetActivity = useCallback(() => {
+    lastActivity.current = Date.now();
+    if (sessionWarning) setSessionWarning(false);
+    startTimers();
+  }, [sessionWarning, startTimers]);
+
+  // Start inactivity tracking only while dashboard is shown
+  useEffect(() => {
+    if (showLanding) return;
+
+    startTimers();
+    const events = ["mousemove", "keydown", "mousedown", "scroll", "touchstart"];
+    events.forEach(e => window.addEventListener(e, resetActivity, { passive: true }));
+
+    return () => {
+      clearTimers();
+      events.forEach(e => window.removeEventListener(e, resetActivity));
+    };
+  }, [showLanding, startTimers, resetActivity, clearTimers]);
 
   async function loadDashboards() {
     const { data } = await supabase
@@ -234,7 +286,39 @@ export default function HomePage() {
           border-color: rgba(220, 53, 69, 0.4) !important;
           color: #ff6b6b !important;
         }
+
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateX(-50%) translateY(-16px); }
+          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .session-warning {
+          animation: slideDown 0.3s ease-out;
+        }
+
+        .session-warning-stay:hover {
+          background: rgba(255, 255, 255, 0.15) !important;
+        }
       `}</style>
+
+      {sessionWarning && (
+        <div
+          className="session-warning"
+          style={styles.sessionWarning}
+        >
+          <span style={{ fontSize: "14px" }}>⏱</span>
+          <span style={{ fontSize: "13px", fontWeight: 500 }}>
+            Session expiring in <strong>{warningCountdown}s</strong>
+          </span>
+          <button
+            className="session-warning-stay"
+            style={styles.sessionWarningBtn}
+            onClick={resetActivity}
+          >
+            Stay signed in
+          </button>
+        </div>
+      )}
 
       <div style={styles.container}>
         <div style={styles.card} className={`dashboard-card${isSigningOut ? " signing-out" : ""}`}>
@@ -605,6 +689,34 @@ const styles: Record<string, CSSProperties> = {
     color: "rgba(255, 255, 255, 0.6)",
     background: "transparent",
     border: "1px solid rgba(255, 255, 255, 0.1)",
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+  },
+  sessionWarning: {
+    position: "fixed",
+    top: "24px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    background: "linear-gradient(135deg, #1e1e1e 0%, #1a1a1a 100%)",
+    border: "1px solid rgba(220, 53, 69, 0.4)",
+    color: "#fff",
+    padding: "12px 20px",
+    borderRadius: "12px",
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    zIndex: 2000,
+    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(220, 53, 69, 0.15)",
+    whiteSpace: "nowrap",
+  },
+  sessionWarningBtn: {
+    padding: "6px 14px",
+    borderRadius: "8px",
+    fontSize: "12px",
+    fontWeight: 600,
+    color: "#fff",
+    background: "rgba(255, 255, 255, 0.08)",
+    border: "1px solid rgba(255, 255, 255, 0.15)",
     cursor: "pointer",
     transition: "all 0.2s ease",
   },
