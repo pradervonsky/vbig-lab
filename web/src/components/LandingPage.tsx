@@ -5,7 +5,7 @@ import type { CSSProperties } from "react";
 import { supabase } from "@/lib/supabase";
 
 export function LandingPage({ onStart }: { onStart: () => void }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
   const [waveIntensity, setWaveIntensity] = useState(1);
 
@@ -76,15 +76,6 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
   const wave2Max = 52;
   const wave3Min = 47.5;
   const wave3Max = 52.5;
-
-  useEffect(() => {
-    // Simulate loading completion
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -1133,7 +1124,7 @@ const styles: Record<string, CSSProperties> = {
   },
   vbigContainer: {
     position: "relative",
-    zIndex: 10,
+    zIndex: 25,
     display: "flex",
     gap: "20px",
   },
@@ -1156,5 +1147,6 @@ const styles: Record<string, CSSProperties> = {
     borderRadius: "8px",
     textDecoration: "none",
     backdropFilter: "blur(10px)",
+    zIndex: 25,
   },
 };

@@ -3,27 +3,42 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import type { CSSProperties } from "react";
+import { renderMarkdown, L2, L3, L4, Eg } from "@/components/GuidelinePage";
 
 export function InsightModal({
   dashboard,
+  userRole = "admin",
+  readOnly = false,
   onClose,
 }: {
   dashboard: any;
+  userRole?: "admin" | "annotator1" | "annotator2";
+  readOnly?: boolean;
   onClose: () => void;
 }) {
+  const isAnnotator = userRole === "annotator1" || userRole === "annotator2";
   const [expected, setExpected] = useState<boolean | null>(null);
+  const [irrFlag, setIrrFlag] = useState(false);
   const [insight, setInsight] = useState("");
   const [isClosing, setIsClosing] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [activeTab, setActiveTab] = useState<"L2" | "L3" | "L4" | "Eg" | null>(null);
 
   // Pre-fill form if editing an existing insight
   useEffect(() => {
     if (dashboard.human_insights && dashboard.human_insights.length > 0) {
-      const insight = dashboard.human_insights[0];
-      setExpected(insight.expected_dataset);
-      setInsight(insight.insight_part_1 || "");
+      const row = dashboard.human_insights[0];
+      if (userRole === "annotator1") {
+        setInsight(row.insight_part_2 || "");
+      } else if (userRole === "annotator2") {
+        setInsight(row.insight_part_3 || "");
+      } else {
+        setExpected(row.expected_dataset);
+        setIrrFlag(row.irr_flag ?? false);
+        setInsight(row.insight_part_1 || "");
+      }
     }
-  }, [dashboard]);
+  }, [dashboard, userRole]);
 
   const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/superstore/${dashboard.bucket_path}`;
   console.log("Image URL:", imageUrl);
@@ -37,21 +52,27 @@ export function InsightModal({
   }
 
   async function save() {
-    const insightData = {
-      expected_dataset: expected,
-      insight_part_1: insight,
-      updated_at: new Date().toISOString(),
-    };
+    let insightData: Record<string, any>;
 
-    // Check if an insight already exists for this dashboard
+    if (userRole === "annotator1") {
+      insightData = { insight_part_2: insight, updated_at_2: new Date().toISOString() };
+    } else if (userRole === "annotator2") {
+      insightData = { insight_part_3: insight, updated_at_3: new Date().toISOString() };
+    } else {
+      insightData = {
+        expected_dataset: expected,
+        irr_flag: irrFlag,
+        insight_part_1: insight,
+        updated_at: new Date().toISOString(),
+      };
+    }
+
     if (dashboard.human_insights && dashboard.human_insights.length > 0) {
-      // Update existing insight (preserves created_at, updates updated_at)
       await supabase
         .from("human_insights")
         .update(insightData)
         .eq("metadata_id", dashboard.id);
     } else {
-      // Insert new insight
       await supabase.from("human_insights").insert({
         metadata_id: dashboard.id,
         ...insightData,
@@ -126,12 +147,20 @@ export function InsightModal({
           transform: translateY(0);
         }
 
+        .irr-button:hover {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .irr-button:active {
+          transform: translateY(0);
+        }
+
         .save-button {
           cursor: pointer;
           transition: all 0.2s ease;
         }
 
-        .save-button:hover {
+        .save-button:hover:not(:disabled) {
           background: #4a7ae6 !important;
           transform: translateY(-1px);
           box-shadow: 0 4px 12px rgba(58, 106, 214, 0.3);
@@ -190,22 +219,40 @@ export function InsightModal({
             }}>
               {dashboard.dashboard_author}
             </p>
+            {dashboard.dashboard_link && (
+              <button
+                style={{
+                  background: "#333333",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: "13px",
+                  cursor: "pointer",
+                  padding: "4px 10px",
+                  borderRadius: "6px",
+                  marginLeft: "8px",
+                }}
+                onClick={() => window.open(dashboard.dashboard_link, "_blank")}
+                title="View Dashboard"
+              >
+                ➤
+              </button>
+            )}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            {dashboard.human_insights && dashboard.human_insights.length > 0 && (
-              <span style={{
-                fontSize: "12px",
-                color: "rgba(255, 255, 255, 0.5)",
-                fontWeight: 500
-              }}>
-                Completed: {new Date(dashboard.human_insights[0].updated_at).toLocaleDateString()}{" "}
-                {new Date(dashboard.human_insights[0].updated_at).toLocaleTimeString([], {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  hour12: false
-                })}
-              </span>
-            )}
+            {(() => {
+              const row = dashboard.human_insights?.[0];
+              const ts = userRole === "annotator1" ? row?.updated_at_2
+                       : userRole === "annotator2" ? row?.updated_at_3
+                       : row?.updated_at;
+              if (!ts) return null;
+              const d = new Date(ts);
+              return (
+                <span style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.5)", fontWeight: 500 }}>
+                  Completed: {d.toLocaleDateString()}{" "}
+                  {d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
+                </span>
+              );
+            })()}
             <button
               style={styles.closeButton}
               className="modal-close-button"
@@ -230,55 +277,130 @@ export function InsightModal({
           </div>
 
           <div style={styles.formSection}>
-          <div style={styles.checkboxContainer}>
-            <span style={styles.checkboxLabel}>Uses correct Superstore dataset</span>
+          {!isAnnotator && (
             <div style={{ display: "flex", gap: "8px" }}>
-              <button
-                className="yes-button"
-                style={{
-                  ...styles.yesNoButton,
-                  background: expected === true ? "#1ebb81" : "rgba(255, 255, 255, 0.05)",
-                  border: expected === true ? "1px solid #1ebb81" : "1px solid rgba(255, 255, 255, 0.1)",
-                }}
-                onClick={() => setExpected(true)}
-              >
-                Yes
-              </button>
-              <button
-                className="no-button"
-                style={{
-                  ...styles.yesNoButton,
-                  background: expected === false ? "#a32b2b" : "rgba(255, 255, 255, 0.05)",
-                  border: expected === false ? "1px solid #a32b2b" : "1px solid rgba(255, 255, 255, 0.1)",
-                }}
-                onClick={() => setExpected(false)}
-              >
-                No
-              </button>
+              <div style={{ ...styles.checkboxContainer, flex: 5 }}>
+                <span style={styles.checkboxLabel}>Uses correct dataset?</span>
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <button
+                    className="yes-button"
+                    style={{
+                      ...styles.yesNoButton,
+                      background: expected === true ? "#1ebb81" : "rgba(255, 255, 255, 0.05)",
+                      border: expected === true ? "1px solid #1ebb81" : "1px solid rgba(255, 255, 255, 0.1)",
+                      ...(readOnly ? { cursor: "default", opacity: 0.8 } : {}),
+                    }}
+                    onClick={() => !readOnly && setExpected(true)}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    className="no-button"
+                    style={{
+                      ...styles.yesNoButton,
+                      background: expected === false ? "#a32b2b" : "rgba(255, 255, 255, 0.05)",
+                      border: expected === false ? "1px solid #a32b2b" : "1px solid rgba(255, 255, 255, 0.1)",
+                      ...(readOnly ? { cursor: "default", opacity: 0.8 } : {}),
+                    }}
+                    onClick={() => !readOnly && setExpected(false)}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+
+              <div style={{ ...styles.checkboxContainer, flex: 2 }}>
+                <span style={styles.checkboxLabel}>IRR?</span>
+                <button
+                  className="irr-button"
+                  style={{
+                    ...styles.yesNoButton,
+                    background: irrFlag ? "#3a6ad6" : "rgba(255, 255, 255, 0.05)",
+                    border: irrFlag ? "1px solid #3a6ad6" : "1px solid rgba(255, 255, 255, 0.1)",
+                    ...(readOnly ? { cursor: "default", opacity: 0.8 } : {}),
+                  }}
+                  onClick={() => !readOnly && setIrrFlag(prev => !prev)}
+                  title="Flag for inter-rater reliability review"
+                >
+                  {irrFlag ? "Yes" : "No"}
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
           <div style={styles.insightGrid}>
             <div style={styles.textareaWrapper}>
               <div style={styles.labelRow}>
-                <label style={styles.label}>Insight</label>
-                <span style={styles.charCounter}>{insight.length} characters</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <label style={styles.label}>Insight</label>
+                  {(["L2", "L3", "L4", "Eg"] as const).map(tab => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(prev => prev === tab ? null : tab)}
+                      title={`Show ${tab} guideline`}
+                      style={{
+                        background: activeTab === tab ? "rgba(58,106,214,0.2)" : "transparent",
+                        border: "1px solid " + (activeTab === tab ? "rgba(58,106,214,0.5)" : "rgba(255,255,255,0.1)"),
+                        color: activeTab === tab ? "#3a6ad6" : "rgba(255,255,255,0.4)",
+                        padding: "2px 8px",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        fontSize: "11px",
+                        fontWeight: 700,
+                        letterSpacing: "0.3px",
+                        transition: "all 0.2s ease",
+                      }}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+                <span style={{ ...styles.charCounter, color: insight.length > 3500 ? "#e53e3e" : "rgba(255, 255, 255, 0.4)" }}>{insight.length} / 3,500 characters</span>
               </div>
               <textarea
-                placeholder="Describe the key insights from this dashboard..."
+                placeholder={`Annotate this dashboard based on the guideline.\nClick one of four buttons above (L2, L3, L4, Eg) to see the guideline.\n\nExpected format:\n\nChart 1: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]\n\nChart 2: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]\n\nChart n: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]`}
                 value={insight}
-                onChange={(e) => setInsight(e.target.value)}
-                style={styles.textarea}
+                onChange={(e) => !readOnly && setInsight(e.target.value)}
+                style={{ ...styles.textarea, ...(readOnly ? { cursor: "default", opacity: 0.75 } : {}) }}
                 className="insight-textarea"
+                readOnly={readOnly}
               />
             </div>
           </div>
 
-          <div style={styles.actions}>
-            <button style={styles.primary} className="save-button" onClick={save}>
-              Save Insights
-            </button>
+          <div style={{
+            ...styles.guidelinePanel,
+            maxHeight: activeTab ? "340px" : "0",
+            opacity: activeTab ? 1 : 0,
+            paddingTop: activeTab ? "16px" : "0",
+            paddingBottom: activeTab ? "16px" : "0",
+          }}>
+            <div
+              style={{ maxHeight: "308px", overflowY: "auto", fontSize: "14px" }}
+              dangerouslySetInnerHTML={{ __html: renderMarkdown(
+                activeTab === "L2" ? L2 :
+                activeTab === "L3" ? L3 :
+                activeTab === "L4" ? L4 :
+                activeTab === "Eg" ? Eg : ""
+              ) }}
+            />
           </div>
+
+          {!readOnly && (
+            <div style={styles.actions}>
+              <button
+                style={{
+                  ...styles.primary,
+                  ...(insight.length > 3500 ? { background: "#444", color: "rgba(255,255,255,0.3)", cursor: "not-allowed" } : {}),
+                }}
+                className="save-button"
+                onClick={save}
+                disabled={insight.length > 3500}
+              >
+                Save Insights
+              </button>
+            </div>
+          )}
         </div>
         </div>
       </div>
@@ -472,6 +594,16 @@ const styles: Record<string, CSSProperties> = {
     lineHeight: "1.6",
     transition: "all 0.2s ease",
     flex: 1,
+  },
+  guidelinePanel: {
+    background: "rgba(0,0,0,0.2)",
+    border: "1px solid rgba(255,255,255,0.06)",
+    borderRadius: "10px",
+    paddingLeft: "20px",
+    paddingRight: "20px",
+    overflow: "hidden" as const,
+    flexShrink: 0,
+    transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, padding 0.1s cubic-bezier(0.4, 0, 0.2, 1)",
   },
   actions: {
     display: "flex",

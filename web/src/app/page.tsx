@@ -4,6 +4,8 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import { InsightModal } from "@/components/InsightModal";
 import { LandingPage } from "@/components/LandingPage";
+import { AdminPage } from "@/components/AdminPage";
+import { MonitoringPage } from "@/components/MonitoringPage";
 import type { CSSProperties } from "react";
 
 /* =======================
@@ -20,6 +22,9 @@ export default function HomePage() {
   const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "completed">("all");
   const [sessionWarning, setSessionWarning] = useState(false);
   const [warningCountdown, setWarningCountdown] = useState(60);
+  const [userRole, setUserRole] = useState<"admin" | "annotator1" | "annotator2">("annotator1");
+  const [showAdmin, setShowAdmin] = useState(false);
+  const [showMonitoring, setShowMonitoring] = useState(false);
   const itemsPerPage = 10;
 
   const TIMEOUT_MS = 15 * 60 * 1000;   // 15 minutes
@@ -31,9 +36,15 @@ export default function HomePage() {
 
   // Check for existing session on load
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (session) {
         setShowLanding(false);
+        const { data: roleData } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("email", session.user.email)
+          .single();
+        if (roleData) setUserRole(roleData.role);
       }
       setIsCheckingAuth(false);
     });
@@ -42,6 +53,20 @@ export default function HomePage() {
   useEffect(() => {
     loadDashboards();
   }, []);
+
+  async function handleSignIn() {
+    const { data: { session } } = await supabase.auth.getSession();
+    setUserRole("annotator1");
+    if (session) {
+      const { data: roleData } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("email", session.user.email)
+        .single();
+      if (roleData) setUserRole(roleData.role);
+    }
+    setShowLanding(false);
+  }
 
   async function handleSignOut() {
     setIsSigningOut(true);
@@ -106,7 +131,7 @@ export default function HomePage() {
         bucket_path,
         dashboard_link,
         created_at,
-        human_insights(id, created_at, updated_at, expected_dataset, insight_part_1, insight_part_2, insight_part_3)
+        human_insights(id, created_at, updated_at, updated_at_2, updated_at_3, expected_dataset, irr_flag, insight_part_1, insight_part_2, insight_part_3)
       `);
 
     if (!data) return;
@@ -128,16 +153,27 @@ export default function HomePage() {
     setDashboards(sorted);
   }
 
-  // Filter dashboards by status
+  const isAnnotator = userRole === "annotator1" || userRole === "annotator2";
+
+  function isDoneForRole(d: any) {
+    if (userRole === "annotator1") return !!d.human_insights?.[0]?.insight_part_2;
+    if (userRole === "annotator2") return !!d.human_insights?.[0]?.insight_part_3;
+    return d.human_insights?.length > 0;
+  }
+
+  // Filter dashboards by status (and irr_flag for annotators)
   const filteredDashboards = dashboards.filter(d => {
+    if (isAnnotator && !d.human_insights?.[0]?.irr_flag) return false;
     if (statusFilter === "all") return true;
-    const done = d.human_insights?.length > 0;
+    const done = isDoneForRole(d);
     return statusFilter === "completed" ? done : !done;
   });
 
   // Calculate stats
-  const completedCount = dashboards.filter(d => d.human_insights?.length > 0).length;
-  const totalCount = dashboards.length;
+  const completedCount = dashboards.filter(d => isDoneForRole(d)).length;
+  const totalCount = isAnnotator
+    ? dashboards.filter(d => d.human_insights?.[0]?.irr_flag).length
+    : dashboards.length;
 
   // Pagination
   const totalPages = Math.ceil(filteredDashboards.length / itemsPerPage);
@@ -151,7 +187,7 @@ export default function HomePage() {
   }
 
   if (showLanding) {
-    return <LandingPage onStart={() => setShowLanding(false)} />;
+    return <LandingPage onStart={handleSignIn} />;
   }
 
   return (
@@ -281,6 +317,16 @@ export default function HomePage() {
           color: rgba(255, 255, 255, 0.9);
         }
 
+        .admin-btn:hover {
+          background: rgba(255, 255, 255, 0.08) !important;
+          color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .monitor-btn:hover {
+          background: rgba(255, 255, 255, 0.1) !important;
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
+
         .signout-btn:hover {
           background: rgba(220, 53, 69, 0.2) !important;
           border-color: rgba(220, 53, 69, 0.4) !important;
@@ -323,7 +369,22 @@ export default function HomePage() {
       <div style={styles.container}>
         <div style={styles.card} className={`dashboard-card${isSigningOut ? " signing-out" : ""}`}>
           <div style={styles.header}>
-            <h1 style={styles.title}>Insight Generation Platform</h1>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <h1 style={styles.title}>Insight Generation Platform</h1>
+              {userRole === "admin" && (
+                <button
+                  style={styles.monitorButton}
+                  className="monitor-btn"
+                  onClick={() => setShowMonitoring(true)}
+                  title="Monitoring"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              )}
+            </div>
             <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
               <div style={styles.filterContainer}>
                 <button
@@ -399,7 +460,8 @@ export default function HomePage() {
             </thead>
             <tbody>
               {currentDashboards.map((d, idx) => {
-                const done = d.human_insights?.length > 0;
+                const done = isDoneForRole(d);
+                const isCorrectDataset = !isAnnotator && done && d.human_insights[0].expected_dataset === true;
                 const globalIndex = startIndex + idx + 1;
 
                 return (
@@ -409,9 +471,11 @@ export default function HomePage() {
                     <td>{d.dashboard_author}</td>
                     <td>
                       {(() => {
-                        const timestamp = done
-                          ? d.human_insights[0].updated_at
-                          : d.created_at;
+                        const row = d.human_insights?.[0];
+                        const timestamp = isAnnotator
+                          ? (userRole === "annotator1" ? row?.updated_at_2 : row?.updated_at_3)
+                          : (done ? row?.updated_at : d.created_at);
+                        if (!timestamp) return <span style={{ opacity: 0.3 }}>—</span>;
                         return (
                           <>
                             {new Date(timestamp).toLocaleDateString()}{" "}
@@ -429,7 +493,7 @@ export default function HomePage() {
                         className="status-badge"
                         style={{
                           ...styles.badge,
-                          background: done ? "#1ebb81" : "#a32b2b",
+                          background: done ? (isAnnotator || isCorrectDataset ? "#1ebb81" : "#6b7280") : "#a32b2b",
                         }}
                       >
                         {done ? "Completed" : "Pending"}
@@ -507,27 +571,47 @@ export default function HomePage() {
             </div>
           )}
 
-          <div style={styles.footer}>
-            <a
-              href="https://github.com/pradervonsky/vbig-lab"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={styles.footerLink}
-              className="footer-link"
-            >
-            &nbsp;M. Pradana Aditya
-            </a>
-            &nbsp;| 2026
+          <div style={styles.footerRow}>
+            {userRole === "admin" && (
+              <button
+                style={styles.adminButton}
+                className="admin-btn"
+                onClick={() => setShowAdmin(true)}
+              >
+                ⚙ Admin
+              </button>
+            )}
+            <span style={{ marginLeft: "auto" }}>
+              <a
+                href="https://github.com/pradervonsky/vbig-lab"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.footerLink}
+                className="footer-link"
+              >
+                M. Pradana Aditya
+              </a>
+              &nbsp;| 2026
+            </span>
           </div>
         </div>
 
         {selected && (
           <InsightModal
             dashboard={selected}
+            userRole={userRole}
             onClose={() => {
               setSelected(null);
               loadDashboards();
             }}
+          />
+        )}
+
+        {showAdmin && <AdminPage onClose={() => setShowAdmin(false)} />}
+        {showMonitoring && (
+          <MonitoringPage
+            dashboards={dashboards}
+            onClose={() => setShowMonitoring(false)}
           />
         )}
       </div>
@@ -665,14 +749,39 @@ const styles: Record<string, CSSProperties> = {
     background: "rgba(255, 255, 255, 0.03)",
     borderRadius: "8px",
   },
-  footer: {
+  footerRow: {
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
+    alignItems: "center",
     fontSize: "12px",
     color: "rgba(255, 255, 255, 0.4)",
     fontWeight: 500,
     letterSpacing: "1px",
     flexShrink: 0,
+    marginTop: "8px",
+  },
+  monitorButton: {
+    padding: "6px 8px",
+    borderRadius: "8px",
+    color: "rgba(255, 255, 255, 0.5)",
+    background: "transparent",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  adminButton: {
+    padding: "6px 14px",
+    borderRadius: "8px",
+    fontSize: "12px",
+    fontWeight: 600,
+    color: "rgba(255, 255, 255, 0.5)",
+    background: "transparent",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    cursor: "pointer",
+    transition: "all 0.2s ease",
   },
   footerLink: {
     color: "rgba(255, 255, 255, 0.6)",
