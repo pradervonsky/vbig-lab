@@ -345,6 +345,62 @@ export default function HomePage() {
         .session-warning-stay:hover {
           background: rgba(255, 255, 255, 0.15) !important;
         }
+
+        @media (max-width: 1024px) {
+          .page-card {
+            padding: 20px !important;
+          }
+          .page-header {
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+          }
+          .page-header-right {
+            flex-wrap: wrap !important;
+            gap: 8px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .page-container {
+            padding: 0 !important;
+            align-items: stretch !important;
+          }
+          .page-card {
+            padding: 16px !important;
+            border-radius: 0 !important;
+            min-height: 100vh !important;
+          }
+          .page-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+          }
+          .page-header-right {
+            width: 100% !important;
+            justify-content: space-between !important;
+          }
+          .page-table-wrapper {
+            overflow-x: auto !important;
+          }
+          .dashboard-table {
+            min-width: 540px !important;
+          }
+          .dashboard-table thead th,
+          .dashboard-table tbody td {
+            padding: 10px 10px !important;
+            font-size: 12px !important;
+          }
+          .page-footer {
+            flex-wrap: wrap !important;
+            gap: 8px !important;
+          }
+          .session-warning {
+            width: calc(100% - 32px) !important;
+            white-space: normal !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+          }
+        }
       `}</style>
 
       {sessionWarning && (
@@ -366,10 +422,10 @@ export default function HomePage() {
         </div>
       )}
 
-      <div style={styles.container}>
-        <div style={styles.card} className={`dashboard-card${isSigningOut ? " signing-out" : ""}`}>
-          <div style={styles.header}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div style={styles.container} className="page-container">
+        <div style={styles.card} className={`dashboard-card page-card${isSigningOut ? " signing-out" : ""}`}>
+          <div style={styles.header} className="page-header">
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }} className="page-header-left">
               <h1 style={styles.title}>Insight Generation Platform</h1>
               {userRole === "admin" && (
                 <button
@@ -385,7 +441,7 @@ export default function HomePage() {
                 </button>
               )}
             </div>
-            <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+            <div style={{ display: "flex", gap: "12px", alignItems: "center" }} className="page-header-right">
               <div style={styles.filterContainer}>
                 <button
                   className="filter-button"
@@ -446,7 +502,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div style={{ flex: 1, minHeight: 0, overflow: "auto" }}>
+          <div style={{ flex: 1, minHeight: 0, overflow: "auto" }} className="page-table-wrapper">
             <table style={styles.table} className="dashboard-table">
             <thead>
               <tr>
@@ -571,7 +627,7 @@ export default function HomePage() {
             </div>
           )}
 
-          <div style={styles.footerRow}>
+          <div style={styles.footerRow} className="page-footer">
             {userRole === "admin" && (
               <button
                 style={styles.adminButton}

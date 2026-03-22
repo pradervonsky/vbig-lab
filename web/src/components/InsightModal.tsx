@@ -184,6 +184,47 @@ export function InsightModal({
         .success-toast {
           animation: slideInFromTop 0.4s ease-out;
         }
+
+        @media (max-width: 1024px) {
+          .insight-content-wrapper {
+            flex-direction: column !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+          }
+          .insight-image-container {
+            flex: none !important;
+            height: 40vh !important;
+            min-height: 200px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          }
+          .insight-form-section {
+            flex: none !important;
+            min-width: 0 !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .insight-modal-wrapper {
+            width: 100% !important;
+            height: 100dvh !important;
+            border-radius: 0 !important;
+          }
+          .insight-header {
+            padding: 12px 16px !important;
+            flex-wrap: wrap !important;
+            gap: 8px !important;
+          }
+          .insight-header-content {
+            flex-wrap: wrap !important;
+          }
+          .insight-image-container {
+            height: 35vh !important;
+            padding: 12px !important;
+          }
+          .insight-form-section {
+            padding: 16px !important;
+          }
+        }
       `}</style>
       <div style={styles.overlay}>
         {showSuccess && (
@@ -193,9 +234,9 @@ export function InsightModal({
             </span>
           </div>
         )}
-        <div style={styles.modal} className={`insight-modal${isClosing ? ' closing' : ''}`}>
-        <div style={styles.header}>
-          <div style={styles.headerContent}>
+        <div style={styles.modal} className={`insight-modal insight-modal-wrapper${isClosing ? ' closing' : ''}`}>
+        <div style={styles.header} className="insight-header">
+          <div style={styles.headerContent} className="insight-header-content">
             <h2 style={{
               margin: 0,
               fontSize: "16px",
@@ -263,8 +304,8 @@ export function InsightModal({
           </div>
         </div>
 
-        <div style={styles.contentWrapper}>
-          <div style={styles.imageContainer}>
+        <div style={styles.contentWrapper} className="insight-content-wrapper">
+          <div style={styles.imageContainer} className="insight-image-container">
             <img
               src={imageUrl}
               alt={dashboard.dashboard_name}
@@ -276,7 +317,7 @@ export function InsightModal({
             />
           </div>
 
-          <div style={styles.formSection}>
+          <div style={styles.formSection} className="insight-form-section">
           {!isAnnotator && (
             <div style={{ display: "flex", gap: "8px" }}>
               <div style={{ ...styles.checkboxContainer, flex: 5 }}>

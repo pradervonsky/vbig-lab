@@ -101,15 +101,52 @@ export function MonitoringPage({
           background: rgba(255, 255, 255, 0.1) !important;
           transform: translateY(-1px);
         }
+
+        @media (max-width: 1024px) {
+          .monitor-modal {
+            padding: 20px !important;
+          }
+          .monitor-header {
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+          }
+          .monitor-header-controls {
+            flex-wrap: wrap !important;
+            gap: 8px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .monitor-modal {
+            padding: 16px !important;
+            border-radius: 16px !important;
+          }
+          .monitor-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+            margin-bottom: 12px !important;
+          }
+          .monitor-header-controls {
+            width: 100% !important;
+            justify-content: space-between !important;
+          }
+          .monitor-table-wrapper {
+            overflow-x: auto !important;
+          }
+          .monitor-table {
+            min-width: 500px !important;
+          }
+        }
       `}</style>
 
       <div style={styles.overlay} onClick={onClose}>
-        <div style={styles.modal} onClick={e => e.stopPropagation()}>
+        <div style={styles.modal} className="monitor-modal" onClick={e => e.stopPropagation()}>
 
           {/* Header */}
-          <div style={styles.header}>
+          <div style={styles.header} className="monitor-header">
             <h2 style={styles.title}>Insight Generation Monitoring</h2>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px" }} className="monitor-header-controls">
               <div style={styles.toggleContainer}>
                 <button
                   className="monitor-toggle-btn"
@@ -143,7 +180,7 @@ export function MonitoringPage({
           </div>
 
           {/* Table */}
-          <div style={{ flex: 1, minHeight: 0, overflow: "auto" }}>
+          <div style={{ flex: 1, minHeight: 0, overflow: "auto" }} className="monitor-table-wrapper">
             <table style={{ width: "100%" }} className="monitor-table">
               <thead>
                 <tr>

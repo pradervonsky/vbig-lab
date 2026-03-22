@@ -21,7 +21,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_URL = "https://public.tableau.com"
-SEARCH_URL = "https://public.tableau.com/app/search/vizzes/superstore?page={page}"
+SEARCH_URL = "https://public.tableau.com/app/search/vizzes/superstore%20sales?page={page}"
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
@@ -34,14 +34,10 @@ SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
 MIN_FAVORITES = 5
 
 # Page scraping range control
-START_PAGE = 15
-END_PAGE = 20
+START_PAGE = 1
+END_PAGE = 10
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-
-# Pre-load all existing dashboard links to skip duplicates
-_existing = supabase.table("metadata").select("dashboard_link").execute()
-EXISTING_LINKS = {row["dashboard_link"] for row in (_existing.data or [])}
 
 # --------------------------------------------------
 # SELENIUM SETUP
@@ -167,7 +163,7 @@ for page in range(START_PAGE, END_PAGE + 1):
         EC.presence_of_element_located((By.CLASS_NAME, "_listContainer_1xe48_23"))
     )
 
-    dashboards = driver.find_elements(By.CLASS_NAME, "_listItem_1xe48_63")
+    dashboards = driver.find_elements(By.CLASS_NAME, "_listItem_1xe48_23")
     print(f"✓ Found {len(dashboards)} total dashboards on page")
 
     # --------------------------------------------------
@@ -208,7 +204,7 @@ for page in range(START_PAGE, END_PAGE + 1):
     
     for dash_info in qualifying_dashboards:
         # Re-fetch dashboard list (in case DOM changed)
-        dashboards = driver.find_elements(By.CLASS_NAME, "_listItem_1xe48_63")
+        dashboards = driver.find_elements(By.CLASS_NAME, "_listItem_1xe48_23")
         item = dashboards[dash_info['index']]
         
         # Extract details
@@ -218,17 +214,12 @@ for page in range(START_PAGE, END_PAGE + 1):
         dashboard_name = title_el.text.strip()
         dashboard_link = urljoin(BASE_URL, title_el.get_attribute("href"))
         dashboard_author = author_el.text.strip()
-
-        # Skip if already in Supabase
-        if dashboard_link in EXISTING_LINKS:
-            print(f" ⟳ Skipping (duplicate): {dashboard_name}")
-            continue
-
+        
         print(f" Capturing: {dashboard_name}")
         print(f"  Author: {dashboard_author}")
         print(f"  Favorites: {dash_info['favorites']}")
         print(f"  Link: {dashboard_link}")
-
+        
         # Open dashboard
         driver.get(dashboard_link)
         time.sleep(1)
@@ -298,7 +289,7 @@ for page in range(START_PAGE, END_PAGE + 1):
         
         # Back to search page
         driver.get(SEARCH_URL.format(page=page))
-        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_listItem_1xe48_63")))
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_listItem_1xe48_23")))
 
 driver.quit()
 print("\n" + "="*60)

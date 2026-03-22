@@ -892,6 +892,59 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
           z-index: 1;
         }
 
+        @media (max-width: 1024px) {
+          .landing-container {
+            flex-direction: column-reverse !important;
+            height: auto !important;
+            min-height: 100vh !important;
+          }
+          .landing-left {
+            flex: none !important;
+            padding: 48px 32px 48px !important;
+            align-items: center !important;
+            text-align: center !important;
+          }
+          .landing-right {
+            flex: 1 !important;
+            min-height: 50vh !important;
+          }
+          .landing-title {
+            font-size: 36px !important;
+            letter-spacing: -1px !important;
+          }
+          .landing-subtitle {
+            font-size: 17px !important;
+          }
+          .github-button {
+            top: 35px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .landing-left {
+            padding: 40px 24px 40px !important;
+          }
+          .landing-title {
+            font-size: 28px !important;
+          }
+          .landing-subtitle {
+            font-size: 15px !important;
+          }
+          .start-button {
+            font-size: 16px !important;
+            padding: 14px 36px !important;
+          }
+          .landing-vbig-letter {
+            font-size: 100px !important;
+          }
+          .vbig-container.login-active {
+            transform: translateY(-90%) !important;
+          }
+          .github-button {
+            top: 5px !important;
+          }
+        }
+
         .bubble {
           position: absolute;
           border-radius: 50%;
@@ -946,11 +999,11 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
         }
       `}</style>
 
-      <div style={styles.container}>
+      <div style={styles.container} className="landing-container">
         {/* Left Container */}
-        <div style={styles.leftContainer}>
-          <h1 style={styles.title}>Insight Generation Platform</h1>
-          <p style={styles.subtitle}>
+        <div style={styles.leftContainer} className="landing-left">
+          <h1 style={styles.title} className="landing-title">Insight Generation Platform</h1>
+          <p style={styles.subtitle} className="landing-subtitle">
             A platform to input human-generated insights from Tableau Public dashboards, which serves as the basis for evaluating AI-generated insights.
           </p>
           <button
@@ -970,15 +1023,15 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
         </div>
 
         {/* Right Container */}
-        <div ref={containerRef} style={styles.rightContainer}>
+        <div ref={containerRef} style={styles.rightContainer} className="landing-right">
           <div
             style={styles.vbigContainer}
             className={`vbig-container${showLogin ? " login-active" : ""}`}
           >
-            <span style={styles.vbigLetter}>V</span>
-            <span style={styles.vbigLetter}>B</span>
-            <span style={styles.vbigLetter}>I</span>
-            <span style={styles.vbigLetter}>G</span>
+            <span style={styles.vbigLetter} className="landing-vbig-letter">V</span>
+            <span style={styles.vbigLetter} className="landing-vbig-letter">B</span>
+            <span style={styles.vbigLetter} className="landing-vbig-letter">I</span>
+            <span style={styles.vbigLetter} className="landing-vbig-letter">G</span>
             <a
               href="https://github.com/pradervonsky/vbig-lab"
               target="_blank"
