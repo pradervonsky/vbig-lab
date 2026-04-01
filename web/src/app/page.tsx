@@ -19,7 +19,7 @@ export default function HomePage() {
   const [dashboards, setDashboards] = useState<any[]>([]);
   const [selected, setSelected] = useState<any | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "completed">("all");
+  const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "completed" | "excluded">("all");
   const [sessionWarning, setSessionWarning] = useState(false);
   const [warningCountdown, setWarningCountdown] = useState(60);
   const [userRole, setUserRole] = useState<"admin" | "annotator1" | "annotator2">("annotator1");
@@ -166,14 +166,33 @@ export default function HomePage() {
     if (isAnnotator && !d.human_insights?.[0]?.irr_flag) return false;
     if (statusFilter === "all") return true;
     const done = isDoneForRole(d);
-    return statusFilter === "completed" ? done : !done;
+    if (statusFilter === "pending") return !done;
+    if (statusFilter === "completed") {
+      if (!done) return false;
+      if (isAnnotator) return true;
+      return d.human_insights?.[0]?.expected_dataset === true;
+    }
+    if (statusFilter === "excluded") {
+      if (isAnnotator || !done) return false;
+      return d.human_insights?.[0]?.expected_dataset !== true;
+    }
+    return true;
   });
 
   // Calculate stats
-  const completedCount = dashboards.filter(d => isDoneForRole(d)).length;
-  const totalCount = isAnnotator
-    ? dashboards.filter(d => d.human_insights?.[0]?.irr_flag).length
-    : dashboards.length;
+  const baseDashboards = isAnnotator
+    ? dashboards.filter(d => d.human_insights?.[0]?.irr_flag)
+    : dashboards;
+  const allCount = baseDashboards.length;
+  const pendingCount = baseDashboards.filter(d => !isDoneForRole(d)).length;
+  const completedCount = baseDashboards.filter(d => {
+    if (!isDoneForRole(d)) return false;
+    if (isAnnotator) return true;
+    return d.human_insights?.[0]?.expected_dataset === true;
+  }).length;
+  const excludedCount = isAnnotator ? 0 : baseDashboards.filter(d =>
+    isDoneForRole(d) && d.human_insights?.[0]?.expected_dataset !== true
+  ).length;
 
   // Pagination
   const totalPages = Math.ceil(filteredDashboards.length / itemsPerPage);
@@ -448,49 +467,43 @@ export default function HomePage() {
                   style={{
                     ...styles.filterButton,
                     background: statusFilter === "all" ? "rgba(255, 255, 255, 0.1)" : "transparent",
-                    fontWeight: statusFilter === "all" ? 600 : 400,
                   }}
-                  onClick={() => {
-                    setStatusFilter("all");
-                    setCurrentPage(1);
-                  }}
+                  onClick={() => { setStatusFilter("all"); setCurrentPage(1); }}
                 >
-                  All
+                  All <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{allCount}</span>
                 </button>
                 <button
                   className="filter-button"
                   style={{
                     ...styles.filterButton,
                     background: statusFilter === "pending" ? "rgba(255, 255, 255, 0.1)" : "transparent",
-                    fontWeight: statusFilter === "pending" ? 600 : 400,
                   }}
-                  onClick={() => {
-                    setStatusFilter("pending");
-                    setCurrentPage(1);
-                  }}
+                  onClick={() => { setStatusFilter("pending"); setCurrentPage(1); }}
                 >
-                  Pending
+                  Pending <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{pendingCount}</span>
                 </button>
                 <button
                   className="filter-button"
                   style={{
                     ...styles.filterButton,
                     background: statusFilter === "completed" ? "rgba(255, 255, 255, 0.1)" : "transparent",
-                    fontWeight: statusFilter === "completed" ? 600 : 400,
                   }}
-                  onClick={() => {
-                    setStatusFilter("completed");
-                    setCurrentPage(1);
-                  }}
+                  onClick={() => { setStatusFilter("completed"); setCurrentPage(1); }}
                 >
-                  Completed
+                  Completed <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{completedCount}</span>
                 </button>
-              </div>
-              <div style={styles.counter}>
-                <span style={{ fontSize: "16px", fontWeight: 600 }}>{completedCount}</span>
-                <span style={{ fontSize: "12px", opacity: 0.5, margin: "0 3px" }}>/</span>
-                <span style={{ fontSize: "16px", opacity: 0.7 }}>{totalCount}</span>
-                <span style={{ fontSize: "12px", opacity: 0.5, marginLeft: "6px" }}>completed</span>
+                {!isAnnotator && (
+                  <button
+                    className="filter-button"
+                    style={{
+                      ...styles.filterButton,
+                      background: statusFilter === "excluded" ? "rgba(255, 255, 255, 0.1)" : "transparent",
+                    }}
+                    onClick={() => { setStatusFilter("excluded"); setCurrentPage(1); }}
+                  >
+                    Excluded <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{excludedCount}</span>
+                  </button>
+                )}
               </div>
               <button
                 className="signout-btn"
@@ -549,10 +562,10 @@ export default function HomePage() {
                         className="status-badge"
                         style={{
                           ...styles.badge,
-                          background: done ? (isAnnotator || isCorrectDataset ? "#1ebb81" : "#6b7280") : "#a32b2b",
+                          background: !done ? "#a32b2b" : (isAnnotator || isCorrectDataset ? "#1ebb81" : "#6b7280"),
                         }}
                       >
-                        {done ? "Completed" : "Pending"}
+                        {!done ? "Pending" : (isAnnotator || isCorrectDataset ? "Completed" : "Excluded")}
                       </span>
                     </td>
                     <td>

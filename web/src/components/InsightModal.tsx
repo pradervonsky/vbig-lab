@@ -351,7 +351,7 @@ export function InsightModal({
               </div>
 
               <div style={{ ...styles.checkboxContainer, flex: 2 }}>
-                <span style={styles.checkboxLabel}>IRR?</span>
+                <span style={styles.checkboxLabel}>IAA?</span>
                 <button
                   className="irr-button"
                   style={{
@@ -361,7 +361,7 @@ export function InsightModal({
                     ...(readOnly ? { cursor: "default", opacity: 0.8 } : {}),
                   }}
                   onClick={() => !readOnly && setIrrFlag(prev => !prev)}
-                  title="Flag for inter-rater reliability review"
+                  title="Flag for inter-annotator agreement review"
                 >
                   {irrFlag ? "Yes" : "No"}
                 </button>
