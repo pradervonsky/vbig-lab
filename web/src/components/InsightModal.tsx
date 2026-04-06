@@ -12,12 +12,14 @@ export function InsightModal({
   onClose,
 }: {
   dashboard: any;
-  userRole?: "admin" | "annotator1" | "annotator2";
+  userRole?: "admin" | "annotator1" | "annotator2" | "viewer";
   readOnly?: boolean;
   onClose: () => void;
 }) {
   const isAnnotator = userRole === "annotator1" || userRole === "annotator2";
-  const [expected, setExpected] = useState<boolean | null>(null);
+  const [focusMode, setFocusMode] = useState(false);
+  const [approval, setApproval] = useState<"approve" | "reject" | null>(null);
+  const [rejectionReason, setRejectionReason] = useState<string>("");
   const [irrFlag, setIrrFlag] = useState(false);
   const [insight, setInsight] = useState("");
   const [isClosing, setIsClosing] = useState(false);
@@ -33,7 +35,8 @@ export function InsightModal({
       } else if (userRole === "annotator2") {
         setInsight(row.insight_part_3 || "");
       } else {
-        setExpected(row.expected_dataset);
+        setApproval(row.expected_dataset === true ? "approve" : row.expected_dataset === false ? "reject" : null);
+        setRejectionReason(row.rejection_reason ?? "");
         setIrrFlag(row.irr_flag ?? false);
         setInsight(row.insight_part_1 || "");
       }
@@ -60,7 +63,8 @@ export function InsightModal({
       insightData = { insight_part_3: insight, updated_at_3: new Date().toISOString() };
     } else {
       insightData = {
-        expected_dataset: expected,
+        expected_dataset: approval === "approve" ? true : approval === "reject" ? false : null,
+        rejection_reason: approval === "reject" ? (rejectionReason || null) : null,
         irr_flag: irrFlag,
         insight_part_1: insight,
         updated_at: new Date().toISOString(),
@@ -185,6 +189,19 @@ export function InsightModal({
           animation: slideInFromTop 0.4s ease-out;
         }
 
+        .view-dashboard-btn:hover {
+          filter: brightness(1.2);
+        }
+
+        .review-select option {
+          background: #1e1e1e;
+          color: #fff;
+        }
+
+        .review-select:focus {
+          outline: none;
+        }
+
         @media (max-width: 1024px) {
           .insight-content-wrapper {
             flex-direction: column !important;
@@ -262,20 +279,41 @@ export function InsightModal({
             </p>
             {dashboard.dashboard_link && (
               <button
+                className="view-dashboard-btn"
                 style={{
-                  background: "#333333",
-                  border: "none",
+                  background: focusMode ? "rgba(58,106,214,0.2)" : "#333333",
+                  border: focusMode ? "1px solid rgba(58,106,214,0.4)" : "1px solid transparent",
                   color: "#fff",
-                  fontSize: "13px",
+                  fontSize: "12px",
                   cursor: "pointer",
                   padding: "4px 10px",
                   borderRadius: "6px",
                   marginLeft: "8px",
+                  transition: "all 0.2s ease",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "33px",
+                  height: "23px",
+                  boxSizing: "border-box",
+                  flexShrink: 0,
                 }}
-                onClick={() => window.open(dashboard.dashboard_link, "_blank")}
-                title="View Dashboard"
+                onClick={() => {
+                  if (!focusMode) {
+                    window.open(dashboard.dashboard_link, "_blank");
+                    setFocusMode(true);
+                  } else {
+                    setFocusMode(false);
+                  }
+                }}
+                title={focusMode ? "Show dashboard image" : "View Dashboard (enters focus mode)"}
               >
-                ➤
+                {focusMode ? (
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                ) : "➤"}
               </button>
             )}
           </div>
@@ -305,7 +343,17 @@ export function InsightModal({
         </div>
 
         <div style={styles.contentWrapper} className="insight-content-wrapper">
-          <div style={styles.imageContainer} className="insight-image-container">
+          <div
+            style={{
+              ...styles.imageContainer,
+              maxWidth: focusMode ? "0" : "9999px",
+              padding: focusMode ? "0" : "24px",
+              opacity: focusMode ? 0 : 1,
+              overflow: "hidden",
+              transition: "max-width 0.4s ease, opacity 0.3s ease, padding 0.4s ease",
+            }}
+            className="insight-image-container"
+          >
             <img
               src={imageUrl}
               alt={dashboard.dashboard_name}
@@ -320,18 +368,51 @@ export function InsightModal({
           <div style={styles.formSection} className="insight-form-section">
           {!isAnnotator && (
             <div style={{ display: "flex", gap: "8px" }}>
-              <div style={{ ...styles.checkboxContainer, flex: 5 }}>
-                <span style={styles.checkboxLabel}>Uses correct dataset?</span>
-                <div style={{ display: "flex", gap: "8px" }}>
+              <div style={{ ...styles.checkboxContainer, flex: 5, justifyContent: "flex-start", overflow: "hidden" }}>
+                {/* Label: collapses via maxWidth */}
+                <div style={{
+                  maxWidth: approval === "reject" ? "0" : "120px",
+                  overflow: "hidden",
+                  flexShrink: 0,
+                  transition: "max-width 0.3s ease",
+                }}>
+                  <span style={{
+                    ...styles.checkboxLabel,
+                    display: "block",
+                    opacity: approval === "reject" ? 0 : 1,
+                    whiteSpace: "nowrap",
+                    transition: "opacity 0.2s ease",
+                  }}>
+                    Approve?
+                  </span>
+                </div>
+
+                {/* Button group: always flex-start, inner spacer slides buttons in sync */}
+                <div style={{
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  gap: "8px",
+                  minWidth: 0,
+                }}>
+                  {/* Spacer: collapses at same rate as label — buttons slide left together */}
+                  <div style={{
+                    flex: approval !== "reject" ? 1 : 0,
+                    overflow: "hidden",
+                    transition: "flex 0.3s ease",
+                    flexShrink: 1,
+                  }} />
                   <button
                     className="yes-button"
                     style={{
                       ...styles.yesNoButton,
-                      background: expected === true ? "#1ebb81" : "rgba(255, 255, 255, 0.05)",
-                      border: expected === true ? "1px solid #1ebb81" : "1px solid rgba(255, 255, 255, 0.1)",
+                      background: approval === "approve" ? "#1ebb81" : "rgba(255,255,255,0.05)",
+                      border: approval === "approve" ? "1px solid #1ebb81" : "1px solid rgba(255,255,255,0.08)",
+                      flexShrink: 0,
                       ...(readOnly ? { cursor: "default", opacity: 0.8 } : {}),
                     }}
-                    onClick={() => !readOnly && setExpected(true)}
+                    onClick={() => { if (!readOnly) { setApproval(approval === "approve" ? null : "approve"); setRejectionReason(""); } }}
                   >
                     Yes
                   </button>
@@ -339,14 +420,51 @@ export function InsightModal({
                     className="no-button"
                     style={{
                       ...styles.yesNoButton,
-                      background: expected === false ? "#a32b2b" : "rgba(255, 255, 255, 0.05)",
-                      border: expected === false ? "1px solid #a32b2b" : "1px solid rgba(255, 255, 255, 0.1)",
+                      background: approval === "reject" ? "#a32b2b" : "rgba(255,255,255,0.05)",
+                      border: approval === "reject" ? "1px solid #a32b2b" : "1px solid rgba(255,255,255,0.1)",
+                      flexShrink: 0,
                       ...(readOnly ? { cursor: "default", opacity: 0.8 } : {}),
                     }}
-                    onClick={() => !readOnly && setExpected(false)}
+                    onClick={() => !readOnly && setApproval("reject")}
                   >
                     No
                   </button>
+                  <select
+                    className="review-select"
+                    value={rejectionReason}
+                    onChange={(e) => !readOnly && setRejectionReason(e.target.value)}
+                    disabled={readOnly || approval !== "reject"}
+                    style={{
+                      flex: approval === "reject" ? 1 : 0,
+                      minWidth: 0,
+                      maxWidth: approval === "reject" ? "9999px" : "0",
+                      opacity: approval === "reject" ? 1 : 0,
+                      height: "36px",
+                      boxSizing: "border-box",
+                      padding: approval === "reject" ? "0 10px" : "0",
+                      pointerEvents: approval === "reject" ? "auto" : "none",
+                      background: rejectionReason ? "rgba(163,43,43,0.08)" : "rgba(255,255,255,0.05)",
+                      border: rejectionReason ? "1px solid rgba(163,43,43,0.5)" : "1px solid rgba(255,255,255,0.1)",
+                      color: rejectionReason ? "#fff" : "rgba(255,255,255,0.4)",
+                      borderRadius: "8px",
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      cursor: readOnly ? "default" : "pointer",
+                      outline: "none",
+                      appearance: "none",
+                      WebkitAppearance: "none",
+                      overflow: "hidden",
+                      transition: "flex 0.3s ease, opacity 0.25s ease, padding 0.3s ease",
+                    }}
+                  >
+                    <option value="" style={{ background: "#1e1e1e" }}>Reason? </option>
+                    <option value="scraper_failure" style={{ background: "#1e1e1e" }}>0. Scraper failure</option>
+                    <option value="incorrect_dataset" style={{ background: "#1e1e1e" }}>1. Incorrect dataset</option>
+                    <option value="only_one_chart" style={{ background: "#1e1e1e" }}>2. Only one chart</option>
+                    <option value="learning_template" style={{ background: "#1e1e1e" }}>3. Learning template</option>
+                    <option value="require_interaction" style={{ background: "#1e1e1e" }}>4. Require interaction</option>
+                    <option value="unlabelled_graphs" style={{ background: "#1e1e1e" }}>5. Unlabelled graphs</option>
+                  </select>
                 </div>
               </div>
 
@@ -386,7 +504,7 @@ export function InsightModal({
                         padding: "2px 8px",
                         borderRadius: "6px",
                         cursor: "pointer",
-                        fontSize: "11px",
+                        fontSize: "13px",
                         fontWeight: 700,
                         letterSpacing: "0.3px",
                         transition: "all 0.2s ease",
@@ -432,11 +550,13 @@ export function InsightModal({
               <button
                 style={{
                   ...styles.primary,
-                  ...(insight.length > 3500 ? { background: "#444", color: "rgba(255,255,255,0.3)", cursor: "not-allowed" } : {}),
+                  ...((insight.length > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason))
+                    ? { background: "#444", color: "rgba(255,255,255,0.3)", cursor: "not-allowed" }
+                    : {}),
                 }}
                 className="save-button"
                 onClick={save}
-                disabled={insight.length > 3500}
+                disabled={insight.length > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason)}
               >
                 Save Insights
               </button>

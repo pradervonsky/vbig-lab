@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import type { CSSProperties } from "react";
 
-type Role = "admin" | "annotator1" | "annotator2";
+type Role = "admin" | "annotator1" | "annotator2" | "viewer";
 
 const ROLE_COLORS: Record<Role, string> = {
   admin: "#3a6ad6",
   annotator1: "#f0ad4e",
   annotator2: "#8b5cf6",
+  viewer: "#6b7280",
 };
 
 export function AdminPage({ onClose }: { onClose: () => void }) {
@@ -179,6 +180,7 @@ export function AdminPage({ onClose }: { onClose: () => void }) {
                         <option value="admin">admin</option>
                         <option value="annotator1">annotator1</option>
                         <option value="annotator2">annotator2</option>
+                        <option value="viewer">viewer</option>
                       </select>
                     </td>
                     <td style={{ ...styles.td, textAlign: "right" }}>
@@ -215,6 +217,7 @@ export function AdminPage({ onClose }: { onClose: () => void }) {
               <option value="annotator1">annotator1</option>
               <option value="annotator2">annotator2</option>
               <option value="admin">admin</option>
+              <option value="viewer">viewer</option>
             </select>
             <button
               style={styles.addBtn}

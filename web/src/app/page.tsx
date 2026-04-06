@@ -22,7 +22,9 @@ export default function HomePage() {
   const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "completed" | "excluded">("all");
   const [sessionWarning, setSessionWarning] = useState(false);
   const [warningCountdown, setWarningCountdown] = useState(60);
-  const [userRole, setUserRole] = useState<"admin" | "annotator1" | "annotator2">("annotator1");
+  const [userRole, setUserRole] = useState<"admin" | "annotator1" | "annotator2" | "viewer">("annotator1");
+  const [rejectionFilter, setRejectionFilter] = useState<string>("all");
+  const [pageInputValue, setPageInputValue] = useState<string>("");
   const [showAdmin, setShowAdmin] = useState(false);
   const [showMonitoring, setShowMonitoring] = useState(false);
   const itemsPerPage = 10;
@@ -131,23 +133,25 @@ export default function HomePage() {
         bucket_path,
         dashboard_link,
         created_at,
-        human_insights(id, created_at, updated_at, updated_at_2, updated_at_3, expected_dataset, irr_flag, insight_part_1, insight_part_2, insight_part_3)
+        human_insights(id, created_at, updated_at, updated_at_2, updated_at_3, expected_dataset, rejection_reason, irr_flag, insight_part_1, insight_part_2, insight_part_3)
       `);
 
     if (!data) return;
 
+    // Status rank: 0 = Pending, 1 = Completed, 2 = Excluded
+    function statusRank(d: any) {
+      if (!d.human_insights?.length) return 0;
+      return d.human_insights[0].expected_dataset === true ? 1 : 2;
+    }
+
     const sorted = [...data].sort((a, b) => {
-      const aDone = a.human_insights?.length > 0;
-      const bDone = b.human_insights?.length > 0;
+      const rankDiff = statusRank(a) - statusRank(b);
+      if (rankDiff !== 0) return rankDiff;
 
-      // unfinished first
-      if (aDone !== bDone) return aDone ? 1 : -1;
-
-      // completed: latest updated_at first; pending: oldest created_at first
-      if (aDone && bDone) {
-        return new Date(b.human_insights[0].updated_at).getTime() - new Date(a.human_insights[0].updated_at).getTime();
-      }
-      return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+      // Within the same status: latest timestamp first
+      const aTime = a.human_insights?.[0]?.updated_at ?? a.created_at;
+      const bTime = b.human_insights?.[0]?.updated_at ?? b.created_at;
+      return new Date(bTime).getTime() - new Date(aTime).getTime();
     });
 
     setDashboards(sorted);
@@ -174,7 +178,9 @@ export default function HomePage() {
     }
     if (statusFilter === "excluded") {
       if (isAnnotator || !done) return false;
-      return d.human_insights?.[0]?.expected_dataset !== true;
+      if (d.human_insights?.[0]?.expected_dataset === true) return false;
+      if (rejectionFilter !== "all") return d.human_insights?.[0]?.rejection_reason === rejectionFilter;
+      return true;
     }
     return true;
   });
@@ -326,6 +332,12 @@ export default function HomePage() {
           transform: translateY(0);
         }
 
+        .page-number-input::-webkit-outer-spin-button,
+        .page-number-input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
         .footer-link:hover {
           color: rgba(255, 255, 255, 0.9);
           border-bottom-color: rgba(255, 255, 255, 0.5);
@@ -356,6 +368,7 @@ export default function HomePage() {
           from { opacity: 0; transform: translateX(-50%) translateY(-16px); }
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+
 
         .session-warning {
           animation: slideDown 0.3s ease-out;
@@ -446,7 +459,7 @@ export default function HomePage() {
           <div style={styles.header} className="page-header">
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }} className="page-header-left">
               <h1 style={styles.title}>Insight Generation Platform</h1>
-              {userRole === "admin" && (
+              {(userRole === "admin" || userRole === "viewer") && (
                 <button
                   style={styles.monitorButton}
                   className="monitor-btn"
@@ -468,7 +481,7 @@ export default function HomePage() {
                     ...styles.filterButton,
                     background: statusFilter === "all" ? "rgba(255, 255, 255, 0.1)" : "transparent",
                   }}
-                  onClick={() => { setStatusFilter("all"); setCurrentPage(1); }}
+                  onClick={() => { setStatusFilter("all"); setRejectionFilter("all"); setCurrentPage(1); }}
                 >
                   All <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{allCount}</span>
                 </button>
@@ -478,7 +491,7 @@ export default function HomePage() {
                     ...styles.filterButton,
                     background: statusFilter === "pending" ? "rgba(255, 255, 255, 0.1)" : "transparent",
                   }}
-                  onClick={() => { setStatusFilter("pending"); setCurrentPage(1); }}
+                  onClick={() => { setStatusFilter("pending"); setRejectionFilter("all"); setCurrentPage(1); }}
                 >
                   Pending <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{pendingCount}</span>
                 </button>
@@ -488,21 +501,78 @@ export default function HomePage() {
                     ...styles.filterButton,
                     background: statusFilter === "completed" ? "rgba(255, 255, 255, 0.1)" : "transparent",
                   }}
-                  onClick={() => { setStatusFilter("completed"); setCurrentPage(1); }}
+                  onClick={() => { setStatusFilter("completed"); setRejectionFilter("all"); setCurrentPage(1); }}
                 >
                   Completed <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{completedCount}</span>
                 </button>
                 {!isAnnotator && (
-                  <button
-                    className="filter-button"
-                    style={{
-                      ...styles.filterButton,
-                      background: statusFilter === "excluded" ? "rgba(255, 255, 255, 0.1)" : "transparent",
-                    }}
-                    onClick={() => { setStatusFilter("excluded"); setCurrentPage(1); }}
-                  >
-                    Excluded <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{excludedCount}</span>
-                  </button>
+                  <div style={{ display: "flex", overflow: "hidden", alignItems: "center" }}>
+                    {/* Excluded button — collapses when excluded filter is active */}
+                    <button
+                      className="filter-button"
+                      style={{
+                        ...styles.filterButton,
+                        background: "transparent",
+                        maxWidth: statusFilter === "excluded" ? "0" : "160px",
+                        padding: statusFilter === "excluded" ? "6px 0" : "6px 16px",
+                        opacity: statusFilter === "excluded" ? 0 : 1,
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        pointerEvents: statusFilter === "excluded" ? "none" : "auto",
+                        transition: "max-width 0.35s ease, opacity 0.25s ease, padding 0.35s ease",
+                      }}
+                      onClick={() => { setStatusFilter("excluded"); setCurrentPage(1); }}
+                    >
+                      Excluded <span style={{ opacity: 0.5, fontSize: "11px", marginLeft: "3px" }}>{excludedCount}</span>
+                    </button>
+                    {/* Reasons panel — expands when excluded filter is active */}
+                    <div
+                      style={{
+                        ...styles.filterButton,
+                        background: "rgba(255, 255, 255, 0.1)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        cursor: "default",
+                        maxWidth: statusFilter === "excluded" ? "340px" : "0",
+                        padding: statusFilter === "excluded" ? "6px 12px" : "6px 0",
+                        opacity: statusFilter === "excluded" ? 1 : 0,
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        pointerEvents: statusFilter !== "excluded" ? "none" : "auto",
+                        transition: "max-width 0.35s ease, opacity 0.25s ease, padding 0.35s ease",
+                      }}
+                    >
+                      <span style={{ fontSize: "12px", opacity: 0.6 }}>Reasons:</span>
+                      <select
+                        value={rejectionFilter}
+                        onChange={(e) => { setRejectionFilter(e.target.value); setCurrentPage(1); }}
+                        style={{
+                          background: "transparent",
+                          border: "none",
+                          color: "#fff",
+                          fontSize: "12px",
+                          cursor: "pointer",
+                          outline: "none",
+                          appearance: "none",
+                          WebkitAppearance: "none",
+                        }}
+                      >
+                        <option value="all" style={{ background: "#1e1e1e" }}>All ({excludedCount})</option>
+                        <option value="scraper_failure" style={{ background: "#1e1e1e" }}>Scraper failure</option>
+                        <option value="incorrect_dataset" style={{ background: "#1e1e1e" }}>Incorrect dataset</option>
+                        <option value="only_one_chart" style={{ background: "#1e1e1e" }}>Only one chart</option>
+                        <option value="learning_template" style={{ background: "#1e1e1e" }}>Learning template</option>
+                        <option value="require_interaction" style={{ background: "#1e1e1e" }}>Require interaction</option>
+                        <option value="unlabelled_graphs" style={{ background: "#1e1e1e" }}>Unlabelled graphs</option>
+                      </select>
+                      <button
+                        style={{ background: "none", border: "none", color: "rgba(255,255,255,0.4)", cursor: "pointer", padding: "0 2px", fontSize: "12px", lineHeight: 1 }}
+                        onClick={() => { setStatusFilter("all"); setRejectionFilter("all"); setCurrentPage(1); }}
+                        title="Clear filter"
+                      >✕</button>
+                    </div>
+                  </div>
                 )}
               </div>
               <button
@@ -531,6 +601,17 @@ export default function HomePage() {
               {currentDashboards.map((d, idx) => {
                 const done = isDoneForRole(d);
                 const isCorrectDataset = !isAnnotator && done && d.human_insights[0].expected_dataset === true;
+                const rejectionReason = !isAnnotator && done && !isCorrectDataset
+                  ? d.human_insights[0].rejection_reason
+                  : null;
+                const rejectionLabels: Record<string, string> = {
+                  scraper_failure: "Scraper failure",
+                  incorrect_dataset: "Incorrect dataset",
+                  only_one_chart: "Only one chart",
+                  learning_template: "Learning template",
+                  require_interaction: "Require interaction",
+                  unlabelled_graphs: "Unlabelled graphs",
+                };
                 const globalIndex = startIndex + idx + 1;
 
                 return (
@@ -565,7 +646,7 @@ export default function HomePage() {
                           background: !done ? "#a32b2b" : (isAnnotator || isCorrectDataset ? "#1ebb81" : "#6b7280"),
                         }}
                       >
-                        {!done ? "Pending" : (isAnnotator || isCorrectDataset ? "Completed" : "Excluded")}
+                        {!done ? "Pending" : isAnnotator || isCorrectDataset ? "Completed" : (rejectionReason ? rejectionLabels[rejectionReason] ?? "Excluded" : "Excluded")}
                       </span>
                     </td>
                     <td>
@@ -573,12 +654,12 @@ export default function HomePage() {
                         <button
                           style={{
                             ...styles.iconButton,
-                            background: done ? "#f0ad4e" : "#3a6ad6",
+                            background: userRole === "viewer" ? "#333333" : done ? "#f0ad4e" : "#3a6ad6",
                           }}
                           onClick={() => setSelected(d)}
-                          title={done ? "Edit" : "Process"}
+                          title={userRole === "viewer" ? "View" : done ? "Edit" : "Process"}
                         >
-                          {done ? "✎" : "✓"}
+                          {userRole === "viewer" ? "👁" : done ? "✎" : "✓"}
                         </button>
                         <button
                           style={{
@@ -622,7 +703,37 @@ export default function HomePage() {
               </button>
 
               <div style={styles.pageInfo}>
-                Page {currentPage} of {totalPages}
+                Page{" "}
+                <input
+                  type="number"
+                  className="page-number-input"
+                  min={1}
+                  max={totalPages}
+                  value={pageInputValue !== "" ? pageInputValue : currentPage}
+                  onChange={(e) => setPageInputValue(e.target.value)}
+                  onBlur={() => {
+                    const val = parseInt(pageInputValue, 10);
+                    if (!isNaN(val)) setCurrentPage(Math.min(totalPages, Math.max(1, val)));
+                    setPageInputValue("");
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+                  }}
+                  style={{
+                    width: `${Math.max(2, String(totalPages).length) + 1}ch`,
+                    background: "transparent",
+                    border: "none",
+                    borderBottom: "1px solid rgba(255,255,255,0.3)",
+                    color: "inherit",
+                    fontSize: "inherit",
+                    fontFamily: "inherit",
+                    textAlign: "center",
+                    outline: "none",
+                    padding: "0 4px",
+                    MozAppearance: "textfield",
+                  }}
+                />{" "}
+                of {totalPages}
               </div>
 
               <button
@@ -669,6 +780,7 @@ export default function HomePage() {
           <InsightModal
             dashboard={selected}
             userRole={userRole}
+            readOnly={userRole === "viewer"}
             onClose={() => {
               setSelected(null);
               loadDashboards();
