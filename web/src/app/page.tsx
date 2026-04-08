@@ -601,38 +601,40 @@ export default function HomePage() {
               )}
             </div>
             <div style={{ display: "flex", gap: "12px", alignItems: "center" }} className="page-header-right">
-              {/* Favorite count filter */}
-              <div style={styles.filterContainer}>
-                <button
-                  className={`fav-filter-btn${favFilterOpen || maxFavorites > 0 ? " active" : ""}`}
-                  onClick={() => {
-                    setFavFilterOpen(prev => {
-                      if (prev) { setMaxFavorites(0); setCurrentPage(1); }
-                      return !prev;
-                    });
-                  }}
-                  title="Filter by max favorite count"
-                >
-                  ♥
-                  <input
-                    type="number"
-                    className={`fav-filter-input${favFilterOpen ? " open" : ""}`}
-                    min={0}
-                    placeholder="favs"
-                    value={maxFavorites > 0 ? maxFavorites : ""}
-                    onChange={(e) => {
-                      const v = parseInt(e.target.value, 10);
-                      setMaxFavorites(isNaN(v) || v < 0 ? 0 : v);
-                      setCurrentPage(1);
+              {/* Favorite count filter — admin only */}
+              {userRole === "admin" && (
+                <div style={styles.filterContainer}>
+                  <button
+                    className={`fav-filter-btn${favFilterOpen || maxFavorites > 0 ? " active" : ""}`}
+                    onClick={() => {
+                      setFavFilterOpen(prev => {
+                        if (prev) { setMaxFavorites(0); setCurrentPage(1); }
+                        return !prev;
+                      });
                     }}
-                    onClick={(e) => e.stopPropagation()}
-                    onKeyDown={(e) => {
-                      if (e.key === "Escape") { setFavFilterOpen(false); setMaxFavorites(0); setCurrentPage(1); }
-                      e.stopPropagation();
-                    }}
-                  />
-                </button>
-              </div>
+                    title="Filter by max favorite count"
+                  >
+                    ♥
+                    <input
+                      type="number"
+                      className={`fav-filter-input${favFilterOpen ? " open" : ""}`}
+                      min={0}
+                      placeholder="favs"
+                      value={maxFavorites > 0 ? maxFavorites : ""}
+                      onChange={(e) => {
+                        const v = parseInt(e.target.value, 10);
+                        setMaxFavorites(isNaN(v) || v < 0 ? 0 : v);
+                        setCurrentPage(1);
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                      onKeyDown={(e) => {
+                        if (e.key === "Escape") { setFavFilterOpen(false); setMaxFavorites(0); setCurrentPage(1); }
+                        e.stopPropagation();
+                      }}
+                    />
+                  </button>
+                </div>
+              )}
               <div style={styles.filterContainer}>
                 <button
                   className="filter-button"
@@ -801,7 +803,7 @@ export default function HomePage() {
                     <td>{globalIndex}</td>
                     <td>
                       {d.dashboard_name}
-                      {d.favorite_count > 0 && (
+                      {userRole === "admin" && d.favorite_count > 0 && (
                         <span style={{
                           marginLeft: "8px",
                           fontSize: "11px",
