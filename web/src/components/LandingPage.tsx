@@ -1004,7 +1004,7 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
         <div style={styles.leftContainer} className="landing-left">
           <h1 style={styles.title} className="landing-title">Insight Generation Platform</h1>
           <p style={styles.subtitle} className="landing-subtitle">
-            A platform to input human-generated insights from Tableau Public dashboards, which serves as the basis for evaluating AI-generated insights.
+            A platform to input human-generated insights from Tableau Public dashboards, which serves as the basis for evaluating VLM-generated insights.
           </p>
           <button
             className="start-button"
