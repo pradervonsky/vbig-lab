@@ -398,10 +398,11 @@ export function InsightModal({
                 }}>
                   {/* Spacer: collapses at same rate as label — buttons slide left together */}
                   <div style={{
-                    flex: approval !== "reject" ? 1 : 0,
-                    overflow: "hidden",
-                    transition: "flex 0.3s ease",
+                    flexGrow: approval !== "reject" ? 1 : 0,
                     flexShrink: 1,
+                    flexBasis: 0,
+                    overflow: "hidden",
+                    transition: "flex-grow 0.3s ease",
                   }} />
                   <button
                     className="yes-button"
@@ -558,7 +559,7 @@ export function InsightModal({
                 onClick={save}
                 disabled={insight.length > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason)}
               >
-                Save Insights
+                Save
               </button>
             </div>
           )}

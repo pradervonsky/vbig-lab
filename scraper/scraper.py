@@ -31,10 +31,10 @@ SCREENSHOT_DIR = Path("tmp/screenshots")
 SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Minimum favorites threshold for a dashboard to be scraped
-MIN_FAVORITES = 5
+MIN_FAVORITES = 10
 
 # Page scraping range control
-START_PAGE = 15
+START_PAGE = 1
 END_PAGE = 20
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)

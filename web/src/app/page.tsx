@@ -24,6 +24,10 @@ export default function HomePage() {
   const [warningCountdown, setWarningCountdown] = useState(60);
   const [userRole, setUserRole] = useState<"admin" | "annotator1" | "annotator2" | "viewer">("annotator1");
   const [rejectionFilter, setRejectionFilter] = useState<string>("all");
+  const [authorFilter, setAuthorFilter] = useState<string>("");
+  const [authorSearchOpen, setAuthorSearchOpen] = useState(false);
+  const [maxFavorites, setMaxFavorites] = useState<number>(0);
+  const [favFilterOpen, setFavFilterOpen] = useState(false);
   const [pageInputValue, setPageInputValue] = useState<string>("");
   const [showAdmin, setShowAdmin] = useState(false);
   const [showMonitoring, setShowMonitoring] = useState(false);
@@ -35,6 +39,7 @@ export default function HomePage() {
   const warningTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const logoutTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const countdownInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+  const sessionWarningRef = useRef(false);
 
   // Check for existing session on load
   useEffect(() => {
@@ -89,6 +94,7 @@ export default function HomePage() {
   const startTimers = useCallback(() => {
     clearTimers();
     warningTimer.current = setTimeout(() => {
+      sessionWarningRef.current = true;
       setSessionWarning(true);
       setWarningCountdown(60);
       countdownInterval.current = setInterval(() => {
@@ -98,6 +104,7 @@ export default function HomePage() {
 
     logoutTimer.current = setTimeout(() => {
       clearTimers();
+      sessionWarningRef.current = false;
       setSessionWarning(false);
       handleSignOut();
     }, TIMEOUT_MS);
@@ -105,9 +112,12 @@ export default function HomePage() {
 
   const resetActivity = useCallback(() => {
     lastActivity.current = Date.now();
-    if (sessionWarning) setSessionWarning(false);
+    if (sessionWarningRef.current) {
+      sessionWarningRef.current = false;
+      setSessionWarning(false);
+    }
     startTimers();
-  }, [sessionWarning, startTimers]);
+  }, [startTimers]);
 
   // Start inactivity tracking only while dashboard is shown
   useEffect(() => {
@@ -123,6 +133,23 @@ export default function HomePage() {
     };
   }, [showLanding, startTimers, resetActivity, clearTimers]);
 
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  async function deleteDashboard(d: any) {
+    if (!confirm(`Delete "${d.dashboard_name}"? This cannot be undone.`)) return;
+    setDeletingId(d.id);
+    // 1. Delete related human_insights rows
+    await supabase.from("human_insights").delete().eq("metadata_id", d.id);
+    // 2. Delete metadata row
+    await supabase.from("metadata").delete().eq("id", d.id);
+    // 3. Remove image from storage bucket
+    if (d.bucket_path) {
+      await supabase.storage.from("superstore").remove([d.bucket_path]);
+    }
+    setDeletingId(null);
+    await loadDashboards();
+  }
+
   async function loadDashboards() {
     const { data } = await supabase
       .from("metadata")
@@ -133,6 +160,7 @@ export default function HomePage() {
         bucket_path,
         dashboard_link,
         created_at,
+        favorite_count,
         human_insights(id, created_at, updated_at, updated_at_2, updated_at_3, expected_dataset, rejection_reason, irr_flag, insight_part_1, insight_part_2, insight_part_3)
       `);
 
@@ -168,6 +196,8 @@ export default function HomePage() {
   // Filter dashboards by status (and irr_flag for annotators)
   const filteredDashboards = dashboards.filter(d => {
     if (isAnnotator && !d.human_insights?.[0]?.irr_flag) return false;
+    if (authorFilter && !d.dashboard_author?.toLowerCase().includes(authorFilter.toLowerCase())) return false;
+    if (maxFavorites > 0 && (d.favorite_count ?? 0) > maxFavorites) return false;
     if (statusFilter === "all") return true;
     const done = isDoneForRole(d);
     if (statusFilter === "pending") return !done;
@@ -253,6 +283,48 @@ export default function HomePage() {
           border-collapse: separate;
         }
 
+        .author-search-input {
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid rgba(255,255,255,0.3);
+          color: #fff;
+          font-size: 11px;
+          outline: none;
+          padding: 1px 2px;
+          width: 0;
+          max-width: 0;
+          opacity: 0;
+          transition: width 0.25s ease, max-width 0.25s ease, opacity 0.2s ease;
+          vertical-align: middle;
+          font-family: inherit;
+        }
+
+        .author-search-input.open {
+          width: 90px;
+          max-width: 90px;
+          opacity: 1;
+        }
+
+        .author-search-input::placeholder {
+          color: rgba(255,255,255,0.3);
+        }
+
+        .author-search-btn {
+          background: none;
+          border: none;
+          color: rgba(255,255,255,0.4);
+          cursor: pointer;
+          padding: 2px 4px;
+          vertical-align: middle;
+          line-height: 1;
+          transition: color 0.15s ease;
+          border-radius: 4px;
+        }
+
+        .author-search-btn.active {
+          color: rgba(255,255,255,0.9);
+        }
+
         .dashboard-table thead th {
           padding: 12px 16px;
           text-align: left;
@@ -305,13 +377,19 @@ export default function HomePage() {
           color: #fff;
         }
 
-        .dashboard-table button:hover {
+        .dashboard-table button:not(.author-search-btn):not(.trash-btn):hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
         }
 
         .dashboard-table button:active {
           transform: translateY(0);
+        }
+
+        .trash-btn:hover:not(:disabled) {
+          background: rgba(220,53,69,0.15) !important;
+          border-color: rgba(220,53,69,0.7) !important;
+          color: rgb(220,53,69) !important;
         }
 
         .dashboard-table td:last-child {
@@ -335,7 +413,7 @@ export default function HomePage() {
         .page-number-input::-webkit-outer-spin-button,
         .page-number-input::-webkit-inner-spin-button {
           -webkit-appearance: none;
-          margin: 0;
+          margin: -1px;
         }
 
         .footer-link:hover {
@@ -346,6 +424,55 @@ export default function HomePage() {
         .filter-button:hover {
           background: rgba(255, 255, 255, 0.08) !important;
           color: rgba(255, 255, 255, 0.9);
+        }
+
+        .fav-filter-btn {
+          display: flex;
+          align-items: center;
+          gap: 0px;
+          padding: 6px 10px;
+          border-radius: 6px;
+          background: transparent;
+          border: none;
+          color: rgba(255,255,255,0.5);
+          cursor: pointer;
+          transition: color 0.15s ease, background 0.15s ease;
+          font-size: 13px;
+          white-space: nowrap;
+        }
+
+        .fav-filter-btn:hover, .fav-filter-btn.active {
+          background: rgba(255,255,255,0.08);
+          color: rgba(255,255,255,0.9);
+        }
+
+        .fav-filter-input {
+          width: 0;
+          max-width: 0;
+          opacity: 0;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid rgba(255,255,255,0.3);
+          color: #fff;
+          font-size: 13px;
+          font-family: inherit;
+          outline: none;
+          padding: 0;
+          transition: width 0.25s ease, max-width 0.25s ease, opacity 0.2s ease, padding 0.25s ease;
+          MozAppearance: textfield;
+        }
+
+        .fav-filter-input.open {
+          width: 52px;
+          max-width: 52px;
+          opacity: 1;
+          padding: 0 4px;
+        }
+
+        .fav-filter-input::-webkit-outer-spin-button,
+        .fav-filter-input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
         }
 
         .admin-btn:hover {
@@ -474,6 +601,38 @@ export default function HomePage() {
               )}
             </div>
             <div style={{ display: "flex", gap: "12px", alignItems: "center" }} className="page-header-right">
+              {/* Favorite count filter */}
+              <div style={styles.filterContainer}>
+                <button
+                  className={`fav-filter-btn${favFilterOpen || maxFavorites > 0 ? " active" : ""}`}
+                  onClick={() => {
+                    setFavFilterOpen(prev => {
+                      if (prev) { setMaxFavorites(0); setCurrentPage(1); }
+                      return !prev;
+                    });
+                  }}
+                  title="Filter by max favorite count"
+                >
+                  ♥
+                  <input
+                    type="number"
+                    className={`fav-filter-input${favFilterOpen ? " open" : ""}`}
+                    min={0}
+                    placeholder="favs"
+                    value={maxFavorites > 0 ? maxFavorites : ""}
+                    onChange={(e) => {
+                      const v = parseInt(e.target.value, 10);
+                      setMaxFavorites(isNaN(v) || v < 0 ? 0 : v);
+                      setCurrentPage(1);
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                    onKeyDown={(e) => {
+                      if (e.key === "Escape") { setFavFilterOpen(false); setMaxFavorites(0); setCurrentPage(1); }
+                      e.stopPropagation();
+                    }}
+                  />
+                </button>
+              </div>
               <div style={styles.filterContainer}>
                 <button
                   className="filter-button"
@@ -591,7 +750,30 @@ export default function HomePage() {
               <tr>
                 <th>No.</th>
                 <th>Dashboard Title</th>
-                <th>Author</th>
+                <th style={{ whiteSpace: "nowrap" }}>
+                  Author
+                  <button
+                    className={`author-search-btn${authorSearchOpen || authorFilter ? " active" : ""}`}
+                    title="Filter by author"
+                    onClick={() => {
+                      setAuthorSearchOpen(prev => {
+                        if (prev) { setAuthorFilter(""); setCurrentPage(1); }
+                        return !prev;
+                      });
+                    }}
+                  >
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", verticalAlign: "middle" }}>
+                      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                  </button>
+                  <input
+                    className={`author-search-input${authorSearchOpen ? " open" : ""}`}
+                    placeholder="Search…"
+                    value={authorFilter}
+                    onChange={(e) => { setAuthorFilter(e.target.value); setCurrentPage(1); }}
+                    onKeyDown={(e) => { if (e.key === "Escape") { setAuthorSearchOpen(false); setAuthorFilter(""); setCurrentPage(1); } }}
+                  />
+                </th>
                 <th>Timestamp</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -617,7 +799,21 @@ export default function HomePage() {
                 return (
                   <tr key={d.id}>
                     <td>{globalIndex}</td>
-                    <td>{d.dashboard_name}</td>
+                    <td>
+                      {d.dashboard_name}
+                      {d.favorite_count > 0 && (
+                        <span style={{
+                          marginLeft: "8px",
+                          fontSize: "11px",
+                          fontWeight: 600,
+                          color: "rgba(255,255,255,0.35)",
+                          letterSpacing: "0.2px",
+                          verticalAlign: "middle",
+                        }}>
+                          ♥ {d.favorite_count.toLocaleString()}
+                        </span>
+                      )}
+                    </td>
                     <td>{d.dashboard_author}</td>
                     <td>
                       {(() => {
@@ -678,6 +874,26 @@ export default function HomePage() {
                         >
                           ➤
                         </button>
+                        {userRole === "admin" && (
+                          <button
+                            className="trash-btn"
+                            style={{
+                              ...styles.iconButton,
+                              background: "transparent",
+                              border: "1px solid rgba(220,53,69,0.3)",
+                              color: "rgba(220,53,69,0.6)",
+                              opacity: deletingId === d.id ? 0.4 : 1,
+                              cursor: deletingId === d.id ? "not-allowed" : "pointer",
+                            }}
+                            onClick={() => deleteDashboard(d)}
+                            disabled={deletingId === d.id}
+                            title="Delete dashboard"
+                          >
+                            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                            </svg>
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -687,92 +903,98 @@ export default function HomePage() {
           </table>
           </div>
 
-          {totalPages > 1 && (
-            <div style={styles.pagination}>
-              <button
-                className="pagination-btn"
-                style={{
-                  ...styles.paginationButton,
-                  opacity: currentPage === 1 ? 0.3 : 1,
-                  cursor: currentPage === 1 ? "not-allowed" : "pointer",
-                }}
-                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                disabled={currentPage === 1}
-              >
-                ← Previous
-              </button>
-
-              <div style={styles.pageInfo}>
-                Page{" "}
-                <input
-                  type="number"
-                  className="page-number-input"
-                  min={1}
-                  max={totalPages}
-                  value={pageInputValue !== "" ? pageInputValue : currentPage}
-                  onChange={(e) => setPageInputValue(e.target.value)}
-                  onBlur={() => {
-                    const val = parseInt(pageInputValue, 10);
-                    if (!isNaN(val)) setCurrentPage(Math.min(totalPages, Math.max(1, val)));
-                    setPageInputValue("");
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") (e.target as HTMLInputElement).blur();
-                  }}
-                  style={{
-                    width: `${Math.max(2, String(totalPages).length) + 1}ch`,
-                    background: "transparent",
-                    border: "none",
-                    borderBottom: "1px solid rgba(255,255,255,0.3)",
-                    color: "inherit",
-                    fontSize: "inherit",
-                    fontFamily: "inherit",
-                    textAlign: "center",
-                    outline: "none",
-                    padding: "0 4px",
-                    MozAppearance: "textfield",
-                  }}
-                />{" "}
-                of {totalPages}
-              </div>
-
-              <button
-                className="pagination-btn"
-                style={{
-                  ...styles.paginationButton,
-                  opacity: currentPage === totalPages ? 0.3 : 1,
-                  cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-                }}
-                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                disabled={currentPage === totalPages}
-              >
-                Next →
-              </button>
-            </div>
-          )}
-
           <div style={styles.footerRow} className="page-footer">
-            {userRole === "admin" && (
-              <button
-                style={styles.adminButton}
-                className="admin-btn"
-                onClick={() => setShowAdmin(true)}
-              >
-                ⚙ Admin
-              </button>
+            {/* Left: Admin button */}
+            <div style={{ minWidth: 0, flex: 1, display: "flex", alignItems: "center" }}>
+              {userRole === "admin" && (
+                <button
+                  style={styles.adminButton}
+                  className="admin-btn"
+                  onClick={() => setShowAdmin(true)}
+                >
+                  ⚙ Admin
+                </button>
+              )}
+            </div>
+
+            {/* Center: Pagination */}
+            {totalPages > 1 && (
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
+                <button
+                  className="pagination-btn"
+                  style={{
+                    ...styles.paginationButton,
+                    opacity: currentPage === 1 ? 0.3 : 1,
+                    cursor: currentPage === 1 ? "not-allowed" : "pointer",
+                  }}
+                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                  disabled={currentPage === 1}
+                >
+                  ← Previous
+                </button>
+                <div style={styles.pageInfo}>
+                  Page{" "}
+                  <input
+                    type="number"
+                    className="page-number-input"
+                    min={1}
+                    max={totalPages}
+                    value={pageInputValue !== "" ? pageInputValue : currentPage}
+                    onChange={(e) => setPageInputValue(e.target.value)}
+                    onBlur={() => {
+                      const val = parseInt(pageInputValue, 10);
+                      if (!isNaN(val)) setCurrentPage(Math.min(totalPages, Math.max(1, val)));
+                      setPageInputValue("");
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+                    }}
+                    style={{
+                      width: `${Math.max(2, String(totalPages).length) + 1}ch`,
+                      background: "transparent",
+                      border: "none",
+                      borderBottom: "1px solid rgba(255,255,255,0.3)",
+                      color: "inherit",
+                      fontSize: "inherit",
+                      fontFamily: "inherit",
+                      textAlign: "center",
+                      outline: "none",
+                      padding: "0 4px",
+                      MozAppearance: "textfield",
+                    }}
+                  />{" "}
+                  of {totalPages}
+                </div>
+                <button
+                  className="pagination-btn"
+                  style={{
+                    ...styles.paginationButton,
+                    opacity: currentPage === totalPages ? 0.3 : 1,
+                    cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+                  }}
+                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                  disabled={currentPage === totalPages}
+                >
+                  Next →
+                </button>
+              </div>
             )}
-            <span style={{ marginLeft: "auto" }}>
-              <a
-                href="https://github.com/pradervonsky/vbig-lab"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.footerLink}
-                className="footer-link"
-              >
-                M. Pradana Aditya
-              </a>
-              &nbsp;| 2026
-            </span>
+
+            {/* Right: Name */}
+            <div style={{ minWidth: 0, flex: 1, display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+              <span>
+                <a
+                  href="https://github.com/pradervonsky/vbig-lab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={styles.footerLink}
+                  className="footer-link"
+                >
+                  M. Pradana Aditya
+                </a>
+                &nbsp;| 2026
+              </span>
+            </div>
           </div>
         </div>
 
@@ -939,7 +1161,7 @@ const styles: Record<string, CSSProperties> = {
     fontWeight: 500,
     letterSpacing: "1px",
     flexShrink: 0,
-    marginTop: "8px",
+    marginTop: "12px",
   },
   monitorButton: {
     padding: "6px 8px",
