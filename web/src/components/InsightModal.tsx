@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 import type { CSSProperties } from "react";
 import { renderMarkdown, L2, L3, L4, Eg } from "@/components/GuidelinePage";
@@ -25,6 +25,14 @@ export function InsightModal({
   const [isClosing, setIsClosing] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [activeTab, setActiveTab] = useState<"L2" | "L3" | "L4" | "Eg" | null>(null);
+  const [draftRestoreAvailable, setDraftRestoreAvailable] = useState(false);
+  const draftKey = `vbig_draft_${dashboard.id}_${userRole}`;
+  const insightRef = useRef(insight);
+  const draftPendingRef = useRef(false);
+
+  // Keep refs in sync so intervals always read the latest values
+  useEffect(() => { insightRef.current = insight; }, [insight]);
+  useEffect(() => { draftPendingRef.current = draftRestoreAvailable; }, [draftRestoreAvailable]);
 
   // Pre-fill form if editing an existing insight
   useEffect(() => {
@@ -42,6 +50,24 @@ export function InsightModal({
       }
     }
   }, [dashboard, userRole]);
+
+  // Check for a saved draft on mount
+  useEffect(() => {
+    if (readOnly) return;
+    const draft = localStorage.getItem(draftKey);
+    if (draft) setDraftRestoreAvailable(true);
+  }, [draftKey, readOnly]);
+
+  // Auto-save insight to localStorage every 30 seconds
+  useEffect(() => {
+    if (readOnly) return;
+    const id = setInterval(() => {
+      if (insightRef.current && !draftPendingRef.current) {
+        localStorage.setItem(draftKey, insightRef.current);
+      }
+    }, 30_000);
+    return () => clearInterval(id);
+  }, [draftKey, readOnly]);
 
   const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/superstore/${dashboard.bucket_path}`;
   console.log("Image URL:", imageUrl);
@@ -83,7 +109,8 @@ export function InsightModal({
       });
     }
 
-    // Show success notification
+    localStorage.removeItem(draftKey);
+    setDraftRestoreAvailable(false);
     setShowSuccess(true);
 
     // Close modal after showing success
@@ -191,6 +218,15 @@ export function InsightModal({
 
         .view-dashboard-btn:hover {
           filter: brightness(1.2);
+        }
+
+        .draft-restore-btn:hover {
+          background: rgba(240,173,78,0.35) !important;
+        }
+
+        .draft-discard-btn:hover {
+          border-color: rgba(255,255,255,0.3) !important;
+          color: rgba(255,255,255,0.7) !important;
         }
 
         .review-select option {
@@ -366,6 +402,43 @@ export function InsightModal({
           </div>
 
           <div style={styles.formSection} className="insight-form-section">
+          {draftRestoreAvailable && (
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "10px 14px",
+              background: "rgba(240,173,78,0.1)",
+              border: "1px solid rgba(240,173,78,0.3)",
+              borderRadius: "8px",
+              fontSize: "13px",
+              color: "rgba(255,255,255,0.8)",
+              flexShrink: 0,
+              gap: "12px",
+            }}>
+              <span>⚠ Unsaved draft found from a previous session.</span>
+              <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
+                <button
+                  onClick={() => {
+                    const draft = localStorage.getItem(draftKey);
+                    if (draft) setInsight(draft);
+                    setDraftRestoreAvailable(false);
+                  }}
+                  className="draft-restore-btn"
+                  style={{ background: "rgba(240,173,78,0.2)", border: "1px solid rgba(240,173,78,0.5)", color: "#f0ad4e", borderRadius: "6px", padding: "4px 12px", fontSize: "12px", cursor: "pointer", fontWeight: 600, transition: "background 0.15s ease" }}
+                >
+                  Restore
+                </button>
+                <button
+                  onClick={() => { localStorage.removeItem(draftKey); setDraftRestoreAvailable(false); }}
+                  className="draft-discard-btn"
+                  style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.4)", borderRadius: "6px", padding: "4px 12px", fontSize: "12px", cursor: "pointer", transition: "all 0.15s ease" }}
+                >
+                  Discard
+                </button>
+              </div>
+            </div>
+          )}
           {!isAnnotator && (
             <div style={{ display: "flex", gap: "8px" }}>
               <div style={{ ...styles.checkboxContainer, flex: 5, justifyContent: "flex-start", overflow: "hidden" }}>

@@ -133,6 +133,13 @@ export default function HomePage() {
     };
   }, [showLanding, startTimers, resetActivity, clearTimers]);
 
+  // Keep-alive: while modal is open, reset inactivity timer every 5 minutes
+  useEffect(() => {
+    if (!selected) return;
+    const id = setInterval(() => resetActivity(), 5 * 60 * 1000);
+    return () => clearInterval(id);
+  }, [selected, resetActivity]);
+
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   async function deleteDashboard(d: any) {
