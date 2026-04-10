@@ -1199,7 +1199,7 @@ const styles: Record<string, CSSProperties> = {
     color: "rgb(255, 255, 255)",
     borderRadius: "8px",
     textDecoration: "none",
-    backdropFilter: "blur(10px)",
+    backdropFilter: "blur(6px)",
     zIndex: 25,
   },
 };

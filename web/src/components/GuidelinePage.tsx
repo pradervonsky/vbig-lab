@@ -271,9 +271,20 @@ export function GuidelinePage({ onClose }: { onClose: () => void }) {
         .guideline-close-btn:hover {
           background: rgba(255,255,255,0.08) !important;
         }
+        .blur-overlay {
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+        }
+        @supports (-moz-appearance: none) {
+          .blur-overlay {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(0, 0, 0, 0.82) !important;
+          }
+        }
       `}</style>
 
-      <div style={styles.overlay} onClick={onClose}>
+      <div style={styles.overlay} className="blur-overlay" onClick={onClose}>
         <div style={styles.modal} onClick={e => e.stopPropagation()}>
 
           <div style={styles.header}>
@@ -309,7 +320,7 @@ const styles: Record<string, CSSProperties> = {
     position: "fixed",
     inset: 0,
     background: "rgba(0,0,0,0.6)",
-    backdropFilter: "blur(12px)",
+    backdropFilter: "none",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

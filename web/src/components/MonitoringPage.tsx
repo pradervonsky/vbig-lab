@@ -34,6 +34,18 @@ export function MonitoringPage({
   return (
     <>
       <style>{`
+        .blur-overlay {
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+        }
+        @supports (-moz-appearance: none) {
+          .blur-overlay {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(0, 0, 0, 0.82) !important;
+          }
+        }
+
         .monitor-table {
           border-spacing: 0 4px;
           border-collapse: separate;
@@ -140,7 +152,7 @@ export function MonitoringPage({
         }
       `}</style>
 
-      <div style={styles.overlay} onClick={onClose}>
+      <div style={styles.overlay} className="blur-overlay" onClick={onClose}>
         <div style={styles.modal} className="monitor-modal" onClick={e => e.stopPropagation()}>
 
           {/* Header */}
@@ -300,7 +312,7 @@ const styles: Record<string, CSSProperties> = {
     position: "fixed",
     inset: 0,
     background: "rgba(0, 0, 0, 0.6)",
-    backdropFilter: "blur(12px)",
+    backdropFilter: "none",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

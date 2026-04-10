@@ -57,13 +57,22 @@ export function AdminPage({ onClose }: { onClose: () => void }) {
           position: fixed;
           inset: 0;
           background: rgba(0,0,0,0.6);
-          backdrop-filter: blur(12px);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
           display: flex;
           justify-content: center;
           align-items: center;
           z-index: 2000;
           padding: 24px;
           animation: adminFadeIn 0.2s ease-out;
+        }
+
+        @supports (-moz-appearance: none) {
+          .admin-overlay {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(0, 0, 0, 0.88);
+          }
         }
 
         @keyframes adminFadeIn {

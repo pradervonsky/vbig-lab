@@ -417,11 +417,6 @@ export default function HomePage() {
           transform: translateY(0);
         }
 
-        .page-number-input::-webkit-outer-spin-button,
-        .page-number-input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: -1px;
-        }
 
         .footer-link:hover {
           color: rgba(255, 255, 255, 0.9);
@@ -944,10 +939,10 @@ export default function HomePage() {
                 <div style={styles.pageInfo}>
                   Page{" "}
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     className="page-number-input"
-                    min={1}
-                    max={totalPages}
                     value={pageInputValue !== "" ? pageInputValue : currentPage}
                     onChange={(e) => setPageInputValue(e.target.value)}
                     onBlur={() => {
@@ -969,7 +964,6 @@ export default function HomePage() {
                       textAlign: "center",
                       outline: "none",
                       padding: "0 4px",
-                      MozAppearance: "textfield",
                     }}
                   />{" "}
                   of {totalPages}

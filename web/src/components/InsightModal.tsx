@@ -122,6 +122,18 @@ export function InsightModal({
   return (
     <>
       <style>{`
+        .blur-overlay {
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+        }
+        @supports (-moz-appearance: none) {
+          .blur-overlay {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(0, 0, 0, 0.82) !important;
+          }
+        }
+
         @keyframes modalFadeIn {
           from {
             opacity: 0;
@@ -279,7 +291,7 @@ export function InsightModal({
           }
         }
       `}</style>
-      <div style={styles.overlay}>
+      <div style={styles.overlay} className="blur-overlay">
         {showSuccess && (
           <div style={styles.successToast} className="success-toast">
             <span style={{ fontSize: "15px", fontWeight: 600 }}>
@@ -588,7 +600,7 @@ export function InsightModal({
                     </button>
                   ))}
                 </div>
-                <span style={{ ...styles.charCounter, color: insight.length > 3500 ? "#e53e3e" : "rgba(255, 255, 255, 0.4)" }}>{insight.length} / 3,500 characters</span>
+                <span style={{ ...styles.charCounter, color: insight.length > 3500 ? "#e53e3e" : "rgba(255, 255, 255, 0.4)" }}>{insight.length} / 3,500 charaters</span>
               </div>
               <textarea
                 placeholder={`Annotate this dashboard based on the guideline.\nClick one of four buttons above (L2, L3, L4, Eg) to see the guideline.\n\nExpected format:\n\nChart 1: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]\n\nChart 2: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]\n\nChart n: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]`}
@@ -689,19 +701,18 @@ const styles: Record<string, CSSProperties> = {
     position: "fixed",
     inset: 0,
     background: "rgba(0, 0, 0, 0.37)",
-    backdropFilter: "blur(12px)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "20px",
+    padding: "24px",
     zIndex: 1000,
   },
   modal: {
-    width: "90%",
+    width: "100%",
     maxWidth: "1600px",
-    height: "90vh",
+    height: "100%",
     background: "linear-gradient(145deg, #1e1e1e 0%, #1a1a1a 100%)",
-    borderRadius: "20px",
+    borderRadius: "24px",
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
@@ -756,10 +767,10 @@ const styles: Record<string, CSSProperties> = {
   formSection: {
     flex: 1,
     minWidth: 0,
-    padding: "24px 32px",
+    padding: "16px 16px",
     display: "flex",
     flexDirection: "column",
-    gap: "24px",
+    gap: "16px",
     overflowY: "auto",
     background: "rgba(0, 0, 0, 0.1)",
   },
@@ -777,12 +788,14 @@ const styles: Record<string, CSSProperties> = {
   },
   labelRow: {
     display: "flex",
+    paddingLeft: "4px",
     justifyContent: "space-between",
     alignItems: "center",
   },
   charCounter: {
     fontSize: "12px",
     fontWeight: 500,
+    paddingRight: "4px",
     color: "rgba(255, 255, 255, 0.4)",
     fontVariantNumeric: "tabular-nums",
   },
