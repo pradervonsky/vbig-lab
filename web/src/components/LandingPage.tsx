@@ -557,6 +557,21 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
           transform: translateY(-55%);
         }
 
+        @keyframes waveLoginIntro {
+          from {
+            clip-path: polygon(
+              0% 50%, 10% 50%, 20% 50%, 30% 50%, 40% 50%, 50% 50%, 60% 50%, 70% 50%, 80% 50%, 90% 50%, 100% 50%,
+              100% 50%, 0% 50%
+            );
+          }
+          to {
+            clip-path: polygon(
+              0% 49.5%, 10% 47%, 20% 51%, 30% 49.5%, 40% 51.5%, 50% 51%, 60% 47%, 70% 49.5%, 80% 51.5%, 90% 51%, 100% 49.5%,
+              100% 100%, 0% 100%
+            );
+          }
+        }
+
         @keyframes waveLogin {
           0% {
             clip-path: polygon(
@@ -589,16 +604,13 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
             0% 50%, 10% 50%, 20% 50%, 30% 50%, 40% 50%, 50% 50%, 60% 50%, 70% 50%, 80% 50%, 90% 50%, 100% 50%,
             100% 50%, 0% 50%
           );
-          transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: 15;
         }
 
         .wave-login-bg.visible {
-          clip-path: polygon(
-            0% 49.5%, 10% 47%, 20% 51%, 30% 49.5%, 40% 51.5%, 50% 51%, 60% 47%, 70% 49.5%, 80% 51.5%, 90% 51%, 100% 49.5%,
-            100% 100%, 0% 100%
-          );
-          animation: waveLogin 5s ease-in-out 0.6s infinite;
+          animation:
+            waveLoginIntro 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+            waveLogin 5s ease-in-out 0.6s infinite;
         }
 
         .login-form-container {
