@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import type { CSSProperties } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
+import "./style/LandingPage.css";
 
 export function LandingPage({ onStart }: { onStart: () => void }) {
   const [isLoaded] = useState(true);
@@ -68,6 +68,7 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
   }
   const containerRef = useRef<HTMLDivElement>(null);
   const lastMoveTime = useRef(Date.now());
+  const lastSetTime = useRef(0);
 
   // Wave range controls - adjust these values to change wave positions
   const wave1Min = 47.5;
@@ -81,17 +82,19 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
 
+      const now = Date.now();
+      // Throttle state updates to ~20fps (every 50ms)
+      if (now - lastSetTime.current < 50) return;
+      lastSetTime.current = now;
+
       const rect = containerRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const isInside = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
 
       if (isInside) {
-        const now = Date.now();
         const timeDiff = now - lastMoveTime.current;
         lastMoveTime.current = now;
-
-        // Calculate intensity based on mouse speed
         const speed = timeDiff < 50 ? 3 : timeDiff < 100 ? 2.5 : 2;
         setWaveIntensity(speed);
       } else {
@@ -99,9 +102,9 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
       }
     };
 
-    // Decay intensity over time
+    // Decay intensity over time — skip setState when already at minimum
     const decayInterval = setInterval(() => {
-      setWaveIntensity(prev => Math.max(1, prev * 0.95));
+      setWaveIntensity(prev => prev <= 1 ? prev : Math.max(1, prev * 0.95));
     }, 100);
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -112,20 +115,20 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
     };
   }, []);
 
-  const waveStyle1: CSSProperties = {
+  const waveStyle1 = useMemo(() => ({
     transform: `scaleY(${1 + waveIntensity * 0.5})`,
     transition: "transform 0.3s ease-out",
-  };
+  }), [waveIntensity]);
 
-  const waveStyle2: CSSProperties = {
+  const waveStyle2 = useMemo(() => ({
     transform: `scaleY(${0.5 + waveIntensity * 0.3})`,
     transition: "transform 0.3s ease-out",
-  };
+  }), [waveIntensity]);
 
-  const waveStyle3: CSSProperties = {
+  const waveStyle3 = useMemo(() => ({
     transform: `scaleY(${0.75 + waveIntensity * 0.4})`,
     transition: "transform 0.3s ease-out",
-  };
+  }), [waveIntensity]);
 
   // Generate dynamic wave keyframes based on range controls
   const generateWaveKeyframes = (waveNum: number, min: number, max: number) => {
@@ -484,544 +487,29 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
     }
   };
 
+  // Wave min/max are compile-time constants — memoize so keyframes only generate once
+  const waveKeyframes = useMemo(
+    () =>
+      generateWaveKeyframes(1, wave1Min, wave1Max) +
+      generateWaveKeyframes(2, wave2Min, wave2Max) +
+      generateWaveKeyframes(3, wave3Min, wave3Max),
+    [] // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
   return (
     <>
-      <style>{`
-        ${generateWaveKeyframes(1, wave1Min, wave1Max)}
-        ${generateWaveKeyframes(2, wave2Min, wave2Max)}
-        ${generateWaveKeyframes(3, wave3Min, wave3Max)}
+      <style>{waveKeyframes}</style>
 
-
-        .wave {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          transform-origin: center;
-        }
-
-        .wave-blue {
-          background: #3a69d6b7;
-          animation: wave1 5s ease-in-out infinite;
-        }
-
-        .wave-grey {
-          background: #102a61b9;
-          animation: wave2 6s ease-in-out infinite;
-        }
-
-        .wave-light {
-          background: #00000077;
-          animation: wave3 7s ease-in-out infinite;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .start-button {
-          animation: fadeIn 0.5s ease-out;
-          transition: all 0.5s ease;
-        }
-
-        .start-button:not(:disabled):hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 30px rgba(58, 106, 214, 0.4) !important;
-        }
-
-        .start-button:not(:disabled):active {
-          transform: translateY(0);
-        }
-
-        .github-button {
-          transition: all 0.3s ease;
-        }
-
-        .github-button:hover {
-          transform: scale(1) translateY(-2px);
-        }
-
-        .vbig-container {
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .vbig-container.login-active {
-          transform: translateY(-55%);
-        }
-
-        @keyframes waveLoginIntro {
-          from {
-            clip-path: polygon(
-              0% 50%, 10% 50%, 20% 50%, 30% 50%, 40% 50%, 50% 50%, 60% 50%, 70% 50%, 80% 50%, 90% 50%, 100% 50%,
-              100% 50%, 0% 50%
-            );
-          }
-          to {
-            clip-path: polygon(
-              0% 49.5%, 10% 47%, 20% 51%, 30% 49.5%, 40% 51.5%, 50% 51%, 60% 47%, 70% 49.5%, 80% 51.5%, 90% 51%, 100% 49.5%,
-              100% 100%, 0% 100%
-            );
-          }
-        }
-
-        @keyframes waveLogin {
-          0% {
-            clip-path: polygon(
-              0% 49.5%, 10% 47%, 20% 51%, 30% 49.5%, 40% 51.5%, 50% 51%, 60% 47%, 70% 49.5%, 80% 51.5%, 90% 51%, 100% 49.5%,
-              100% 100%, 0% 100%
-            );
-          }
-          50% {
-            clip-path: polygon(
-              0% 51.5%, 10% 51%, 20% 47%, 30% 51%, 40% 49.5%, 50% 51.5%, 60% 51%, 70% 47%, 80% 49.5%, 90% 51.5%, 100% 51%,
-              100% 100%, 0% 100%
-            );
-          }
-          100% {
-            clip-path: polygon(
-              0% 49.5%, 10% 47%, 20% 51%, 30% 49.5%, 40% 51.5%, 50% 51%, 60% 47%, 70% 49.5%, 80% 51.5%, 90% 51%, 100% 49.5%,
-              100% 100%, 0% 100%
-            );
-          }
-        }
-
-        .wave-login-bg {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: #3a69d6b7;
-          clip-path: polygon(
-            0% 50%, 10% 50%, 20% 50%, 30% 50%, 40% 50%, 50% 50%, 60% 50%, 70% 50%, 80% 50%, 90% 50%, 100% 50%,
-            100% 50%, 0% 50%
-          );
-          z-index: 15;
-        }
-
-        .wave-login-bg.visible {
-          animation:
-            waveLoginIntro 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
-            waveLogin 5s ease-in-out 0.6s infinite;
-        }
-
-        .login-form-container {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 77.5%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          z-index: 20;
-          opacity: 0;
-          transform: translateY(20px);
-          pointer-events: none;
-          transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
-        }
-
-        .login-form-container.visible {
-          opacity: 1;
-          transform: translateY(0);
-          pointer-events: all;
-        }
-
-        .submarine {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          right: -25px;
-          transform: translateY(120%) rotate(15deg);
-          opacity: 0;
-          transition: transform 0.5s ease-in-out 0.3s, opacity 0.5s ease-in-out 0.3s;
-        }
-
-        .login-form-container.visible .submarine {
-          transform: translateY(0);
-          opacity: 1;
-          animation: subFloat 4s ease-in-out 0.8s infinite;
-        }
-
-        .sub-art {
-          white-space: pre;
-          font-size: 12px;
-          line-height: 1.1;
-          color: rgba(255, 255, 255, 0.45);
-          z-index: 2;
-          user-select: none;
-          pointer-events: none;
-          text-align: center;
-          width: fit-content;
-          margin: 0 auto;
-        }
-
-        .sub-art-row {
-          display: flex;
-          align-items: center;
-          width: 100%;
-        }
-
-        .sub-art-input {
-          flex: 1;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 4px;
-          color: #fff;
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 12px;
-          font-weight: 600;
-          padding: 2px 4px;
-          outline: none;
-          text-align: center;
-          pointer-events: auto;
-          user-select: auto;
-          transition: all 0.2s ease;
-        }
-
-        .sub-art-input:focus {
-          border-color: rgba(255, 255, 255, 0.5);
-          background: rgba(255, 255, 255, 0.15);
-        }
-
-        .sub-art-input:-webkit-autofill,
-        .sub-art-input:-webkit-autofill:hover,
-        .sub-art-input:-webkit-autofill:focus {
-          -webkit-text-fill-color: #fff;
-          -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.08) inset;
-          box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.08) inset;
-          transition: background-color 5000s ease-in-out 0s;
-        }
-
-        .sub-art-input::placeholder {
-          color: rgba(255, 255, 255, 0.5);
-        }
-
-        .sub-missile {
-          position: relative;
-          margin-top: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0;
-          transform: translateY(-25px) scale(0.95);
-          pointer-events: none;
-          transition: opacity 0.4s ease-in, transform 0.4s ease-in;
-        }
-
-        .sub-missile.ready {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-          pointer-events: all;
-          animation: torpedoFloat 2s ease-in-out 0.5s infinite;
-          transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .sub-missile button {
-          min-width: 150px;
-          position: relative;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 20px 4px 4px 20px;
-          color: #fff;
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 12px;
-          font-weight: 600;
-          padding: 8px 28px 8px 24px;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          letter-spacing: 1px;
-        }
-
-        .sub-missile button::after {
-          content: '+';
-          position: absolute;
-          right: -16px;
-          top: 50%;
-          font-size: 33px;
-          font-weight: 700;
-          color: rgba(255, 255, 255, 0.25);
-          transform-origin: center;
-          animation: propellerSpin 0.3s linear infinite;
-        }
-
-        .sub-missile button:hover:not(:disabled) {
-          background: rgba(255, 255, 255, 0.15);
-          border-color: rgba(255, 255, 255, 0.4);
-          transform: translateX(-3px);
-        }
-
-        .sub-missile button:disabled {
-          opacity: 0.6;
-          cursor: not-allowed;
-        }
-
-        .sub-missile button.has-error {
-          background: rgba(220, 53, 69, 0.25);
-          border-color: rgba(220, 53, 69, 0.5);
-          color: #ff6b6b;
-          opacity: 1;
-        }
-
-        .sub-missile button.has-error::after {
-          color: rgba(220, 53, 69, 0.5);
-        }
-
-        .sub-missile.aborting {
-          animation: torpedoAbort 0.3s ease-in forwards !important;
-          pointer-events: none;
-        }
-
-        .sub-missile.aborting button {
-          background: rgba(0, 0, 0, 0.4);
-          border-color: rgba(0, 0, 0, 0.2);
-          color: rgba(255, 255, 255, 0.3);
-        }
-
-        .sub-missile.aborting button::after {
-          color: rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes torpedoAbort {
-          0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-          20% { transform: translateY(8px) rotate(-5deg); opacity: 0.8; }
-          100% { transform: translateY(120px) rotate(-30deg); opacity: 0; }
-        }
-
-        .sub-missile.launched {
-          animation: torpedoLaunch 0.5s ease-in forwards !important;
-        }
-
-        @keyframes torpedoLaunch {
-          0% { transform: translate(0, 0); opacity: 1; }
-          100% { transform: translate(-120vw, 0); opacity: 0; }
-        }
-
-        .missile-bubbles {
-          position: absolute;
-          right: -10px;
-          top: 50%;
-        }
-
-        .missile-bubbles .mb {
-          position: absolute;
-          border-radius: 50%;
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          background: rgba(255, 255, 255, 0.04);
-        }
-
-        .mb1 {
-          width: 5px;
-          height: 5px;
-          animation: missileB1 1.2s ease-out infinite;
-        }
-
-        .mb2 {
-          width: 3px;
-          height: 3px;
-          top: -4px;
-          animation: missileB2 0.6s ease-out 0.2s infinite;
-        }
-
-        .mb3 {
-          width: 4px;
-          height: 4px;
-          top: 5px;
-          animation: missileB3 0.5s ease-out 0.1s infinite;
-        }
-
-        .mb4 {
-          width: 3px;
-          height: 3px;
-          top: -8px;
-          animation: missileB4 0.7s ease-out 0.4s infinite;
-        }
-
-        .mb5 {
-          width: 4px;
-          height: 4px;
-          top: 8px;
-          animation: missileB5 1s ease-out 0.3s infinite;
-        }
-
-        @keyframes torpedoFloat {
-          0% { transform: translate(0, 0) rotate(0deg); }
-          30% { transform: translate(-3px, -5px) rotate(-0.9deg); }
-          60% { transform: translate(2px, 7px) rotate(0.9deg); }
-          100% { transform: translate(0, 0) rotate(0deg); }
-        }
-
-        @keyframes propellerSpin {
-          0% { transform: translateY(-50%) rotate(0deg); }
-          100% { transform: translateY(-50%) rotate(360deg); }
-        }
-
-        @keyframes missileB1 {
-          0% { transform: translate(0, 0); opacity: 0; }
-          10% { opacity: 0.6; }
-          100% { transform: translate(40px, -10px); opacity: 0; }
-        }
-
-        @keyframes missileB2 {
-          0% { transform: translate(0, 0); opacity: 0; }
-          10% { opacity: 0.4; }
-          100% { transform: translate(30px, -18px); opacity: 0; }
-        }
-
-        @keyframes missileB3 {
-          0% { transform: translate(0, 0); opacity: 0; }
-          10% { opacity: 0.5; }
-          100% { transform: translate(35px, 8px); opacity: 0; }
-        }
-
-        @keyframes missileB4 {
-          0% { transform: translate(0, 0); opacity: 0; }
-          10% { opacity: 0.5; }
-          100% { transform: translate(28px, -22px); opacity: 0; }
-        }
-
-        @keyframes missileB5 {
-          0% { transform: translate(0, 0); opacity: 0; }
-          10% { opacity: 0.4; }
-          100% { transform: translate(42px, 12px); opacity: 0; }
-        }
-
-        .sub-bubbles {
-          position: absolute;
-          left: calc(57.5% + 120px);
-          top: 85%;
-          z-index: 1;
-        }
-
-        @media (max-width: 1024px) {
-          .landing-container {
-            flex-direction: column-reverse !important;
-            height: auto !important;
-            min-height: 100vh !important;
-          }
-          .landing-left {
-            flex: none !important;
-            padding: 48px 32px 48px !important;
-            align-items: center !important;
-            text-align: center !important;
-          }
-          .landing-right {
-            flex: 1 !important;
-            min-height: 50vh !important;
-          }
-          .landing-title {
-            font-size: 36px !important;
-            letter-spacing: -1px !important;
-          }
-          .landing-subtitle {
-            font-size: 17px !important;
-          }
-          .github-button {
-            top: 35px !important;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .landing-left {
-            padding: 40px 24px 40px !important;
-          }
-          .landing-title {
-            font-size: 28px !important;
-          }
-          .landing-subtitle {
-            font-size: 15px !important;
-          }
-          .start-button {
-            font-size: 16px !important;
-            padding: 14px 36px !important;
-          }
-          .landing-vbig-letter {
-            font-size: 100px !important;
-          }
-          .vbig-container.login-active {
-            transform: translateY(-90%) !important;
-          }
-          .github-button {
-            top: 5px !important;
-          }
-        }
-
-        .bubble {
-          position: absolute;
-          border-radius: 50%;
-          border: 1.5px solid rgba(255, 255, 255, 0.3);
-          background: rgba(255, 255, 255, 0.05);
-        }
-
-        .b1 {
-          width: 8px;
-          height: 8px;
-          animation: bubbleFloat1 1.5s ease-out 0.7s infinite;
-        }
-
-        .b2 {
-          width: 5px;
-          height: 5px;
-          top: -12px;
-          animation: bubbleFloat2 1s ease-out 0.5s infinite;
-        }
-
-        .b3 {
-          width: 7px;
-          height: 7px;
-          top: 10px;
-          animation: bubbleFloat3 2s ease-out 0.8s infinite;
-        }
-
-        @keyframes subFloat {
-          0% { transform: translate(0, 0) rotate(0deg); }
-          25% { transform: translate(2px, -2px) rotate(0deg); }
-          50% { transform: translate(0px, -4px) rotate(0deg); }
-          75% { transform: translate(-2px, -6px) rotate(0deg); }
-          100% { transform: translate(0, 0) rotate(0deg); }
-        }
-
-        @keyframes bubbleFloat1 {
-          0% { transform: translate(0, 0); opacity: 0; }
-          15% { opacity: 0.7; }
-          100% { transform: translate(60px, -15px); opacity: 0; }
-        }
-
-        @keyframes bubbleFloat2 {
-          0% { transform: translate(0, 0); opacity: 0; }
-          15% { opacity: 0.5; }
-          100% { transform: translate(40px, -25px); opacity: 0; }
-        }
-
-        @keyframes bubbleFloat3 {
-          0% { transform: translate(0, 0); opacity: 0; }
-          15% { opacity: 0.6; }
-          100% { transform: translate(55px, 8px); opacity: 0; }
-        }
-      `}</style>
-
-      <div style={styles.container} className="landing-container">
+      <div className="landing-container">
         {/* Left Container */}
-        <div style={styles.leftContainer} className="landing-left">
-          <h1 style={styles.title} className="landing-title">Insight Generation Platform</h1>
-          <p style={styles.subtitle} className="landing-subtitle">
+        <div className="landing-left">
+          <h1 className="landing-title">Insight Generation Platform</h1>
+          <p className="landing-subtitle">
             A platform to input human-generated insights from Tableau Public dashboards, which serves as the basis for evaluating VLM-generated insights.
           </p>
           <button
             className="start-button"
             style={{
-              ...styles.startButton,
               background: isLoaded
                 ? "linear-gradient(135deg, #3a6ad6 0%, #2a5ac6 100%)"
                 : "rgba(128, 128, 128, 0.3)",
@@ -1035,20 +523,16 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
         </div>
 
         {/* Right Container */}
-        <div ref={containerRef} style={styles.rightContainer} className="landing-right">
-          <div
-            style={styles.vbigContainer}
-            className={`vbig-container${showLogin ? " login-active" : ""}`}
-          >
-            <span style={styles.vbigLetter} className="landing-vbig-letter">V</span>
-            <span style={styles.vbigLetter} className="landing-vbig-letter">B</span>
-            <span style={styles.vbigLetter} className="landing-vbig-letter">I</span>
-            <span style={styles.vbigLetter} className="landing-vbig-letter">G</span>
+        <div ref={containerRef} className="landing-right">
+          <div className={`vbig-container${showLogin ? " login-active" : ""}`}>
+            <span className="landing-vbig-letter">V</span>
+            <span className="landing-vbig-letter">B</span>
+            <span className="landing-vbig-letter">I</span>
+            <span className="landing-vbig-letter">G</span>
             <a
               href="https://github.com/pradervonsky/vbig-lab"
               target="_blank"
               rel="noopener noreferrer"
-              style={styles.githubButton}
               className="github-button"
             >
               <svg
@@ -1135,83 +619,3 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
     </>
   );
 }
-
-const styles: Record<string, CSSProperties> = {
-  container: {
-    height: "100vh",
-    display: "flex",
-    background: "linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0d0d0d 100%)",
-  },
-  leftContainer: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    padding: "0 80px",
-    color: "#fff",
-  },
-  title: {
-    fontSize: "48px",
-    fontWeight: 700,
-    background: "linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
-    letterSpacing: "-3px",
-  },
-  subtitle: {
-    fontSize: "20px",
-    color: "rgba(255, 255, 255, 0.6)",
-    margin: "0 0 20px 0",
-    maxWidth: "720px",
-    lineHeight: "1.5",
-  },
-  startButton: {
-    background: "linear-gradient(135deg, #3a6ad6 0%, #2a5ac6 100%)",
-    color: "#fff",
-    padding: "16px 48px",
-    fontSize: "20px",
-    fontWeight: 600,
-    border: "none",
-    borderRadius: "12px",
-    letterSpacing: "0.5px",
-    minWidth: "200px",
-  },
-  rightContainer: {
-    flex: 1,
-    position: "relative",
-    overflow: "hidden",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "linear-gradient(145deg, #1e1e1e 0%, #1a1a1a 100%)",
-  },
-  vbigContainer: {
-    position: "relative",
-    zIndex: 25,
-    display: "flex",
-    gap: "20px",
-  },
-  vbigLetter: {
-    fontSize: "180px",
-    fontWeight: 900,
-    color: "#fff",
-    letterSpacing: "10px",
-  },
-  githubButton: {
-    position: "absolute",
-    top: "40px",
-    right: "-10px",
-    width: "40px",
-    height: "40px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "rgb(255, 255, 255)",
-    borderRadius: "8px",
-    textDecoration: "none",
-    backdropFilter: "blur(6px)",
-    zIndex: 25,
-  },
-};

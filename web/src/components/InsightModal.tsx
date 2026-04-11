@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
-import type { CSSProperties } from "react";
-import { renderMarkdown, L2, L3, L4, Eg } from "@/components/GuidelinePage";
+import { renderMarkdown } from "@/components/GuidelinePage";
+import "./style/InsightModal.css";
 
 export function InsightModal({
   dashboard,
@@ -69,15 +69,47 @@ export function InsightModal({
     return () => clearInterval(id);
   }, [draftKey, readOnly]);
 
+  // Cache rendered HTML per tab — dynamically load each guideline only when first opened
+  const guidelineCache = useRef<Partial<Record<"L2" | "L3" | "L4" | "Eg", string>>>({});
+  const [guidelineHtml, setGuidelineHtml] = useState("");
+
+  useEffect(() => {
+    if (!activeTab) { setGuidelineHtml(""); return; }
+    if (guidelineCache.current[activeTab]) {
+      setGuidelineHtml(guidelineCache.current[activeTab]!);
+      return;
+    }
+    const loaders: Record<string, () => Promise<{ [k: string]: string }>> = {
+      L2: () => import("./guidelines/L2"),
+      L3: () => import("./guidelines/L3"),
+      L4: () => import("./guidelines/L4"),
+      Eg: () => import("./guidelines/Eg"),
+    };
+    loaders[activeTab]().then((mod) => {
+      const html = renderMarkdown(mod[activeTab]);
+      guidelineCache.current[activeTab] = html;
+      setGuidelineHtml(html);
+    });
+  }, [activeTab]);
+
+  // Memoize the "Completed" timestamp shown in the header
+  const completedTimestamp = useMemo(() => {
+    const row = dashboard.human_insights?.[0];
+    const ts = userRole === "annotator1" ? row?.updated_at_2
+             : userRole === "annotator2" ? row?.updated_at_3
+             : row?.updated_at;
+    if (!ts) return null;
+    const d = new Date(ts);
+    return `${d.toLocaleDateString()} ${d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })}`;
+  }, [dashboard.human_insights, userRole]);
+
   const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/superstore/${dashboard.bucket_path}`;
-  console.log("Image URL:", imageUrl);
-  console.log("Bucket path:", dashboard.bucket_path);
 
   function handleClose() {
     setIsClosing(true);
     setTimeout(() => {
       onClose();
-    }, 100); // Match animation duration
+    }, 100);
   }
 
   async function save() {
@@ -113,195 +145,26 @@ export function InsightModal({
     setDraftRestoreAvailable(false);
     setShowSuccess(true);
 
-    // Close modal after showing success
     setTimeout(() => {
       handleClose();
     }, 1500);
   }
 
+  const insightLength = insight.length;
+
   return (
     <>
-      <style>{`
-        .blur-overlay {
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
-        }
-        @supports (-moz-appearance: none) {
-          .blur-overlay {
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            background: rgba(0, 0, 0, 0.82) !important;
-          }
-        }
-
-        @keyframes modalFadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        @keyframes modalFadeOut {
-          from {
-            opacity: 1;
-            transform: scale(1);
-          }
-          to {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-        }
-
-        .insight-modal {
-          animation: modalFadeIn 0.2s ease-out;
-        }
-
-        .insight-modal.closing {
-          animation: modalFadeOut 0.2s ease-out;
-        }
-
-        .modal-close-button:hover {
-          background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .insight-textarea:focus {
-          outline: none;
-          border-color: #3a6ad6;
-          box-shadow: 0 0 0 3px rgba(58, 106, 214, 0.1);
-        }
-
-        .yes-button:hover { 
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .yes-button:active {
-          transform: translateY(0);
-        }
-
-        .no-button:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .no-button:active {
-          transform: translateY(0);
-        }
-
-        .irr-button:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .irr-button:active {
-          transform: translateY(0);
-        }
-
-        .save-button {
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .save-button:hover:not(:disabled) {
-          background: #4a7ae6 !important;
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(58, 106, 214, 0.3);
-        }
-
-        .save-button:active {
-          transform: translateY(0);
-        }
-
-        @keyframes slideInFromTop {
-          from {
-            opacity: 0;
-            transform: translate(-50%, -100%);
-          }
-          to {
-            opacity: 1;
-            transform: translate(-50%, 0);
-          }
-        }
-
-        .success-toast {
-          animation: slideInFromTop 0.4s ease-out;
-        }
-
-        .view-dashboard-btn:hover {
-          filter: brightness(1.2);
-        }
-
-        .draft-restore-btn:hover {
-          background: rgba(240,173,78,0.35) !important;
-        }
-
-        .draft-discard-btn:hover {
-          border-color: rgba(255,255,255,0.3) !important;
-          color: rgba(255,255,255,0.7) !important;
-        }
-
-        .review-select option {
-          background: #1e1e1e;
-          color: #fff;
-        }
-
-        .review-select:focus {
-          outline: none;
-        }
-
-        @media (max-width: 1024px) {
-          .insight-content-wrapper {
-            flex-direction: column !important;
-            overflow-y: auto !important;
-            overflow-x: hidden !important;
-          }
-          .insight-image-container {
-            flex: none !important;
-            height: 40vh !important;
-            min-height: 200px !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-          }
-          .insight-form-section {
-            flex: none !important;
-            min-width: 0 !important;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .insight-modal-wrapper {
-            width: 100% !important;
-            height: 100dvh !important;
-            border-radius: 0 !important;
-          }
-          .insight-header {
-            padding: 12px 16px !important;
-            flex-wrap: wrap !important;
-            gap: 8px !important;
-          }
-          .insight-header-content {
-            flex-wrap: wrap !important;
-          }
-          .insight-image-container {
-            height: 35vh !important;
-            padding: 12px !important;
-          }
-          .insight-form-section {
-            padding: 16px !important;
-          }
-        }
-      `}</style>
-      <div style={styles.overlay} className="blur-overlay">
+      <div className="insight-overlay">
         {showSuccess && (
-          <div style={styles.successToast} className="success-toast">
+          <div className="success-toast">
             <span style={{ fontSize: "15px", fontWeight: 600 }}>
               Insights saved successfully!
             </span>
           </div>
         )}
-        <div style={styles.modal} className={`insight-modal insight-modal-wrapper${isClosing ? ' closing' : ''}`}>
-        <div style={styles.header} className="insight-header">
-          <div style={styles.headerContent} className="insight-header-content">
+        <div className={`insight-modal insight-modal-wrapper${isClosing ? " closing" : ""}`}>
+        <div className="insight-header">
+          <div className="insight-header-content">
             <h2 style={{
               margin: 0,
               fontSize: "16px",
@@ -366,22 +229,12 @@ export function InsightModal({
             )}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            {(() => {
-              const row = dashboard.human_insights?.[0];
-              const ts = userRole === "annotator1" ? row?.updated_at_2
-                       : userRole === "annotator2" ? row?.updated_at_3
-                       : row?.updated_at;
-              if (!ts) return null;
-              const d = new Date(ts);
-              return (
-                <span style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.5)", fontWeight: 500 }}>
-                  Completed: {d.toLocaleDateString()}{" "}
-                  {d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
-                </span>
-              );
-            })()}
+            {completedTimestamp && (
+              <span style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.5)", fontWeight: 500 }}>
+                Completed: {completedTimestamp}
+              </span>
+            )}
             <button
-              style={styles.closeButton}
               className="modal-close-button"
               onClick={handleClose}
             >
@@ -390,30 +243,29 @@ export function InsightModal({
           </div>
         </div>
 
-        <div style={styles.contentWrapper} className="insight-content-wrapper">
+        <div className="insight-content-wrapper">
           <div
-            style={{
-              ...styles.imageContainer,
-              maxWidth: focusMode ? "0" : "9999px",
-              padding: focusMode ? "0" : "24px",
-              opacity: focusMode ? 0 : 1,
-              overflow: "hidden",
-              transition: "max-width 0.4s ease, opacity 0.3s ease, padding 0.4s ease",
-            }}
             className="insight-image-container"
+            style={{
+              maxWidth: focusMode ? "0" : "9999px",
+              padding: focusMode ? "0" : "16px",
+              opacity: focusMode ? 0 : 1,
+            }}
           >
-            <img
-              src={imageUrl}
-              alt={dashboard.dashboard_name}
-              style={styles.image}
-              onError={(e) => {
-                console.error("Image failed to load:", imageUrl);
-                console.error("Error:", e);
-              }}
-            />
+            {/* Unmount the image in focus mode to free GPU texture memory */}
+            {!focusMode && (
+              <img
+                src={imageUrl}
+                alt={dashboard.dashboard_name}
+                className="insight-image"
+                onError={(e) => {
+                  console.error("Image failed to load:", imageUrl, e);
+                }}
+              />
+            )}
           </div>
 
-          <div style={styles.formSection} className="insight-form-section">
+          <div className="insight-form-section">
           {draftRestoreAvailable && (
             <div style={{
               display: "flex",
@@ -453,16 +305,14 @@ export function InsightModal({
           )}
           {!isAnnotator && (
             <div style={{ display: "flex", gap: "8px" }}>
-              <div style={{ ...styles.checkboxContainer, flex: 5, justifyContent: "flex-start", overflow: "hidden" }}>
-                {/* Label: collapses via maxWidth */}
+              <div className="insight-checkbox-container" style={{ flex: 5, justifyContent: "flex-start", overflow: "hidden" }}>
                 <div style={{
                   maxWidth: approval === "reject" ? "0" : "120px",
                   overflow: "hidden",
                   flexShrink: 0,
                   transition: "max-width 0.3s ease",
                 }}>
-                  <span style={{
-                    ...styles.checkboxLabel,
+                  <span className="insight-checkbox-label" style={{
                     display: "block",
                     opacity: approval === "reject" ? 0 : 1,
                     whiteSpace: "nowrap",
@@ -472,7 +322,6 @@ export function InsightModal({
                   </span>
                 </div>
 
-                {/* Button group: always flex-start, inner spacer slides buttons in sync */}
                 <div style={{
                   flex: 1,
                   display: "flex",
@@ -481,7 +330,6 @@ export function InsightModal({
                   gap: "8px",
                   minWidth: 0,
                 }}>
-                  {/* Spacer: collapses at same rate as label — buttons slide left together */}
                   <div style={{
                     flexGrow: approval !== "reject" ? 1 : 0,
                     flexShrink: 1,
@@ -490,9 +338,8 @@ export function InsightModal({
                     transition: "flex-grow 0.3s ease",
                   }} />
                   <button
-                    className="yes-button"
+                    className="yes-button insight-yesno-btn"
                     style={{
-                      ...styles.yesNoButton,
                       background: approval === "approve" ? "#1ebb81" : "rgba(255,255,255,0.05)",
                       border: approval === "approve" ? "1px solid #1ebb81" : "1px solid rgba(255,255,255,0.08)",
                       flexShrink: 0,
@@ -503,9 +350,8 @@ export function InsightModal({
                     Yes
                   </button>
                   <button
-                    className="no-button"
+                    className="no-button insight-yesno-btn"
                     style={{
-                      ...styles.yesNoButton,
                       background: approval === "reject" ? "#a32b2b" : "rgba(255,255,255,0.05)",
                       border: approval === "reject" ? "1px solid #a32b2b" : "1px solid rgba(255,255,255,0.1)",
                       flexShrink: 0,
@@ -554,12 +400,11 @@ export function InsightModal({
                 </div>
               </div>
 
-              <div style={{ ...styles.checkboxContainer, flex: 2 }}>
-                <span style={styles.checkboxLabel}>IAA?</span>
+              <div className="insight-checkbox-container" style={{ flex: 2 }}>
+                <span className="insight-checkbox-label">IAA?</span>
                 <button
-                  className="irr-button"
+                  className="irr-button insight-yesno-btn"
                   style={{
-                    ...styles.yesNoButton,
                     background: irrFlag ? "#3a6ad6" : "rgba(255, 255, 255, 0.05)",
                     border: irrFlag ? "1px solid #3a6ad6" : "1px solid rgba(255, 255, 255, 0.1)",
                     ...(readOnly ? { cursor: "default", opacity: 0.8 } : {}),
@@ -573,11 +418,11 @@ export function InsightModal({
             </div>
           )}
 
-          <div style={styles.insightGrid}>
-            <div style={styles.textareaWrapper}>
-              <div style={styles.labelRow}>
+          <div className="insight-grid">
+            <div className="insight-textarea-wrapper">
+              <div className="insight-label-row">
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <label style={styles.label}>Insight</label>
+                  <label className="insight-label">Insight</label>
                   {(["L2", "L3", "L4", "Eg"] as const).map(tab => (
                     <button
                       key={tab}
@@ -600,21 +445,20 @@ export function InsightModal({
                     </button>
                   ))}
                 </div>
-                <span style={{ ...styles.charCounter, color: insight.length > 3500 ? "#e53e3e" : "rgba(255, 255, 255, 0.4)" }}>{insight.length} / 3,500 charaters</span>
+                <span className="insight-char-counter" style={{ color: insightLength > 3500 ? "#e53e3e" : "rgba(255, 255, 255, 0.4)" }}>{insightLength} / 3,500 charaters</span>
               </div>
               <textarea
                 placeholder={`Annotate this dashboard based on the guideline.\nClick one of four buttons above (L2, L3, L4, Eg) to see the guideline.\n\nExpected format:\n\nChart 1: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]\n\nChart 2: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]\n\nChart n: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]`}
                 value={insight}
                 onChange={(e) => !readOnly && setInsight(e.target.value)}
-                style={{ ...styles.textarea, ...(readOnly ? { cursor: "default", opacity: 0.75 } : {}) }}
+                style={readOnly ? { cursor: "default", opacity: 0.75 } : undefined}
                 className="insight-textarea"
                 readOnly={readOnly}
               />
             </div>
           </div>
 
-          <div style={{
-            ...styles.guidelinePanel,
+          <div className="insight-guideline-panel" style={{
             maxHeight: activeTab ? "340px" : "0",
             opacity: activeTab ? 1 : 0,
             paddingTop: activeTab ? "16px" : "0",
@@ -622,27 +466,19 @@ export function InsightModal({
           }}>
             <div
               style={{ maxHeight: "308px", overflowY: "auto", fontSize: "14px" }}
-              dangerouslySetInnerHTML={{ __html: renderMarkdown(
-                activeTab === "L2" ? L2 :
-                activeTab === "L3" ? L3 :
-                activeTab === "L4" ? L4 :
-                activeTab === "Eg" ? Eg : ""
-              ) }}
+              dangerouslySetInnerHTML={{ __html: guidelineHtml }}
             />
           </div>
 
           {!readOnly && (
-            <div style={styles.actions}>
+            <div className="insight-actions">
               <button
-                style={{
-                  ...styles.primary,
-                  ...((insight.length > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason))
-                    ? { background: "#444", color: "rgba(255,255,255,0.3)", cursor: "not-allowed" }
-                    : {}),
-                }}
                 className="save-button"
+                style={(insightLength > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason))
+                  ? { background: "#444", color: "rgba(255,255,255,0.3)", cursor: "not-allowed" }
+                  : undefined}
                 onClick={save}
-                disabled={insight.length > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason)}
+                disabled={insightLength > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason)}
               >
                 Save
               </button>
@@ -656,240 +492,3 @@ export function InsightModal({
   );
 }
 
-const styles: Record<string, CSSProperties> = {
-  container: {
-    minHeight: "100vh",
-    background: "#c4c4c4",
-    padding: "40px",
-    display: "flex",
-    justifyContent: "center",
-  },
-  card: {
-    width: "100%",
-    maxWidth: "1100px",
-    background: "#1c1c1c",
-    padding: "32px",
-    borderRadius: "16px",
-    color: "#fff",
-  },
-  title: {
-    fontSize: "26px",
-    fontWeight: 700,
-    marginBottom: "20px",
-  },
-  table: {
-    width: "100%",
-    borderCollapse: "collapse",
-  },
-  badge: {
-    padding: "4px 10px",
-    borderRadius: "999px",
-    fontSize: "12px",
-    fontWeight: 600,
-  },
-  button: {
-    padding: "8px 14px",
-    borderRadius: "8px",
-    background: "#3a6ad6",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer",
-  },
-
-  /* Modal */
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    background: "rgba(0, 0, 0, 0.37)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "24px",
-    zIndex: 1000,
-  },
-  modal: {
-    width: "100%",
-    maxWidth: "1600px",
-    height: "100%",
-    background: "linear-gradient(145deg, #1e1e1e 0%, #1a1a1a 100%)",
-    borderRadius: "24px",
-    display: "flex",
-    flexDirection: "column",
-    overflow: "hidden",
-    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05)",
-  },
-  header: {
-    padding: "16px 32px",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    background: "rgba(255, 255, 255, 0.02)",
-    flexShrink: 0,
-  },
-  headerContent: {
-    display: "flex",
-    alignItems: "baseline",
-    gap: "4px",
-  },
-  closeButton: {
-    background: "transparent",
-    border: "none",
-    color: "#fff",
-    fontSize: "24px",
-    cursor: "pointer",
-    padding: "6px 10px",
-    borderRadius: "8px",
-    transition: "all 0.2s ease",
-    lineHeight: 1,
-    fontWeight: 600,
-  },
-  contentWrapper: {
-    display: "flex",
-    flex: 1,
-    minHeight: 0,
-    overflow: "hidden",
-  },
-  imageContainer: {
-    flex: 2,
-    minWidth: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "24px",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    objectFit: "contain",
-    borderRadius: "12px",
-  },
-  formSection: {
-    flex: 1,
-    minWidth: 0,
-    padding: "16px 16px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px",
-    overflowY: "auto",
-    background: "rgba(0, 0, 0, 0.1)",
-  },
-  insightGrid: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "24px",
-    flex: 1,
-  },
-  textareaWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "8px",
-    flex: 1,
-  },
-  labelRow: {
-    display: "flex",
-    paddingLeft: "4px",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  charCounter: {
-    fontSize: "12px",
-    fontWeight: 500,
-    paddingRight: "4px",
-    color: "rgba(255, 255, 255, 0.4)",
-    fontVariantNumeric: "tabular-nums",
-  },
-  label: {
-    fontSize: "14px",
-    fontWeight: 600,
-    color: "rgba(255, 255, 255, 0.7)",
-    letterSpacing: "0.3px",
-    textTransform: "uppercase",
-  },
-  checkboxContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "12px 16px",
-    background: "rgba(255, 255, 255, 0.03)",
-    borderRadius: "10px",
-    border: "1px solid rgba(255, 255, 255, 0.05)",
-  },
-  checkboxLabel: {
-    fontSize: "14px",
-    fontWeight: 500,
-  },
-  yesNoButton: {
-    padding: "8px 24px",
-    borderRadius: "8px",
-    fontSize: "12px",
-    fontWeight: 600,
-    color: "#fff",
-    cursor: "pointer",
-    transition: "all 0.2s ease",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
-  },
-  textarea: {
-    background: "rgba(0, 0, 0, 0.3)",
-    border: "1px solid rgba(255, 255, 255, 0.08)",
-    borderRadius: "10px",
-    padding: "14px 16px",
-    color: "#fff",
-    minHeight: "160px",
-    resize: "vertical",
-    fontFamily: "inherit",
-    fontSize: "14px",
-    lineHeight: "1.6",
-    transition: "all 0.2s ease",
-    flex: 1,
-  },
-  guidelinePanel: {
-    background: "rgba(0,0,0,0.2)",
-    border: "1px solid rgba(255,255,255,0.06)",
-    borderRadius: "10px",
-    paddingLeft: "20px",
-    paddingRight: "20px",
-    overflow: "hidden" as const,
-    flexShrink: 0,
-    transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, padding 0.1s cubic-bezier(0.4, 0, 0.2, 1)",
-  },
-  actions: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "12px",
-    flexShrink: 0,
-    paddingTop: "8px",
-  },
-  primary: {
-    background: "#3a6ad6",
-    color: "#fff",
-    padding: "14px 32px",
-    borderRadius: "10px",
-    border: "none",
-    fontSize: "14px",
-    fontWeight: 600,
-    letterSpacing: "0.3px",
-  },
-  secondary: {
-    background: "#333",
-    color: "#fff",
-    padding: "10px 18px",
-    borderRadius: "8px",
-    border: "none",
-  },
-  successToast: {
-    position: "fixed",
-    top: "32px",
-    left: "50%",
-    transform: "translate(-50%, 0)",
-    background: "linear-gradient(135deg, #1ebb81 0%, #17a06d 100%)",
-    color: "#fff",
-    padding: "16px 32px",
-    borderRadius: "12px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 1001,
-    border: "1px solid rgba(255, 255, 255, 0.2)",
-  },
-};
