@@ -243,14 +243,9 @@ export function InsightModal({
           </div>
         </div>
 
-        <div className="insight-content-wrapper">
+        <div className={`insight-content-wrapper${focusMode ? " focus-mode" : ""}`}>
           <div
-            className="insight-image-container"
-            style={{
-              maxWidth: focusMode ? "0" : "9999px",
-              padding: focusMode ? "0" : "16px",
-              opacity: focusMode ? 0 : 1,
-            }}
+            className={`insight-image-container${focusMode ? " focus-mode" : ""}`}
           >
             {/* Unmount the image in focus mode to free GPU texture memory */}
             {!focusMode && (

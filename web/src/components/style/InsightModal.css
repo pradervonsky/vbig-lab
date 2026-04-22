@@ -76,11 +76,21 @@
 .insight-image-container {
   flex: 2;
   min-width: 0;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: max-width 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+  transition: max-width 0.4s ease, height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+}
+
+.insight-image-container.focus-mode {
+  max-width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  opacity: 0;
+  border: none !important;
 }
 
 .insight-image {
@@ -269,6 +279,9 @@
     overflow-y: auto !important;
     overflow-x: hidden !important;
   }
+  .insight-content-wrapper.focus-mode {
+    overflow: hidden !important;
+  }
   .insight-image-container {
     flex: none !important;
     height: 40vh !important;
@@ -278,6 +291,10 @@
   .insight-form-section {
     flex: none !important;
     min-width: 0 !important;
+  }
+  .insight-content-wrapper.focus-mode .insight-form-section {
+    flex: 1 !important;
+    overflow-y: auto !important;
   }
 }
 
