@@ -151,6 +151,7 @@ export function InsightModal({
   }
 
   const insightLength = insight.length;
+  const charLimit = isAnnotator ? 3500 : 5000;
 
   return (
     <>
@@ -440,7 +441,7 @@ export function InsightModal({
                     </button>
                   ))}
                 </div>
-                <span className="insight-char-counter" style={{ color: insightLength > 3500 ? "#e53e3e" : "rgba(255, 255, 255, 0.4)" }}>{insightLength} / 3,500 charaters</span>
+                <span className="insight-char-counter" style={{ color: insightLength > charLimit ? "#e53e3e" : "rgba(255, 255, 255, 0.4)" }}>{insightLength} / {charLimit.toLocaleString()} charaters</span>
               </div>
               <textarea
                 placeholder={`Annotate this dashboard based on the guideline.\nClick one of four buttons above (L2, L3, L4, Eg) to see the guideline.\n\nExpected format:\n\nChart 1: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]\n\nChart 2: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]\n\nChart n: [Title]\nL2: [Sentence 1]\nL3: [Sentence 2]\nL4: [Sentence 3]`}
@@ -469,11 +470,11 @@ export function InsightModal({
             <div className="insight-actions">
               <button
                 className="save-button"
-                style={(insightLength > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason))
+                style={(insightLength > charLimit || (!isAnnotator && approval === "reject" && !rejectionReason))
                   ? { background: "#444", color: "rgba(255,255,255,0.3)", cursor: "not-allowed" }
                   : undefined}
                 onClick={save}
-                disabled={insightLength > 3500 || (!isAnnotator && approval === "reject" && !rejectionReason)}
+                disabled={insightLength > charLimit || (!isAnnotator && approval === "reject" && !rejectionReason)}
               >
                 Save
               </button>
