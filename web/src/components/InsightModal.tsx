@@ -12,11 +12,11 @@ export function InsightModal({
   onClose,
 }: {
   dashboard: any;
-  userRole?: "admin" | "annotator1" | "annotator2" | "viewer";
+  userRole?: "admin" | "annotator1" | "annotator2" | "annotator3" | "viewer";
   readOnly?: boolean;
   onClose: () => void;
 }) {
-  const isAnnotator = userRole === "annotator1" || userRole === "annotator2";
+  const isAnnotator = userRole === "annotator1" || userRole === "annotator2" || userRole === "annotator3";
   const [focusMode, setFocusMode] = useState(false);
   const [approval, setApproval] = useState<"approve" | "reject" | null>(null);
   const [rejectionReason, setRejectionReason] = useState<string>("");
@@ -42,6 +42,8 @@ export function InsightModal({
         setInsight(row.insight_part_2 || "");
       } else if (userRole === "annotator2") {
         setInsight(row.insight_part_3 || "");
+      } else if (userRole === "annotator3") {
+        setInsight(row.insight_part_4 || "");
       } else {
         setApproval(row.expected_dataset === true ? "approve" : row.expected_dataset === false ? "reject" : null);
         setRejectionReason(row.rejection_reason ?? "");
@@ -97,6 +99,7 @@ export function InsightModal({
     const row = dashboard.human_insights?.[0];
     const ts = userRole === "annotator1" ? row?.updated_at_2
              : userRole === "annotator2" ? row?.updated_at_3
+             : userRole === "annotator3" ? row?.updated_at_4
              : row?.updated_at;
     if (!ts) return null;
     const d = new Date(ts);
@@ -119,6 +122,8 @@ export function InsightModal({
       insightData = { insight_part_2: insight, updated_at_2: new Date().toISOString() };
     } else if (userRole === "annotator2") {
       insightData = { insight_part_3: insight, updated_at_3: new Date().toISOString() };
+    } else if (userRole === "annotator3") {
+      insightData = { insight_part_4: insight, updated_at_4: new Date().toISOString() };
     } else {
       insightData = {
         expected_dataset: approval === "approve" ? true : approval === "reject" ? false : null,

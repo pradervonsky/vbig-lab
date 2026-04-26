@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback } from "react";
 import { InsightModal } from "./InsightModal";
 import "./style/MonitoringPage.css";
 
-type AnnotatorRole = "annotator1" | "annotator2";
+type AnnotatorRole = "annotator1" | "annotator2" | "annotator3";
 
 export function MonitoringPage({
   dashboards,
@@ -24,9 +24,9 @@ export function MonitoringPage({
   );
 
   const isDone = useCallback((d: any) => {
-    return viewingRole === "annotator1"
-      ? !!d.human_insights?.[0]?.insight_part_2
-      : !!d.human_insights?.[0]?.insight_part_3;
+    if (viewingRole === "annotator1") return !!d.human_insights?.[0]?.insight_part_2;
+    if (viewingRole === "annotator2") return !!d.human_insights?.[0]?.insight_part_3;
+    return !!d.human_insights?.[0]?.insight_part_4;
   }, [viewingRole]);
 
   const totalPages = useMemo(() => Math.ceil(irrRows.length / itemsPerPage), [irrRows]);
@@ -56,6 +56,12 @@ export function MonitoringPage({
                 >
                   Annotator 2
                 </button>
+                <button
+                  className={`monitor-toggle-btn${viewingRole === "annotator3" ? " active" : ""}`}
+                  onClick={() => { setViewingRole("annotator3"); setCurrentPage(1); }}
+                >
+                  Annotator 3
+                </button>
               </div>
               <div className="monitor-counter">
                 <span style={{ fontSize: "14px", fontWeight: 600 }}>{completedCount}</span>
@@ -84,7 +90,9 @@ export function MonitoringPage({
                 {currentRows.map((d, idx) => {
                   const done = isDone(d);
                   const row = d.human_insights?.[0];
-                  const timestamp = viewingRole === "annotator1" ? row?.updated_at_2 : row?.updated_at_3;
+                  const timestamp = viewingRole === "annotator1" ? row?.updated_at_2
+                    : viewingRole === "annotator2" ? row?.updated_at_3
+                    : row?.updated_at_4;
                   const globalIndex = start + idx + 1;
 
                   return (

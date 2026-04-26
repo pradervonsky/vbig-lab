@@ -23,7 +23,7 @@ export default function HomePage() {
   const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "completed" | "excluded">("all");
   const [sessionWarning, setSessionWarning] = useState(false);
   const [warningCountdown, setWarningCountdown] = useState(60);
-  const [userRole, setUserRole] = useState<"admin" | "annotator1" | "annotator2" | "viewer">("annotator1");
+  const [userRole, setUserRole] = useState<"admin" | "annotator1" | "annotator2" | "annotator3" | "viewer">("annotator1");
   const [rejectionFilter, setRejectionFilter] = useState<string>("all");
   const [authorFilter, setAuthorFilter] = useState<string>("");
   const [authorSearchOpen, setAuthorSearchOpen] = useState(false);
@@ -169,7 +169,7 @@ export default function HomePage() {
         dashboard_link,
         created_at,
         favorite_count,
-        human_insights(id, created_at, updated_at, updated_at_2, updated_at_3, expected_dataset, rejection_reason, irr_flag, insight_part_1, insight_part_2, insight_part_3)
+        human_insights(id, created_at, updated_at, updated_at_2, updated_at_3, updated_at_4, expected_dataset, rejection_reason, irr_flag, insight_part_1, insight_part_2, insight_part_3, insight_part_4)
       `);
 
     if (!data) return;
@@ -193,11 +193,12 @@ export default function HomePage() {
     setDashboards(sorted);
   }
 
-  const isAnnotator = userRole === "annotator1" || userRole === "annotator2";
+  const isAnnotator = userRole === "annotator1" || userRole === "annotator2" || userRole === "annotator3";
 
   function isDoneForRole(d: any) {
     if (userRole === "annotator1") return !!d.human_insights?.[0]?.insight_part_2;
     if (userRole === "annotator2") return !!d.human_insights?.[0]?.insight_part_3;
+    if (userRole === "annotator3") return !!d.human_insights?.[0]?.insight_part_4;
     return d.human_insights?.length > 0;
   }
 
@@ -514,7 +515,7 @@ export default function HomePage() {
                       {(() => {
                         const row = d.human_insights?.[0];
                         const timestamp = isAnnotator
-                          ? (userRole === "annotator1" ? row?.updated_at_2 : row?.updated_at_3)
+                          ? (userRole === "annotator1" ? row?.updated_at_2 : userRole === "annotator2" ? row?.updated_at_3 : row?.updated_at_4)
                           : (done ? row?.updated_at : d.created_at);
                         if (!timestamp) return <span style={{ opacity: 0.3 }}>—</span>;
                         return (
