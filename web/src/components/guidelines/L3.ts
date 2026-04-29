@@ -8,10 +8,9 @@ export const L3 = `
 5. If the chart contains no temporal sequence, no comparable segments, and no distribution to observe, write exactly: **NOT APPLICABLE**.
 
    Chart examples that are not applicable:
-1. **Ranked tables** (top products, top customers): static ordered list with no pattern to observe.
+1. **Ranked tables** (top products, top customers): top-N ordered list with no sign of distribution/shares to the total, no pattern to observe.
 2. **Single KPI cards/scoreboard with no line chart**: no temporal or comparative context.
-3. **Doughnut/pie charts**: showing a single time point composition; belong in L2 content.
-4. **Gauge charts**: showing a single current value against a target that has no sequence, no segments, and no distributions.
+3. **Gauge charts**: showing a single current value against a target that has no sequence, no segments, and no distributions.
 
 > This level exists because visualisations surface trends, exceptions, and patterns that are not apparent from numbers alone. This level evaluates the VLM's capability to visually comprehend the behaviour of data across the chart, not just read its labels.
 
