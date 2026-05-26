@@ -1,0 +1,1674 @@
+id,metadata_id,expected_dataset,insight_part_1,insight_part_2,insight_part_3,created_at,updated_at,updated_at_2,updated_at_3,irr_flag,rejection_reason
+0289e606-5e92-4ed1-86db-701c905469da,a9aa9f6c-d159-41ca-b8ce-8aa3849a4da8,FALSE,"to know the whole story, this dashboard needs an interaction to click between region to filter the product category sales and profit ratio.",,,2026-03-22 12:49:44.220753+00,2026-04-06 15:26:44.753+00,,,FALSE,require_interaction
+0673f7cd-a31d-4942-84b0-193887de449f,951c8640-5747-41e6-aa0b-3091b5d893cc,FALSE,,,,2026-02-05 18:57:44.177479+00,2026-04-06 13:58:19.673+00,,,FALSE,unlabelled_graphs
+07660754-c73c-4b34-a8aa-fe0ee0847a91,41b8aa12-dc42-4717-823e-ff0b4ef7f823,FALSE,,,,2026-03-19 19:09:57.572516+00,2026-04-06 14:00:54.643+00,,,FALSE,unlabelled_graphs
+078752cf-377c-4134-a2a4-953f827d6559,64aae1bc-c984-4574-9e08-1f2301fa4bb1,FALSE,,,,2026-04-08 21:28:17.620505+00,2026-04-08 21:28:17.544+00,,,FALSE,unlabelled_graphs
+08006d53-f01b-4eb6-a517-8825c184d732,27052e58-a6ed-47c8-be1f-9723f4ac924f,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are $745.6K, total orders are $3.4K, and sales are $5.4K above the target.
+L3: The trend suggests higher sales and orders at the end of the year, starting in September, with the sales sitting above the target.
+L4: The first two quarters' trend shows weak sales and orders, with sales performance below the target from February to May, suggesting the need for a push with marketing and promotional strategy.
+
+Chart 2: Top 5 States by Sales
+L2: The highest sales by state are in California at $146.4K, followed by New York at $93.9K.
+L3: NOT APPLICABLE
+L4: California, with the highest sales performance, is due to having the highest population in the US, while Texas, with the second-highest population in the USA, is surpassed by New York in sales performance.
+
+Chart 3: Top 5 States by Number of Orders
+L2: The highest number of orders by state is in California at 663, followed by New York at 352.
+L3: NOT APPLICABLE
+L4: California, with the highest number of orders, is due to having the highest population in the US, while Texas, with the second-highest population in the USA, is surpassed by New York in terms of order performance.
+
+Chart 4: Top 5 States by Sales
+L2: The top 3 states in this graph have sales above the target with California surpassing at 9.1K, New York at 4.1K, and Washington at 4.2K.
+L3: NOT APPLICABLE
+L4: At only 329 and 2.0K sales, Texas and Pennsylvania are unable to achieve their sales targets, suggesting the need of different sales strategy adjustment.
+","Chart 1: Scoreboard & Barchart
+L2: Total sales are $745.6K, total number of orders is 3.4K, and the sales are $5.4 above target.
+L3: Sales and orders both show a generally stronger pattern toward the later months, and the sales-versus-target chart shifts from a mixed pattern early in the year to more positive months toward the end.
+L4: This pattern may indicate that overall performance strengthened as the year progressed, suggesting the business relied on stronger late-year execution to finish above target.
+
+Chart 2: Top 5 States by Sales
+L2: California is $146.4K, New York is $93/9K, Washington $65.5K, Texas $43.4K, and Pennsylvania is $42.7K. 
+L3: Sales show a steep drop-off from California to the remaining states, with New York forming a second tier and the other three states clustered noticeably lower and closer to one another.
+L4: This concentration may indicate that revenue is anchored in one dominant market and one strong secondary market, suggesting that broadening sales strength beyond the top two states could make the geographic revenue base more balanced.
+
+Chart 3: Top 5 States by Number of Orders
+L2: California is 663, New York is 352, Texas is 317, Washington 215, Pennsylvania is 197;
+L3: The order ranking follows a similar stepped pattern, with California clearly ahead, New York and Texas forming a middle tier, and Washington and Pennsylvania trailing at lower levels.
+L4: This pattern may indicate that transaction activity is concentrated in the same leading markets that drive sales, suggesting that the strongest states benefit not only from higher-value business but also from a larger base of order-generating demand
+
+Chart 4: Top 5 States by Sales
+L2: Sales Target Difference for California is $9.1K, New York 4.1K, Washington 4.2K, Texas -329.0, and Pennsylvania -2.0K.
+L3: Target performance is mixed across the top states, with California, New York, and Washington sitting above target while Texas and Pennsylvania fall below, creating a clear split between overperforming and underperforming states.
+L4: This contrast may indicate that strong sales rankings do not automatically translate into target attainment across all states, suggesting that some top markets are converting their potential more effectively.","Chart 1: Scoreboard & Barchart
+L2: Total sales is 745.6K, Total Orders is 3.4K and Sales is above target with 5.4K in value
+L3: In 2023, both monthly sales and orders generally trended upward, with stronger growth starting around September and peak performance in the last quarter. Although sales were mixed and sometimes below target in the first half, performance improved in the second half, reaching the highest positive gap in November and closing the year 5.4K above target.
+L4: The year-end surge in sales and orders suggests that 2023 performance was strongly supported by seasonal demand, promotional activity, or year-end purchasing cycles. While this helped the business recover from weaker first-half performance and finish above target, it may also indicate that overall revenue growth was heavily dependent on the final quarter rather than being consistent throughout the year.
+
+Chart 2: Top 5 States by Sales
+L2: California is the biggest in sales with 146.6K, followed by New York with 93.9 K, Washington with 65.5K, Texas with 43.4K and Pennsylvania with 42.7K
+L3: Sales are concentrated in California with total value at 146.4K, followed by New York at 93.9K, while Washington, Texas, and Pennsylvania form a lower-performing cluster with relatively similar totals.
+L4: California’s lead over the other top 5 states, followed by a noticeable drop to New York, suggests the business may have especially strong market penetration in a few high-opportunity regions, which could reflect differences in customer concentration, regional demand intensity, or sales coverage rather than evenly distributed geographic performance.
+
+Chart 3: Top 5 States by Number of Orders
+L2: California is the biggest in Orders with 663, followed by New York with 352, Texas with 317, Washington with 215, and Pennsylvania with 197
+L3: Order volume is heavily concentrated in California at 663 orders, with New York and Texas on a second place, while Washington and Pennsylvania at noticeably lower but fairly similar levels than others.
+L4: California’s large lead in order volume suggests the business may have a much deeper customer base or stronger repeat purchasing behavior there than in other states, while the smaller gaps among New York, Texas, Washington, and Pennsylvania reflect a second tier of markets where demand is present but less concentrated, indicating that geographic growth is likely being driven by a few core regions only.
+
+Chart 4: Top 5 States  by Sales
+L2: California has the biggest difference with 9.1K, followed by Washington with 4.2K, New York with 4.1K, , Pennsylvania -2.0K and Texas with -329
+L3: Among the top five states, California, New York, and Washington all exceed their sales targets, with California has the largest positive gap (+9.1K), while Texas and Pennsylvania sales fall below target, showing that strong sales rankings do not always translate into target achievement.
+L4: The fact that California, New York, and Washington are above target while Texas and Pennsylvania fall short suggests regional performance may be shaped not just by market size but by differences in sales execution, customer mix, or local demand conditions, which could indicate that target achievement is stronger in certain region while others may need more tailored commercial strategies to close the gap.",2026-04-08 21:57:11.748227+00,2026-04-20 19:11:36.546+00,2026-04-26 04:59:27.957+00,2026-04-25 05:23:51.534+00,TRUE,
+08cb02d8-9177-46ba-88aa-f43483aae8db,bd3ada91-5a5e-4b39-86c4-1ebd036d7948,TRUE,"Chart 1: Scoreboard Overview
+L2: Number of customers is 704 (62.5% to target), sales are $0.7M (74.1% to target), profit is $95.9K (82.0% to target), and profit ratio is 12.9% (76.3% to target).
+L3: NOT APPLICABLE
+L4: Overall, none of the indicators have reached their targets, indicating the need to adjust the realistic target for the next year. 
+
+Chart 2: Sales Performance by Product
+L2: The highest sales performance in Furniture is Chairs with an increase of 15.2% compared to the previous year.
+L3: The sales distribution shows a clear dominance of the Chairs in the Furniture category with a significant gap toward others.
+L4: Overall, the sales in Furniture products are all in good performance compared to the previous year.
+
+Chart 3: Sales - Comparison of Sales Between Years and Months
+L2: The highest sales peak in November with around 100K. 
+L3: The trend shows that the sales are at their lowest and lower than the prior year in the first semester, while at their highest in the second semester, with December dipping lower than the previous sales performance.
+L4: This year's performance suggests a higher demand in the holiday season towards the end of the year, but with lower performance in December.
+
+Chart 4: Detailing Indicators by Customers
+L2: The first highest sales by customer is Raymond Buch from Ohio at $14.2K, with profit of $6.8K and profit ratio 47.7%.
+L3: NOT APPLICABLE
+L4: As the number one customer, Raymond Buch has slightly higher sales than other customers, indicating a highly uniform or homogeneous top-tier client base. 
+
+Chart 5: Delivery Time (in days) Details by Region
+L2: Delivery time using first class shipping, with Central being the most delayed (-12.2%),
+L3: The trend showing this year's shipping is fluctuating, with only the Central region showing increasing delay toward the end of the year.
+L4: The need for further analysis on why the Central region is facing delays more than other regions, even with a first-class shipping mode.",,,2026-04-28 09:45:04.443152+00,2026-04-28 09:45:03.659+00,,,FALSE,
+0a4eaee0-0bfb-4973-9eb1-96406c216a20,0a5b5af9-1ca0-4536-ad6f-3bafa173d2d1,FALSE,,,,2026-03-22 12:52:44.100886+00,2026-04-06 15:32:50.956+00,,,FALSE,only_one_chart
+0ab959a3-555d-4400-bd56-b896119f2098,cc5fdd3a-22fe-4340-8635-e686814cd8d4,FALSE,,,,2026-04-08 20:29:26.511586+00,2026-04-08 20:29:26.355+00,,,FALSE,unlabelled_graphs
+0c05df79-72ae-4339-b574-a8e74753c77d,4ab93cb0-1364-4e41-8da6-2effb2d2c057,FALSE,,,,2026-03-22 11:39:01.764225+00,2026-04-06 15:00:23.692+00,,,FALSE,only_one_chart
+0d791ac1-5890-43b4-a2b1-0ce5e347371f,7a96d959-2f77-42bb-ab1a-cb937bd878d8,FALSE,,,,2026-03-22 12:52:27.854481+00,2026-04-06 15:32:12.942+00,,,FALSE,unlabelled_graphs
+0e883640-62ec-417a-922a-a24f4421e2c8,03d417bf-688b-4772-b85a-12ea8aa3e82b,FALSE,,,,2026-03-22 12:53:17.344292+00,2026-04-06 15:34:09.54+00,,,FALSE,require_interaction
+0ed16962-5235-483f-ace8-d56f09d18a2d,e21e6979-bede-4a20-81ed-379d937f9143,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $745,568 (+17.7% vs PY), profit is $95,926 (+13.8% vs PY), orders are 1,723 (+22.2% vs PY), and the number of customers is 700 (+7.1% vs PY).
+L3: Overall, each indicator shows an upward trend toward the end of the year.
+L4: Over-reliance on the holiday season may suggest a different sales strategy throughout the year to increase sales and profit.
+
+Chart 2: Sales by Segment
+L2: The consumer segment has the highest sales, with an increase of 10.5% to prior year.
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward others.
+L4: Overall, each segment shows a good sales performance compared to the prior year, indicating a higher demand in all segments this year.
+
+Chart 3: Sales by Region
+L2: The highest sales are in the west region at $258K.
+L3: The sales distribution shows a clear dominance of the West and East regions with significant gaps toward others.
+L4: West and East region sales may be driven by population, which South and Central need a different sales strategy to boost the performance.
+
+Chart 4: Sales by State
+L2: California is the state in black and has the largest circle on the map with sales of 146,388.
+L3: Coastal states, especially the West and East regions, dominate the larger circles, indicating higher sales.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 5: Sales by Category
+L2: The highest sales are Phones at $105,668 in the Technology category, followed by Chairs at $98,032 in the Furniture category, and Binders at $73,651 in the Office Supplies category.
+L3: Overall, all the Sub-Category sales performance is higher than the prior year, except for the Machines, Envelopes, and Tables.
+L4: We can see from this year's sales that the phone is the product with the best sales performance, while last year Chairs were expected to be the best, but this year their performance has dropped to rank 2, suggesting different customer needs.
+
+Chart 6: Sales | Top 5 Manufacturers
+L2: The highest sales by manufacturer are Other grouping, followed by Canon.
+L3: NOT APPLICABLE
+L4: This may reflect the fairness of sales from different manufacturers without a monopoly, where the first one is a group of others, while the rank two through five manufacturers have just a slight sales difference.
+
+Chart 7: Top Returns
+L2: The highest return is from Binders, Office Supplies, with 37 orders returned.
+L3: NOT APPLICABLE
+L4: While the company is successfully expanding sales and profit, the return rates should be monitored to ensure growth does not erode profitability or customer satisfaction.",,,2026-04-27 20:29:08.05093+00,2026-04-29 11:08:16.547+00,,,FALSE,
+110dd118-0791-4b19-b9b8-fb511c833ec7,a595b946-ffd8-416f-b8cb-9511eaff35ac,FALSE,,,,2026-04-08 21:21:54.362981+00,2026-04-08 21:21:54.297+00,,,FALSE,only_one_chart
+1120a289-6f8e-4498-91d8-59bb0b7bb49d,4f4b551b-375a-4254-a013-76fe9527e6ed,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are 733,215, profit is 93,439, and the number of orders is 1,687.
+L3: The trend between each metric is having the same pattern, where it is steadily increasing toward the end of the year.
+L4: This performance shows the dependency on the sales at the end of the year, suggesting a different sales strategy to increase sales in the early months.
+
+Chart 2: Top 10 Profitable States
+L2: The top 3 states are the most profitable states, with California's profit at 29,336, New York's at 24,357, and Washington's at 17,257.
+L3: NOT APPLICABLE
+L4: While California is the number one in profit, the second and third largest states by population do not appear in this top 10 list of profitable states, reflecting the purchasing power within these states.
+
+Chart 3: Orders by Category
+L2: The highest orders are the Office category at 1,272 orders.
+L3: The order distribution shows a clear dominance of the Office category with a significant gap toward others.
+L4: This reflects that office goods rely on quantity to drive sales, so they have the most orders compared to Furniture and Technology, which have a higher price per unit.
+
+Chart 4: Most Profitable Orders
+L2: The most profitable order came from order ID of CA-202-127432 in January with sub-category items of Copiers, Paper, and Storage.
+L3: NOT APPLICABLE
+L4: The most profitable order in January does not correspond with the high profit in later months, as demonstrated by earlier profit trend analysis, suggesting equal contributions among later orders.
+
+Chart 5: Sales by Region
+L2: The highest sales are in the west region at 250,128.
+L3: The sales distribution shows a clear dominance of the West and East regions, with significant gaps toward other regions.
+L4: West region sales may be driven by California, the most populous state in that region, supporting the previous analysis on sales by quantity and the most profitable state.
+","Chart 1: Scoreboard Overview
+L2: Sales are 733,215, profit is 93.439, and orders are 1,687.
+L3: Sales and profit both show a generally upward trajectory, while orders also rise overall with visible fluctuations, suggesting broad business growth across the main performance metrics.
+L4: This pattern may indicate that the business is not only generating more revenue but is also converting activity into profit more effectively over time, suggesting healthier overall momentum rather than growth driven by a single isolated metric.
+
+Chart 2: Top 10 Profitable States
+L2: California is the highest by 29.366.
+L3: Profitability drops off sharply after the leading states, with California and New York standing clearly ahead of the rest, while the remaining states form a much lower tier.
+L4: This concentration may indicate that state-level profit is heavily anchored in a small set of strong markets, suggesting that the business relies on a few geographic areas to drive a disproportionate share of earnings.
+
+Chart 3: Orders by Category
+L2: Office is the highest category by 1,272 orders.
+L3: Office stands well above the other categories in order volume, while Furniture and Technology remain much lower and relatively closer to each other.
+L4: This pattern may suggest that the business depends more heavily on frequent purchasing in Office products, indicating that routine or repeat-demand items are likely an important driver of order volume.
+
+Chart 4: Most Profitable Orders
+L2: CA-2021-127432 in January is the most profitable orders.
+L3: NOT APPLICABLE
+L4: The presence of a few standout highly profitable orders may indicate that a small number of transactions contribute disproportionately to profit, suggesting that order-level profitability can be strongly influenced by specific product combinations, low discounting, or unusually favorable deal structures.
+
+Chart 5: Sales by Region
+L2: South is the lowes region by sales: 122,906.  
+L3: Regional sales show a clear stepped pattern, with West leading, East following, Central in the middle, and South trailing as the weakest region.
+L4: This distribution may indicate uneven market strength across regions, suggesting that the business has a stronger commercial position in the West and East while the South may represent a comparatively weaker market or an area with lower sales penetration.","Chart 1: Scoreboard Overview
+L2: Sales value is 733,215, Profit value is 93,439, and Orders values is 1,687
+L3: Sales, Profit, and Orders all show strong upward trajectories over the period, with each accelerating toward the end, indicating that higher order activity is accompanied by parallel growth in both revenue and profit
+L4: The upward movement in sales, profit, and orders suggests the business may be experiencing commercial momentum rather than isolated improvement in a single metric, which could indicate that stronger demand and transaction activity are translating into healthier overall performance.
+
+Chart 2:Top 10 Profitable States
+L2: The most profitables states is California with 29,366 followed by New York in second place with 24,357
+L3: Profit is heavily concentrated in the top three states, with California (29,366), New York (24,357), and Washington (17,257) far ahead of the rest, followed by a sharp drop to much smaller profit contributions from the other states
+L4: The strong profit concentration in California, New York, and Washington, followed by a sharp drop to the other states, suggests profitability may be driven by a small group of high performing markets where sales scale, customer density or margin quality are stronger, which could indicate that the business profitability are less geographically diversified.
+
+Chart 3:Orders by Category
+L2: Office category outsold other categories with 1,272 orders
+L3: Orders are dominated by Office (1,272), which is more than double both Furniture (564) and Technology (526), while the later two categories contribute at relatively similar levels
+L4: The much higher order volume in Office compared with Furniture and Technology suggests demand may be focused in routine, recurring workplace purchases rather than in less frequent big items, which could indicate that order stability is being supported more by replenishment behavior than by occasional high value category items.
+
+Chart 4:Most Profitable Orders
+L2: The most profitable orders are CA-2021-127432 in January with Copiers, Paper, and Storage, CA-2021-133263 in March with Binders and Copiers, CA-2021-138289 in January with Binders, Chairs, and Paper, and CA-2021-140151 in March with Copiers.
+L3: NOT APPLICABLE
+L4: The most profitable orders are concentrated in sub-categories like Copiers, Paper, Storage, Binders, and Chairs, all at 0% discount, suggests product quality may be strong enough to sells products without promotional programs.
+
+Chart 5:Sales by region
+L2: West has the highest sales compared to other region with 250,128 followed by East with 213,083, Central with 147,098 and the lowest is South with 122,906
+L3: Sales are concentrated more heavily in the West (250,128) and East (213,083), while Central (147,098) and especially South (122,906) contribute noticeably less, showing a clear regional gap between the top two and bottom two regions
+L4: The higher sales in the West and East compared with the Central and South regions suggest the business may be more established in larger and more commercially active markets, which could reflect stronger customer density, market maturity, or sales coverage in those regions rather than evenly distributed demand nationwide",2026-04-08 21:31:23.649069+00,2026-04-27 10:24:21.021+00,2026-04-25 21:41:35.153+00,2026-04-26 15:09:58.185+00,TRUE,
+11b83985-953a-4362-9804-c2745ddda28a,415f9d0f-09aa-49f9-9863-003e29fadd63,FALSE,,,,2026-03-21 19:37:34.601227+00,2026-04-06 14:56:51.304+00,,,FALSE,incorrect_dataset
+1437d760-2a30-41f0-a677-d0818b4e28b5,9b8dc002-fa3f-4a6f-a591-b03442fb873d,FALSE,,,,2026-03-30 18:33:48.678908+00,2026-04-06 15:35:51.226+00,,,FALSE,only_one_chart
+1a0fd265-4837-47fa-90c7-cce8dd262f6b,cac2f14c-ca7d-43a9-a205-9d96bdbde414,FALSE,,,,2026-03-22 11:39:20.893535+00,2026-04-06 15:00:34.702+00,,,FALSE,incorrect_dataset
+1ab9b725-7e08-42e2-921a-ed2a3675e2f9,daae97cc-7bc0-4362-a5e7-5a24f08037e9,FALSE,,,,2026-03-22 12:45:39.06849+00,2026-04-06 15:21:35.855+00,,,FALSE,only_one_chart
+1b74d265-2316-4e68-9b3f-33d98a4befe9,f7f7c77a-95e8-4be9-b265-b44a79c014d9,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-04-07 10:37:55.461949+00,2026-04-07 10:37:55.125+00,,,FALSE,only_one_chart
+1be2bc8e-73c3-48ca-8448-273138896e3b,2ad321ba-fe21-4318-a090-85314c17d3ca,FALSE,,,,2026-03-22 12:44:26.570343+00,2026-04-06 15:20:33.587+00,,,FALSE,only_one_chart
+1db161f4-5bf2-45f9-b937-01b340c07ef5,add0bd3d-2955-4f4e-9ada-633862ec5a3d,FALSE,,,,2026-03-22 12:16:54.944696+00,2026-04-06 15:14:13.516+00,,,FALSE,only_one_chart
+1f7f7491-7229-4d28-ae12-eb94d5254fa5,e1c1935f-6ada-47ae-bd71-08a369101bc8,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $733.2K (+20.4% YoY), profit is $93.4K (+14.2% YoY), and sales per customer are $1K (+8.6% YoY).
+L3: Overall, the trend shows an increase in sales towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Monthly Sales by Segment
+L2: The highest sales are in December in the Consumer segment.
+L3: Each segment shows the same trend, where they have lower sales in the early years but increase steadily toward the end of the year.
+L4: This pattern may show that the dependency of holiday season sales requires a different sales strategy throughout the year.
+
+Chart 3: Sales by Category
+L2: The highest sales by category are Technology at $272K.
+L3: The sales distribution shows a clear dominance of the Technology category with a significant gap toward others.
+L4: Technology surpassing office supplies may suggest that higher unit prices outweigh the impact of sales volume.",,,2026-04-27 10:12:49.896202+00,2026-04-29 10:54:46.495+00,,,FALSE,
+20ec7b0e-07d4-4c88-b1ac-3f0ab43578d6,8a1e3b08-d300-475c-8b42-0e33421a96ec,FALSE,,,,2026-03-22 12:44:49.156275+00,2026-04-06 15:21:09.359+00,,,FALSE,learning_template
+22a07f83-9658-4d0b-bce8-3a7b21f12686,eebc88f0-81aa-4726-9b81-7a8d19179a13,FALSE,,,,2026-03-21 17:17:41.473442+00,2026-04-06 14:46:42.015+00,,,FALSE,incorrect_dataset
+233bcb27-e760-4255-90e6-a1af05d7cda7,0bef8d4d-d8c6-4f66-b9ca-bede3f4d7522,FALSE,,,,2026-03-21 19:59:36.12035+00,2026-04-06 17:38:51.235+00,,,FALSE,scraper_failure
+23793677-5b3d-4dfc-9dc9-a00a2c29388f,e1e18120-b64c-4338-ad4c-370191456b46,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-03-22 11:43:43.018587+00,2026-04-06 15:05:50.226+00,,,FALSE,only_one_chart
+239ad1e5-d224-4282-a953-1e544890e0d6,4bf7af57-01a7-4c94-b734-d0ff93b4b504,FALSE,,,,2026-02-05 18:58:17.867579+00,2026-04-06 14:12:24.852+00,,,FALSE,require_interaction
+23fb0a8c-93d7-4869-82b5-393e73fb085e,dcedbe76-fdd9-46eb-82b4-189a3ba1eb3e,FALSE,,,,2026-03-21 20:31:53.221684+00,2026-04-06 14:59:51.309+00,,,FALSE,unlabelled_graphs
+25ac1180-4692-48e4-ad84-3fe5b6ee9be8,b7077eaf-5bda-4765-8a1a-31e2bf5688e2,FALSE,,,,2026-04-07 10:31:27.973088+00,2026-04-07 10:31:27.887+00,,,FALSE,unlabelled_graphs
+25c88da0-7238-4d8b-94b4-311f5f02ee89,6370082c-6f18-4631-9a1f-940e188cf2cc,TRUE,"Chart 1: Scoreboard Overview
+L2: Profit ratio is 12.7% (-0.7%), total sales are $733,215 (+20.4%), total profit is $93,439 (+14.2%), sales per customer are $564 (+.0%), and profit per order is $55 (-11.0%).
+L3: Overall, the sales and profit of 2019 are showing an increase compared to the previous year, while the profit ratio and profit per order are lower than the prior year.
+L4: Even though total sales and total profit are higher than the previous year, the lower performance of profit ratio and profit order may suggest the smaller margin strategy applied this year, where the business pushes for more sales at discounted prices or promotions.
+
+Chart 2: Monthly Sales
+L2: The highest sales peak in November was around $120,000.
+L3: The sales appear to fluctuate with an overall upward trend toward the end of the year.
+L4: The reliance on the end-of-the-year sales may suggest a different sales strategy to drive sales throughout the year.
+
+Chart 3: Top 5 Subcategory by Sales
+L2: Phones led the sub-categories in sales at $105,341.
+L3: NOT APPLICABLE
+L4: The top sales by sub-category are dominated by products that sell at higher unit prices compared to the products with higher sales quantities.
+
+Chart 4: Order Details
+L2: The highest sales and profit shown are $1,815 and $495 in the order ID of CA-2019-158526, with 0% discount from the customer name of Katherine Hughes in the Customer segment.
+L3: NOT APPLICABLE
+L4: The presence of a loss-making order at ($1) alongside a high-profit order of $495 suggests variability in discounting or cost structures across transactions.",,,2026-04-27 10:55:43.158991+00,2026-04-29 11:01:41.854+00,,,FALSE,
+26f0f741-8f76-4b06-b322-e3aba71e6a6b,3cc1c64d-dd9c-48ea-a2ec-757ca976e1fc,FALSE,,,,2026-03-22 12:53:05.091838+00,2026-04-06 15:33:17.971+00,,,FALSE,learning_template
+27766f76-6ee8-49f1-9789-a3084a1c5c04,6de19d21-27ed-44b3-8102-4d03343b35a5,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-04-07 10:38:29.381431+00,2026-04-07 10:38:29.283+00,,,FALSE,only_one_chart
+27aa91c4-2526-4b7e-931b-a28df05e2651,0b2ffff7-686b-4ff5-917f-98a3d25836d7,FALSE,,,,2026-03-22 11:43:57.990272+00,2026-04-06 15:07:26.53+00,,,FALSE,unlabelled_graphs
+282bb486-d77e-4e5f-9194-fb6e768fd98d,9d51f23f-bbe6-4b2d-8798-49481056a6e7,FALSE,,,,2026-03-21 17:17:01.721072+00,2026-04-06 14:46:06.215+00,,,FALSE,learning_template
+2a1c2503-ac38-4616-b4d9-b919b1ac92c4,c8815e23-c465-4ac5-b469-7d0c44a09be0,FALSE,,,,2026-03-31 18:45:17.57138+00,2026-04-06 15:35:31.121+00,,,FALSE,incorrect_dataset
+2b033899-eff7-4576-a706-a1992c33b763,0ef215b2-9a02-4001-9658-b0e96f889acb,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are about $733.2K (+20.4% vs PY), total profit is $93.4K (+14.2% vs PY), quantity is 12,476 (+26.8% vs PY), and profit ratio is 12,7% (-0.7pp vs PY).
+L3: Overall, the trend shows an increase in sales and quantity towards the end of the year, while profit is highest early in the year and increases afterward, and the profit ratio is lower than the previous year.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales by Region
+L2: The highest sales are in the west region at $250.1K with an increase of 33.4% compared to the previous year.
+L3: The sales trend of West, East, and South shows an upward trend toward the end of the year, with all surpassing the prior year's sales, while the Central region has the highest sales in early and dips and fluctuates afterward with lower sales compared to the previous year.
+L4: West and East region sales may be driven by population, while other regions have to follow the West region to improve their sales performance throughout the year and avoid relying on the holiday season and end-of-year sales.
+
+Chart 3: Sales by State
+L2: California leads the sales by $146,4K, while New York, Washington, and Texas follow with progressively smaller yet still substantial figures.
+L3: A small group of states contributes a disproportionate share of total sales, with coastal and large‑population states dominating.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 4: Sales by Category
+L2: The highest sales by category are in Technology at $271.7K, an increase of 20.0% from the previous year.
+L3: The trend for each category shows a similar pattern where it would increase toward the end of the year and dip in the last month of December.
+L4: Technology surpassing office supplies may suggest that higher unit prices outweigh sales volume.
+
+Chart 5: Sales by Sub-Category in Technology
+L2: Phones led the sub-categories in sales at $105.3K with an increase of 33.4% compared to the previous year.
+L3: NOT APPLICABLE
+L4: Demand in Phones is higher than the previous year, managing to surpass other sub-categories by a substantial gap.
+
+Chart 6: Sales by Segment
+L2: The consumer segment has the highest sales at $331.9K with an increase of 11.8% compared to the previous year, followed by Corporate and Home Office, where all segments successfully surpassed their previous year's sales.
+L3: The trend for each category shows an increase in sales toward the end of the year.
+L4: However, as we can see more clearly, the consumer was having successful sales in the last two months, while both Corporate and Home Office saw their sales drop in December, suggesting a combination of seasonal business slowdowns, employee vacations, and strategic financial decisions.
+
+Chart 7: Sales by Top 50
+L2: The first highest sales by customer is Raymond Buch at $14.2K.
+L3: NOT APPLICABLE
+L4: While being the number one, Raymond Buch has slightly higher sales compared to other customers, indicating a highly uniform or homogeneous top-tier client base. ",,,2026-04-28 08:39:31.721991+00,2026-04-29 11:19:40.439+00,,,FALSE,
+2d3c2c9a-6d88-40dc-9872-fd81799e3427,cf26ca47-d375-45df-a63e-84f6d3abafda,FALSE,,,,2026-03-22 12:51:19.017098+00,2026-04-06 15:28:50.484+00,,,FALSE,incorrect_dataset
+2e22e1b0-de7e-44d7-b827-46e93e21e54c,724d6225-8dc0-4f74-bd08-1a28c412859f,FALSE,,,,2026-03-22 12:50:41.330596+00,2026-04-06 15:28:02.139+00,,,FALSE,learning_template
+2e5b2881-e3e3-421f-a3b9-098e326303a3,932c11c0-d78c-4651-8bb9-73325937333d,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $733.22K (+20.4% YoY), profit is $93.44K (+14.2% YoY), orders are 1,687 (+28.3% YoY), and the number of customers is 693 (+8.6% YoY).
+L3: Overall, the trend shows an increase in sales, orders, and customers towards the end of the year, while profit is highest early in the year and increases steadily afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales by State
+L2: California leads the sales by $146.39K, while New York, Washington, Texas, and Pennsylvania follow with progressively smaller yet still substantial figures.
+L3: A small group of states contributes a disproportionate share of total sales, with coastal and large‑population states dominating the top five.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 3: Sales by Category
+L2: The highest sales by category are Technology at $271.73K with an increase of 20.0%.
+L3: The sales distribution shows a clear dominance of the Technology category with a significant gap toward others.
+L4: Technology surpassing office supplies may suggest that higher unit prices outweigh sales volume.
+
+Chart 4: Sales by Segment
+L2: The highest sales by segment are in the Consumer segment at $331.90K with an increase of 11.8%.
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward others.
+L4: In line with the previous analysis of sales by category, this Consumer segment is where technology demand comes from, whereas corporate and home office segments would need office supplies rather than technology.
+
+Chart 5: Sales by Manufacturer
+L2: The highest sales by manufacturer are Other grouping at $96.52K, followed by Canon with $48.94K.
+L3: NOT APPLICABLE
+L4: This may reflect the fairness of sales from different manufacturers without a monopoly, where the first one is a group of others, while the rank two through five manufacturers have just a slight sales difference.
+
+Chart 6: Sales by Customer
+L2: The first highest sales by customer is Raymond Buch at $14.20K.
+L3: NOT APPLICABLE
+L4: As the number one customer, Raymond Buch has slightly higher sales than other customers, indicating a highly uniform or homogeneous top-tier client base. ","Chart 1: Scoreboard Overview
+L2: the sales is $733.22K, profit is $93.44K, orders are 1,687, and costumers are 693.
+L3: Every metric is having an upward trend, especially sales, orders and customers that share almost-same movement, while profit is different but still upward.
+L4: This pattern may indicate that the business is expanding across both demand and customer reach, although sustained growth in all four metrics also suggests that operational capacity and customer retention will become increasingly important to maintain performance quality.
+
+Chart 2: Sales by State
+L2: California is the highest with $146.39K sales.
+L3: Sales appear concentrated in coastal areas, with California clearly leading, while many inland states show lighter sales presence.
+L4: This coastal concentration may indicate that the business benefits from stronger customer density and more established market presence in coastal states, suggesting that inland regions remain comparatively less penetrated and may represent future expansion potential.
+
+Chart 3: Sales by Category
+L2: Technology is $271.73K, Office Supplies is $246.10K, and Furniture is $215.39K, in term of sales.
+L3: Category sales are fairly close in overall size, but Technology stands visibly ahead, while Office Supplies and Furniture follow at somewhat lower.
+L4: This pattern may suggest that revenue is relatively diversified across the three major categories, with Technology providing the strongest lead, indicating a balanced portfolio where growth is not dependent on only one category but still benefits from a clear top performer.
+
+Chart 4: Sales by Segment
+L2: consumer is the highest in sales by $331.90K.
+L3: Consumer stands out as the largest segment by a clear margin, while Corporate forms a middle tier and Home Office remains the smallest.
+L4: The stronger Consumer contribution may indicate that the business relies most heavily on broad end-customer demand, suggesting that segment diversification could become important if the company wants to reduce dependence on a single dominant customer group.
+
+Chart 5: Sales by Manufacturer
+L2: Other, with sales of $96.52K, is the highest sales by manufacturer.
+L3: Sales by manufacturer are led by one noticeably larger bar, followed by a gradual drop across the remaining manufacturers, indicating a concentrated ranking rather than an even distribution.
+L4: This pattern may suggest that revenue is disproportionately supported by a limited number of manufacturer groups, which could indicate supplier or brand concentration risk if the business depends too strongly on a small set of top contributors.
+
+Chart 6: Sales by Customer
+L2: Raymond Buch, with Sales of $14.20K, outsold other customers.
+L3: Customer sales show a steep ranking pattern, with the top customer clearly ahead but followed by several others at relatively similar lower levels, suggesting concentration at the top without a single extreme outlier dominating the list.
+L4: This pattern may indicate that while a few customers are especially valuable, revenue is not entirely dependent on one account alone, suggesting a moderate customer concentration profile that is stronger than a fully dispersed base but less risky than a single-customer dependency.
+","Chart 1: Scoreboard Overview
+L2: Sales is 733.22K with 20.4% YoY growth, Profit is 93.44K with 14.2% YoY growth, Orders count is 1,687 with 28.3% YoY growth, and Customers count is 693 with 8.6% YoY growth.
+L3: Sales, Profit, Orders, and Customers all increased YoY, with Orders showing the strongest growth (+28.3%) and Customers the slowest (+8.6%), suggesting transaction activity is expanding faster than customer growth.
+L4: Orders growing much faster than Customers, while Sales and Profit rise more moderately, suggests growth may come mainly from higher purchase frequency or repeat transactions from existing customers rather than new customer expansion.
+
+Chart 2: Sales by State
+L2: California outperforms other states with 146.39K in sales.
+L3: Sales are concentrated in a few large states, with California (146.39K) leading by a wide margin, New York (93.92K) second, and Washington, Texas, and Pennsylvania forming a lower-performing group.
+L4: The dominance of California, New York, Washington, Texas, and Pennsylvania suggests sales may be concentrated in larger, more commercially active states, reflecting stronger customer density and market penetration in major hubs.
+
+Chart 3: Sales by Category
+L2: Technology has the biggest sales with 271.73K, while Office Supplies has the biggest growth with 33.8%.
+L3: Technology has the highest sales at 271.73K and the largest share (37%), Office Supplies ranks second at 246.10K with the strongest growth (+33.0%), while Furniture is the smallest at 215.39K with the slowest growth (+8.3%).
+L4: Technology leading in sales, combined with stronger growth in Office Supplies and weaker growth in Furniture, suggests demand may be driven more by productivity and workplace needs, while furniture purchases may behave as slower-moving goods.
+
+Chart 4: Sales by Segment
+L2: Home Office has the biggest growth with 51.5%, but still has the lowest sales compared to Consumer and Corporate.
+L3: Consumer leads at 331.90K, Corporate follows at 241.85K, and Home Office is the smallest at 159.46K, but Home Office grows fastest (+51.5%), indicating the smallest segment is expanding much faster.
+L4: While Consumer remains the largest segment, the faster growth in Home Office suggests this smaller segment may be gaining momentum from changing work patterns or small-business demand, creating an opportunity to diversify growth.
+
+Chart 5: Sales by Manufacturer
+L2: Other manufacturer has the biggest sales with 96.52K, followed by Canon with 48.94K, while GBC has the lowest sales with 39.38K.
+L3: Sales are highly concentrated in the top manufacturer group, with Other (96.52K) far ahead of Canon (48.94K), while the remaining top manufacturers cluster at lower and fairly similar levels.
+L4: The large gap between “Other” and named manufacturers suggests sales may be spread across many smaller brands, indicating product diversification but possibly less bargaining leverage or brand concentration.
+
+Chart 6: Sales by Customers
+L2: Raymond Buch is the biggest customer with 14.20K in sales.
+L3: Customer sales are led by Raymond Buch (14.20K) and Tom Ashbrook (13.72K), followed by Hunter Lopez (10.52K), Seth Vernon (8.46K), and Grant Thornton (8.17K), with a moderate gap among the top five.
+L4: The relatively small spread among the top five customers suggests the business may not be overly dependent on a single key account, indicating a healthier revenue base with lower concentration risk.",2026-04-08 20:55:43.777689+00,2026-04-29 10:57:25.163+00,2026-04-25 21:36:34.588+00,2026-04-25 07:16:59.174+00,TRUE,
+2f1d0a9d-7724-4df6-a510-e7752d003d11,ecdfba73-abd3-44e8-a75c-6ac9b0ba430d,FALSE,,,,2026-03-22 12:53:30.056781+00,2026-04-06 15:34:21.415+00,,,FALSE,incorrect_dataset
+2fb76f2b-b49b-4323-8438-d572d6dd5715,bfb11274-dbb6-4fb8-bf64-026babdf15e7,FALSE,,,,2026-03-22 11:59:59.04908+00,2026-04-06 15:08:40.254+00,,,FALSE,unlabelled_graphs
+303d41cb-e953-487a-aa8e-2696cde3db78,32bfa2b7-4c5d-4060-9d0c-71f5a60ad6af,FALSE,,,,2026-02-12 10:21:37.189545+00,2026-04-06 13:58:53.113+00,,,FALSE,incorrect_dataset
+3416da0f-760c-4f61-833a-49ab16d55582,4d8677c0-3460-4bf2-950c-7b1360dcf8b6,FALSE,,,,2026-04-08 21:11:19.670496+00,2026-04-08 21:11:19.582+00,,,FALSE,learning_template
+35085111-da3f-431e-88d9-5dacd35fc438,b11f1079-3b2c-408a-958d-eb0bfe7a7922,FALSE,,,,2026-03-22 12:47:34.11111+00,2026-04-06 15:23:00.843+00,,,FALSE,incorrect_dataset
+364d5509-fa61-42da-8bf8-d6c4855819de,e8076628-1574-4bca-a746-37891d1d8c8c,FALSE,,,,2026-04-08 19:46:13.968295+00,2026-04-08 19:46:13.886+00,,,FALSE,unlabelled_graphs
+369f03c5-afc9-48e4-9943-7eb835ec2022,b050760c-d942-4915-85ad-e83e1e264f48,FALSE,,,,2026-03-22 12:13:04.754916+00,2026-04-06 15:13:26.007+00,,,FALSE,require_interaction
+37930edb-bfbd-4138-bf73-cbbfe097ea8e,d220600a-2302-495d-8e38-ada03383cde4,FALSE,,,,2026-03-21 17:15:29.116977+00,2026-04-06 14:24:58.068+00,,,FALSE,incorrect_dataset
+38e7bccc-9c25-4f84-9ffb-602b3b7f7950,2cd48156-9569-4349-b1cf-90c4d8d23a6e,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are £733,215 (+20.4% vs PY), quantity is 12,476 (+26.8% vs PY), profit is £93,439 (+14.2% vs PY), and the average days to ship is 4 days (+26.6% vs PY).
+L3: Overall, the trend shows an increase in sales and quantity towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Order Details
+L2: The highest sales are for order ID CA-2021-100111 at £7,360, with a profit ratio of +21.4%, 52 units, and an order from New York City with pending status.
+L3: There are three complete orders and seven pending orders visible in this table.
+L4: Overall, the visible orders are profitable, while some are still pending; need to complete them as soon as possible, paying attention to shipping methods and delivery dates.",,,2026-04-27 11:01:50.436642+00,2026-04-29 11:02:56.549+00,,,FALSE,
+39fc8923-3edc-40be-b2b7-1fab0aa7bda2,3018eee6-3b2b-41a3-9b0a-1434648242e6,FALSE,,,,2026-04-08 21:25:14.321385+00,2026-04-08 21:25:14.264+00,,,FALSE,incorrect_dataset
+3a6eadf2-2512-4af2-b649-02be37a1f0fd,4233d676-2a42-4b4d-98c8-04dac749cda0,FALSE,,,,2026-04-07 10:34:29.864905+00,2026-04-07 10:34:29.772+00,,,FALSE,learning_template
+3ae233b1-b7ef-4df8-9efe-f7e263e29cde,b94f155f-8676-46f5-b600-8591f489324d,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are $735.6K (+21.4% vs PY), total profit is $95.9K (+16.0% vs PY), orders are 1.7K (+28.6% vs PY), and the number of customers is 700 (+7.7% vs PY).
+L3: Overall, the trend shows an increase in sales, orders, and customers towards the end of the year, while profit is highest early in the year and increases afterward above the average line.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales | Category
+L2: The highest sales by category are Technology at $272.4K, with an increase of 20.2%.
+L3: The sales distribution shows a dominance of the Technology category with a slight gap toward other categories.
+L4: Technology surpassing office supplies may suggest that the higher unit price surpasses the sales with the quantity.
+
+Chart 3: Sales | Sub-Category
+L2: Phones led the sub-categories in sales at $105.7K with an increase of 33.5% compared to the prior year.
+L3: While all sub-categories' sales surpassed the previous year's sales, Machines' sales are the only ones with lower performance than the previous year.
+L4: We can see from this year's sales that the phone is the product with the best sales performance, while last year Chairs were expected to be the best, but this year their performance has dropped to rank 2, suggesting different customer needs.
+
+Chart 4: Sales | Customers
+L2: The first highest sales by customer is Raymond Buch at $14.2K.
+L3: NOT APPLICABLE
+L4: While being the number one, Raymond Buch has slightly higher sales compared to other customers, indicating a highly uniform or homogeneous top-tier client base. 
+
+Chart 5: Sales and Profit Distribution | State
+L2: California is the state with the largest circle on the map.
+L3: Coastal states, especially the West and East regions, dominate the larger circles, indicating higher sales.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 6: Sales | Segment
+L2: The consumer segment has the highest sales at $334.9K with an increase of 11.7%, followed by Corporate and Home Office, where all segments successfully surpassed their previous year's sales.
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward other segments.
+L4: Overall, each segment shows a good sales performance compared to the prior year, indicating a higher demand in all segments this year.
+
+Chart 7: Sales | Manufacturer
+L2: The highest sales by manufacturer are Other grouping at $102.8K, followed by Canon with $49.0K.
+L3: NOT APPLICABLE
+L4: This may reflect the fairness of sales from different manufacturers without a monopoly, where the first one is a group of others, while the rank two through five manufacturers have just a slight sales difference.",,,2026-04-28 09:05:19.839661+00,2026-04-29 11:23:36.359+00,,,FALSE,
+3b31d23d-8673-47fc-b483-74d7205c386c,0f110afe-6c13-435c-ab14-e7e2d12e8b96,FALSE,,,,2026-03-18 05:10:45.330026+00,2026-04-08 18:24:48.815+00,,,FALSE,require_interaction
+3d3b33f8-c535-4e37-a8e5-0102ff8579dd,047338f0-f691-4626-ba72-56b95831cd62,FALSE,,,,2026-03-22 12:53:11.578664+00,2026-04-06 15:33:31.014+00,,,FALSE,require_interaction
+3d7ca2d5-6f5c-4c58-8b77-9b417e583623,0609ebd6-de69-48cb-9bad-ccaddb0011b4,FALSE,,,,2026-03-22 12:11:59.850986+00,2026-04-06 15:13:00.099+00,,,FALSE,incorrect_dataset
+3d928e98-bbe7-4765-b304-2f5729ec8ad0,1b0592b2-b7f5-4849-8e09-c00b307bf172,FALSE,,,,2026-04-08 19:36:04.503663+00,2026-04-08 19:36:04.316+00,,,FALSE,only_one_chart
+3e979b59-fdd6-4a9e-91ed-9b2b8ebc72c7,3ff34481-8262-4a0f-babb-e499e6e67b3a,FALSE,,,,2026-02-26 09:23:49.413337+00,2026-04-06 13:59:02.175+00,,,FALSE,incorrect_dataset
+40e0fe73-9da4-47d5-beba-e2214d82c7c6,4700e244-e02f-4165-a995-121c0f85b719,FALSE,,,,2026-03-22 12:24:07.581479+00,2026-04-06 15:20:04.688+00,,,FALSE,require_interaction
+41f8a1cc-b206-4185-a819-013acd1836d9,840162a9-c2a2-45c2-bf68-7be340422698,FALSE,,,,2026-03-31 18:47:51.235178+00,2026-04-06 17:38:32.371+00,,,FALSE,scraper_failure
+42bb1009-a0eb-41a4-acd6-891c9af5ccf7,3d5f5f50-2111-4ea9-bea5-fd0cacd9dd29,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-03-22 12:52:37.936765+00,2026-04-06 15:32:39.778+00,,,FALSE,only_one_chart
+439c0bdb-174a-480b-9ae7-58a10953a1ea,e27e05a0-479c-461d-95f1-99121fe5f913,FALSE,,,,2026-04-08 19:47:13.34089+00,2026-04-08 19:47:13.267+00,,,FALSE,require_interaction
+43b98db8-9489-4215-9e5d-0b078787a51c,82ec1d7b-8b06-423e-8554-1b9f3992c6f3,FALSE,,,,2026-03-21 17:16:33.417193+00,2026-04-06 14:27:34.024+00,,,FALSE,require_interaction
+4537955a-7d92-499f-a782-f262b4b6f612,36a253f5-aa53-4ce4-a2ba-c2bd6173748a,FALSE,,,,2026-04-07 10:27:12.575056+00,2026-04-07 10:27:12.438+00,,,FALSE,learning_template
+45e32fea-d302-4b16-8922-aca7f087e704,cac2f14c-ca7d-43a9-a205-9d96bdbde414,FALSE,,,,2026-03-22 11:39:20.286199+00,2026-04-06 15:00:34.702+00,,,FALSE,incorrect_dataset
+4af9eef0-f32c-4a04-b13c-badd6170bf9c,ce789b0e-75b9-48dd-99b8-56a1dca8f34d,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-03-22 12:46:01.011275+00,2026-04-06 15:22:48.89+00,,,FALSE,only_one_chart
+4b543477-bdc7-448f-9637-4cc9a3318b5b,9d0b8bc7-98e6-4a5c-84e2-a5bd73ff43a2,FALSE,,,,2026-04-07 10:21:19.391915+00,2026-04-07 10:21:19.228+00,,,FALSE,require_interaction
+4b5cadd0-0fb5-43b5-a1ee-a77a3ea2fcf0,42114fbf-2a9b-4948-989b-92c7ce9af48b,FALSE,,,,2026-03-21 17:16:00.15306+00,2026-04-06 14:27:12.756+00,,,FALSE,incorrect_dataset
+4b8a9b18-6096-44c7-bf03-8496adf31a25,e9e2ee89-4105-4c6f-9fb9-7f638134a33e,FALSE,,,,2026-03-22 11:40:19.399007+00,2026-04-06 15:02:22.611+00,,,FALSE,require_interaction
+4bb2e6bc-8efd-43e3-a679-d573b5b62840,820e9bd3-d2ee-4213-9731-15efdc103dce,FALSE,,,,2026-04-08 20:30:01.283455+00,2026-04-08 20:30:01.127+00,,,FALSE,unlabelled_graphs
+4c655f2f-f44f-44b8-a4af-7783fd378f2a,4490fefa-8b15-42db-b3fc-9e80d9dc0323,FALSE,,,,2026-03-22 11:53:36.897305+00,2026-04-06 15:09:16.015+00,,,FALSE,unlabelled_graphs
+4ce75bd2-974a-4dae-b027-f051245cdfea,689e174e-ecdb-4222-89db-c1941661b9e9,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $734.0K (+20.6% vs PY), profit is $93.5K (+14.4% vs PY), orders are 1,692 (+29.2% vs PY), and the number of customers is 693 (+8.8% vs PY).
+L3: Overall, the trend shows an increase in sales, orders, and customers towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Orders Comparison by Category
+L2: The highest order by Category is Office Supplies with 28.7% YoY.
+L3: Overall, total orders' performance is higher than the previous year across all categories.
+L4: Office supplies surpassing other categories may be the result of sales by quantity, within their category's characteristic.
+
+Chart 3: Orders Comparison by Segment
+L2: The highest order by segment is Consumer with 26.5% YoY.
+L3: Overall, total orders' performance is higher than the previous year across all segments.
+L4: As with the previous analysis, the Office Supplies higher orders should be in line with Corporate and Home Office, but with this, we know that the Consumer segment is the main contributor of orders in this category.
+
+Chart 4: Orders Comparison by Shipping
+L2: The highest order by shipping mode is standard class with 23.1% YoY.
+L3: Overall, total orders' performance is higher than the previous year across all shipping modes.
+L4: This distribution of shipping modes is normal, with people preferring cheaper delivery to faster shipping times.
+
+Chart 5: Orders by State (Top 10)
+L2: The highest order by state is California with 26.9% YoY.
+L3: Overall, most orders are dominated by the West and East regions, and in the coastal areas.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+",,,2026-04-27 08:51:32.512775+00,2026-04-29 10:44:55.019+00,,,FALSE,
+4e389705-a40b-4811-8716-2026ac59575d,e1e06616-f8b9-4389-a662-3954b9771a54,FALSE,,,,2026-03-22 12:18:05.001127+00,2026-04-06 15:15:59.83+00,,,FALSE,learning_template
+4e5efa25-8da7-4685-b068-837e3247e626,07b48368-60a2-4eca-b595-aefc9938c27f,FALSE,,,,2026-03-21 17:17:47.861408+00,2026-04-06 14:46:51.015+00,,,FALSE,only_one_chart
+4eb0d34f-ce7f-4b53-8a81-610bdb81ab4b,d8f84ef1-bc28-4fa4-b9d2-5943b0c95f8e,FALSE,,,,2026-04-05 14:56:18.006085+00,2026-04-06 13:48:42.588+00,,,FALSE,incorrect_dataset
+4faee771-8c89-44ff-9ec8-078df3e0a246,1572a673-6894-412a-84e9-cd0576ad77fa,FALSE,,,,2026-03-22 12:25:07.397281+00,2026-04-06 15:20:26.432+00,,,FALSE,incorrect_dataset
+511bca34-e364-49d6-8cf9-263c3426db13,14b81d7e-29ba-421f-9cef-3e5039dde3aa,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are $733,215 (+20.4% YoY), total profit is $93,439 (+14.2% YoY), profit margin is 12.7% (-5.1% YoY), and total quantity is 12,476 (+26.8 YoY).
+L3: From the trend, we can see that sales and quantity increase steadily towards the end of the year, peaking in November, while profit peaks in March.
+L4: While all indicators show strong growth compared to the previous year, the profit margin is down 5.1% YoY, but the higher total profit suggests the business is scaling revenue faster with a lower margin. This requires a strategy either for margin recovery or continued volume expansion to compensate.
+
+Chart 2: Profit Margin by State
+L2: The majority of states show a positive margin of green encoded in 2021, compared to 2020.
+L3: Some of the negative margin states are coming from the middle areas like CO, IL, TN, OH, and PA, and coastal areas of CR, AZ, TX, and NC.
+L4: The dispersion of negative-margin states across unrelated regions suggests state-level operational or demand-side issues, with high-volume markets like California and Texas likely contributing to the 5.1% YoY margin decline observed at the aggregate level.
+
+Chart 3: Sales and Profit by Subcategory
+L2: The highest sales by sub-category are Phones, and the highest profit by sub-category is Copiers.
+L3: The sales distribution shows a clear dominance of the Phones and Chairs, with significant gaps toward others.
+L4: From the profit-loss bar, we can see that the loss aligns with the sub-category's lower sales performance compared to the previous year, particularly for Tables, Machines, Bookcases, and Supplies.
+","Chart 1: Scoreboard Overview
+L2: the sales is $733.215 or 20.4% YoY, profit is $93.439 or 14.2% YoY, profit margin is 12.7% or 5.1% YoY, and total quantity is 12,476 or 26.8% YoY.
+L3: Sales, profit, and quantity all show a broadly upward pattern toward the end of the year, while profit margin appears more volatile.
+L4: This pattern may indicate that business growth is being driven by stronger sales volume and product movement, while margin quality remains more sensitive to pricing, discounting, or cost mix.
+
+Chart 2: Profit Margin by State
+L2: AK, WY, HI, and ME had N/A value.
+L3: Most states appear to cluster in the positive group, while a smaller set of states is marked negative and a few isolated states show no value, creating a pattern where profitable coverage is broad but not uniform across the map.
+L4: This distribution suggests that profitability is geographically uneven, which may indicate differences in regional pricing power or product mix, while the states with no value could reflect either limited activity or missing operational coverage in those markets.
+
+Chart 3: Sales and Profit by Subcategory
+L2: Tables, machines, bookcases, and supplies are the subcategories that experiencing loss.
+L3: Sales are concentrated in a handful of leading sub-categories, while the profit bars show a contrasting pattern where several sub-categories with visible sales still fall into loss.
+L4: This contrast suggesting that revenue growth in some areas requires closer product-level review.
+","Chart 1: Scoreboard Overview
+L2: Total Sales is 733,215 with 20.4% increase  YoY growth. Total profit is 93,439 with 14.2% increase YoY growth. Profit Margin is 12.7% with 5.1% decrease in YoY growth. Total quantity sold is 12.476 with 26.8% increase in YoY growth.
+L3: Total Sales (733,215), Total Profit (93,439), and Total Quantity (12,476) all increase year over year, with Quantity has the strongest growth (+26.8%) and Profit the smallest (+14.2%), while Profit Margin moves in the opposite direction, declining to 12.7% (-5.1% YoY)
+L4: The combination of higher sales, profit, and quantity alongside a declining profit margin suggests the business may be growing through volume expansion faster than through pricing strategy, which could reflect heavier discounting ora shift toward lower margin products as demand scales
+
+Chart 2: Profit Margin by State
+L2: States with negatives prorit margin are OR, Az, Co, IL, Tx, TN, OH, PA and NC while others in green has positive profit margin
+L3: Most states show positive profit margin performance, while the negative states are scattered across multiple regions including Oregon, Colorado, Arizona, Texas, Illinois, Ohio, Pennsylvania, Tennessee, North Carolina, and Florida, rather than concentrated in one geographic area
+L4: The mostly positive YoY profit margin across states, suggests margin pressure may be driven more by local pricing, local lifestyle or competitive conditions than by a broad national issue, indicating that profitability improvement would likely require targeted regional action rather than a one-size-fits-all response
+
+Chart 3: Sales & Profit  by Subcategory 
+L2: Phones has the biggest sales among other product and Fastener is the smallest. In 2021, the categories with losses, from largest to smallest, were Tables, Machines, Supplies, and Bookcases.
+L3: Most sub-categories remain profitable in 2021 despite mixed sales performance versus 2020, but Tables stands out as mismatch with relatively high sales and the largest loss, while Copiers delivers the strongest profit even though it is not the top selling sub category.
+L4: The contrast between strong sales in categories such as Tables and Machines and their negative profit contribution, while Copiers delivers larger profit suggests revenue size alone may not be translating into value across sub-categories, which could reflect differences in discount prgram and strategy, or product promotional program and indicates that sales growth is likely more attractive in some categories than in others",2026-04-08 18:28:46.122385+00,2026-04-29 10:59:29.028+00,2026-04-25 21:09:39.287+00,2026-04-26 15:04:23.559+00,TRUE,
+52923dcc-4db5-4f82-8f00-4d7d187f4f1a,45748151-ed46-4b86-8a3c-0312b3d59c6b,FALSE,,,,2026-03-22 11:43:34.091378+00,2026-04-06 15:05:08.317+00,,,FALSE,incorrect_dataset
+529b7a20-4974-4091-9f62-2ead387df279,08a16b8a-f5c5-40e9-907d-03e33beea72a,FALSE,,,,2026-03-22 11:54:38.395934+00,2026-04-06 15:08:25.59+00,,,FALSE,incorrect_dataset
+536fc9c7-5794-4b93-95fd-7296f06925c1,44e1242e-dd67-42ec-96d3-1deb7ecc106e,FALSE,,,,2026-03-21 20:30:23.705679+00,2026-04-06 14:58:29.466+00,,,FALSE,incorrect_dataset
+55905790-fdea-492c-b752-d9e827bbcdc0,01330a34-b004-4889-8f49-2e67e6e7a4c4,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are about $733.2K (+20.4% vs PY), profit is $93.4K (+14.2% vs PY), orders are 1687 (+28.3% vs PY), and the number of customers is 693 (+8.6% vs PY).
+L3: Overall, the trend shows an increase in sales, orders, and customers towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales | States
+L2: California is the state in purple and has the largest circle on the map.
+L3: Coastal states, especially the West and East regions, dominate the larger circles, indicating higher sales.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 3: Sales | Regions
+L2: The highest sales are in the west region at $250.1K (+33.4% vs PY).
+L3: The sales trend of West, East, and South shows an upward trend toward the end of the year, with all surpassing the prior year's sales, while the Central region has the highest sales in January and dips and fluctuates afterward with lower sales compared to the previous year.
+L4: West and East region sales may be driven by population, while other regions have to follow the West region to improve their sales performance throughout the year and avoid relying on the holiday season and end-of-year sales.
+
+Chart 4: Sales | Ship mode
+L2: The highest shipping method is using standard class, which made $395.6K sales (+6.2% vs PY).
+L3: The ship mode distribution shows a clear dominance of the standard class shipping with a significant gap toward other shipping modes.
+L4: This distribution of shipping modes is normal, with people preferring cheaper delivery to faster shipping times.
+
+Chart 5: Sales | Segment
+L2: The highest sales by segment are in the Consumer segment at 331.9K (+11.8% vs PY).
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward other segments.
+L4: Overall, each segment shows a good sales performance compared to the prior year, indicating a higher demand in all segments this year.
+
+Chart 6: Sales | Category
+L2: The highest sales by category are Technology at $271.73K (+20.0% vs PY).
+L3: The sales distribution shows a dominance of the Technology category with a slight gap toward other categories.
+L4: Technology surpassing office supplies may suggest that the higher unit price surpasses the sales with the quantity.
+
+Chart 7: Sales | Top 10 Sub-Categories
+L2: Phones led the sub-categories in sales at $105.3K with an increase of 33.4% compared to the prior year.
+L3: While all sub-categories' sales surpassed the previous year's sales, Machines' sales are the only ones with lower performance than the previous year.
+L4: Phones, with the highest sub-category sales, are in line with previous analysis, where Technology dominates category sales, indicating higher demand for phones this year.
+
+Chart 8: Sales | Top 10 Customers
+L2: The first highest sales by customer is Raymond Buch at $14.20K.
+L3: NOT APPLICABLE
+L4: While being the number one, Raymond Buch has slightly higher sales compared to other customers, indicating a highly uniform or homogeneous top-tier client base. ",,,2026-04-27 19:24:14.030171+00,2026-04-29 11:05:30.214+00,,,FALSE,
+56520ce6-8aa6-4e21-ab13-0bb8b34ab165,46068bcf-b0be-4d9f-a44d-6153f6d8b364,FALSE,,,,2026-04-27 08:55:18.45505+00,2026-04-27 08:55:16.912+00,,,FALSE,unlabelled_graphs
+577b6503-2615-4bb9-a8cf-f796d7217d4d,cd89eb2c-cfaa-426f-8dda-0a0d91944f0f,FALSE,,,,2026-03-22 12:51:58.412153+00,2026-04-06 15:32:00.105+00,,,FALSE,learning_template
+58f1769f-68f3-4c0b-ac34-1ca91563fc18,f7e590cf-1dd0-45b8-9ddb-558f40016459,FALSE,,,,2026-03-22 11:39:55.040006+00,2026-04-08 18:53:55.986+00,,,FALSE,learning_template
+5b12e086-09c4-45ec-a9af-629a0b87ee58,1c6fba5d-67a4-4f86-b7a8-6f5f37c4dd30,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $733K (+20.4% vs PY), quantity is 12K (+26.8% vs PY), and profit is $93K (+14.2% vs PY).
+L3: The trend shows an increase towards the end of the year for sales and quantity, while profit's highest peak was in the early part of the year.
+L4: This may suggest a holiday-season sales strategy with a discount, in which a small profit margin drives sales volume.
+
+Chart 2: Profitable Months by Region
+L2: The most profitable month is November in the East Region, with around $40K in profit.
+L3: East and South show an increasing trend toward November and dipped in December, while the Central region shows no pattern in profit.
+L4: While East has the highest profit, it reflects its dependence on last semester's profit, suggesting the need to shift the sales strategy to ensure stable quarterly profit over time.
+
+Chart 3: Profit Ratio Trend
+L2: The profit ratio shows that, in the early part of the graph, it dipped to around -20% and then rose above 20% by the end of the line graph.
+L3: The pink dashed trend line shows the profit ratio fluctuates around with a gradual downward slope, not showing any seasonality or cyclical pattern.
+L4: This pattern shows the increased profit ratio is not sustained between periods, which suggests the business is becoming more reliant on occasional high-margin transactions.",,,2026-04-27 07:52:31.443826+00,2026-04-29 10:43:41.117+00,,,FALSE,
+5c92f7b8-6960-4bbb-b0bf-fc99620177b6,2019836a-f3d4-4f94-acd8-efa727da5378,FALSE,,,,2026-03-21 17:15:44.80819+00,2026-04-06 14:25:39.712+00,,,FALSE,require_interaction
+5d47a46a-c650-4ad3-95ca-7ae97c034993,25d332e4-f374-47e5-ad95-071cccdffd5c,FALSE,,,,2026-03-21 19:37:14.725563+00,2026-04-06 14:56:39.695+00,,,FALSE,incorrect_dataset
+5f0cae3f-0828-4dd5-98e2-125f0874174c,bf73bbdb-07ae-4b71-bb20-2acfd9490077,FALSE,,,,2026-03-22 12:11:26.737454+00,2026-04-06 15:12:28.029+00,,,FALSE,incorrect_dataset
+5fb4fac4-bfaf-4f9a-aa1f-8758c28b107d,b73bbec0-bc48-4402-8fff-ef9c60680911,FALSE,,,,2026-04-05 14:55:48.592252+00,2026-04-06 13:51:52.161+00,,,FALSE,unlabelled_graphs
+5ff9b907-b945-402c-a479-7ad090a5f1d5,a9ddde5e-9a7b-4f70-b15b-883630b9c5ca,FALSE,,,,2026-03-22 12:50:26.740399+00,2026-04-06 15:28:12.14+00,,,FALSE,incorrect_dataset
+608492a9-aaa2-4e7d-9435-e364b7129d23,b7293a84-8693-4c5f-ac95-d9e424d9ca2f,FALSE,,,,2026-03-22 12:13:24.168115+00,2026-04-06 15:13:50.274+00,,,FALSE,unlabelled_graphs
+6280880a-e4aa-4e52-bc19-800e50bfef26,22298632-ddce-49f8-8add-819412ae084d,FALSE,,,,2026-03-21 20:30:44.431211+00,2026-04-06 14:58:37.595+00,,,FALSE,learning_template
+63212063-fecd-449c-8dd5-5806c99f1235,ba0a6d21-1711-4c3e-84d4-9cca6c9f95b1,FALSE,,,,2026-03-18 05:08:45.380694+00,2026-04-08 18:26:26.008+00,,,FALSE,unlabelled_graphs
+636c85e1-bb7a-4db4-92ca-5edbc574d69c,a7355f4c-a177-4be4-a753-420abad9cc65,FALSE,,,,2026-03-31 18:57:22.026163+00,2026-04-06 15:36:47.024+00,,,FALSE,unlabelled_graphs
+65ca6f3d-0a91-4ce1-be2d-35c9473ef93c,c8fc746d-030c-4104-807a-0fd7981cba02,FALSE,,,,2026-03-21 19:33:29.104+00,2026-04-06 14:50:06.288+00,,,FALSE,require_interaction
+683a75d2-48cc-4dc8-a6f5-5d8d6711fbcc,c8c33929-564e-4b14-bfc6-3e880f3283fb,FALSE,,,,2026-03-22 12:09:30.099202+00,2026-04-06 15:11:17.798+00,,,FALSE,learning_template
+6894c760-0a1b-4adf-be62-a10cda0327c2,04ca20c2-6f38-43bb-8a73-9e412d192121,FALSE,,,,2026-04-07 10:30:21.843463+00,2026-04-08 15:04:18.855+00,,,FALSE,require_interaction
+6ab1fda6-4f69-479a-a716-63a25e781efa,4c9e8ffe-87a7-4bf5-8746-e44113583a59,FALSE,,,,2026-03-22 12:17:14.176139+00,2026-04-06 15:14:34.394+00,,,FALSE,incorrect_dataset
+6cfb5d40-9594-403d-b095-88daf6357e4a,8244b43e-5d79-4351-89a0-071650fdcdeb,FALSE,,,,2026-03-22 12:25:14.919893+00,2026-04-06 15:20:41.567+00,,,FALSE,learning_template
+6e4f80ca-59fd-4c91-89e7-a875e796d432,caf39d51-4bb8-46ce-b052-bf7b503572e8,FALSE,,,,2026-03-22 12:51:30.752292+00,2026-04-06 15:31:44.71+00,,,FALSE,incorrect_dataset
+6efe9d5a-f440-4d86-a8bb-38dea99966bc,447bde8b-6886-414a-896b-b6e57bbca836,FALSE,,,,2026-03-22 12:23:12.011695+00,2026-04-06 15:19:14.016+00,,,FALSE,require_interaction
+70fc4e7e-a606-471e-b429-582d0d6ba15d,4af063b3-aebe-4911-ac54-23924d75cbac,FALSE,,,,2026-03-22 12:50:58.657604+00,2026-04-06 15:28:29.002+00,,,FALSE,only_one_chart
+721f4e1f-8652-4014-8951-18140281d914,c2060fe5-c345-40b1-8775-635af57844a3,FALSE,,,,2026-03-21 20:31:07.105594+00,2026-04-06 14:58:46.613+00,,,FALSE,learning_template
+723340b5-2604-49f0-963a-3699aef72048,3a2d6971-8a12-47ce-9500-577772adbfbd,TRUE,"Chart 1: How many orders are from each state?
+L2: The highest orders are coming from California at 2,001 orders.
+L3: From the color legends, we can see that the coastal areas dominate the number of orders, driving the sales.
+L4: California, along with the other states in the coastal area, statistically has the largest population in the US, suggesting a different sales strategy approach to gain orders from the middle areas.
+
+Chart 2: Sales by sub-category
+L2: The highest sales are Phones at $330K in the Technology category, followed by Chairs at $328K in the Furniture category, and Storage at $224K in the Office Supplies category.
+L3: Technology dominates by area by a slight margin, and the top three sub-categories (Phones, Chairs, Storage) contribute to a similar share of total sales.
+L4: This suggests proportional sales from each category, with Technology and Furniture each having a sub-category that sells reliably, while Office Supplies has higher counts of sub-categories that sell in numbers.
+
+Chart 3: Profit by sub-category
+L2: Profits are dominated by the Technology category with Copiers at $56K, followed by Phones at $45K, and Accessories at $42K.
+L3: The technology category dominates the profit shares compared to the other categories, with the Furniture share a small part of the profit.
+L4: This may suggest that the Furniture category has a different pricing strategy, where it incorporates promotion and sales at a discounted price to gain sales with minimal profit.
+
+Chart 4: Return (sales) by sub-category
+L2: The highest return of sales is Phones in the Technology category at $28K, followed by Chairs at $25K in the Furniture category.
+L3: The return of sales shares the same proportion as previous sales by sub-category chart, with the Technology category dominating.
+L4: Sub-categories of Phones and Chairs, having both the highest sales and returns, may need further analysis and a strategy to reduce the returns of the products to minimize loss.","Chart 1: How many orders are from each state?
+L2: the highest orders placed is 2,001 in Calfornia.
+L3: Orders appear to be concentrated in coastal areas, with the West Coast led strongly by California and the East Coast supported by several higher-activity states, while many inland states show lighter order density.
+L4: This coastal concentration may indicate that demand is stronger in more connected and commercially dense markets, suggesting the business benefits from established customer bases and distribution reach in coastal states while inland regions may represent a broader but less penetrated growth opportunity.
+
+Chart 2: Sales by sub-category.
+L2: The highest sales in technology is phones by $330k, in furniture is Chairs by $328K, and in office supplies is Storage by $224K.
+L3: Sales are concentrated in a few large sub-categories within each category, with especially large blocks in Technology and Furniture, while many other sub-categories occupy noticeably smaller areas.
+L4: This pattern suggests that overall revenue is being driven disproportionately by a small set of product lines, which may indicate stronger product-market fit in those leading sub-categories.
+
+Chart 3: Profit by sub-category.
+L2: the biggest profit in technology is Copiers by $56k, in office supplies is paper by $34k, and in furniture is chairs by $27k.
+L3: Profit is distributed less evenly than sales, with a handful of sub-categories contributing visibly larger gains while many others remain comparatively small.
+L4: This uneven pattern may indicate that profitability depends on a narrow group of strong-margin sub-categories, suggesting that not all high-selling products contribute equally well to earnings.
+
+Chart 4: Return (sales) by sub-category.
+L2: the most sales return in technology is phones sub-cateogory by $28k, in furniture is chairs by $25k, and in office supplies is storage by $15k.
+L3: Returns are also concentrated in several large sub-categories, with the biggest return blocks appearing in the same broad product areas that dominate sales.
+L4: This pattern may suggest that the products generating the most revenue are also exposing the business to the greatest return risk, indicating that sales success in those sub-categories may come with higher post-purchase issues, service burden, or margin leakage.","Chart 1: How many orders are form each state?
+L2: The top 3 value of most orders from states is 2,001 orders, 1,128 orders and 985 orders.
+L3: Orders are heavily concentrated in a few large states, led by California (2,001), New York (1,128), and Texas (985), while most central area and northern states show much lower order volumes
+L4: The strong concentration of orders in California, New York, and Texas, with much smaller volumes across most other states, suggests demand may be heavily anchored in a few large, economically active markets, which could indicate that order growth is being driven more by concentrated geographic than by evenly distributed national wide
+
+Chart 2: Sales by sub-category
+L2: Phones, Chairs, and Storage recorded the highest sales among all subcategories, reaching 330K, 328K, and 224K, respectively
+L3: Sales are concentrated in a few leading sub-categories, with Phones (330K) and Chairs (328K) clearly dominating, followed by a second tier of Storage (224K), Tables (207K), and Binders (203K), while the remaining sub-categories contribute much smaller shares.
+L4: The sales concentration in Phones, Chairs, Storage, Tables, and Binders suggests the business may rely on a relatively small set of office and technology essentials, which could indicate that revenue growth is being driven more by core functional categories than by the smaller sub-categories.
+
+Chart 3: Profit by sub-category
+L2: Copiers, Paper, and Chairs recorded the highest profit among all subcategories, with 56K, 34K, and 27K, respectively
+L3: Profit is led by Copiers (56K) and Phones (45K), with Accessories (42K) and Paper (34K) also contributing strongly, while the remaining sub-categories contribute much smaller shares.
+L4: The fact that Copiers and Phones generate strong profit relative to other suggests these products may have more favorable unit economics or pricing power.
+
+Chart 4: Return (sales) by subcategory
+L2: Phones, Chairs, and Storage recorded the highest return in sales among all subcategories, reaching 28K, 25K, and 25K, respectively
+L3: Returns are concentrated in a handful of major sub-categories, with Phones (28K) and Chairs (25K) standing out most, followed by Copiers (19K), Tables (17K), and Storage (15K), suggesting that some of the biggest sales drivers also carry relatively high return values.
+L4: The concentration of returns in Phones, Chairs, Storage, and Copiers suggests that some of the business biggest selling categories may also carry higher post purchase risk, which could indicate that fast selling products are not always translating into high quality revenue because return exposure may be eroding part of profitability",2026-03-22 12:53:23.314881+00,2026-04-21 20:28:10.804+00,2026-04-25 21:17:14.396+00,2026-04-25 08:06:06.377+00,TRUE,
+732065f4-6711-47f1-8799-6ee8a304122d,14d6d46f-f930-400c-8aa2-61c0ff28cc21,FALSE,,,,2026-03-22 12:48:02.071089+00,2026-04-06 15:22:15.77+00,,,FALSE,learning_template
+7327f40c-381b-4724-a1d4-f973813a4646,0349857e-9540-498f-a202-d1ec04f8b965,FALSE,,,,2026-04-08 19:47:40.674391+00,2026-04-08 19:47:40.599+00,,,FALSE,incorrect_dataset
+737f50bb-3344-4252-ba62-95a81b8ce5ed,9efd84b7-807c-44d8-b907-7cb539dc1448,FALSE,,,,2026-03-22 11:39:44.745524+00,2026-04-06 15:01:17.263+00,,,FALSE,learning_template
+73993c40-1c1c-40e8-b2fc-b741a209b3aa,94f61687-eb45-4632-9c59-878404ff230b,FALSE,,,,2026-04-08 20:29:47.46943+00,2026-04-08 20:29:47.283+00,,,FALSE,incorrect_dataset
+73edd16f-f93b-48a6-9a18-e6c95c7c88b4,dc205341-21c2-4563-895a-351c580fdc41,FALSE,,,,2026-03-21 19:36:33.524941+00,2026-04-06 14:50:13.521+00,,,FALSE,only_one_chart
+7409a95f-9edd-4871-a84a-a9ddad06e9fd,ced36137-017c-47cb-8b8c-f4293d4d3cd9,FALSE,,,,2026-04-07 10:38:40.583964+00,2026-04-07 10:38:40.509+00,,,FALSE,unlabelled_graphs
+74de1b38-9819-4b8a-b58b-398b72cb112d,62b6d5a8-8c45-4fdc-815e-b50762cb4948,FALSE,,,,2026-03-22 12:13:13.305246+00,2026-04-06 15:13:39.254+00,,,FALSE,incorrect_dataset
+75ec40d9-2e42-4da2-a982-c6c97d00fadd,818d37ba-9a1c-445c-92fc-f305c053973a,FALSE,,,,2026-03-21 19:38:43.515094+00,2026-04-06 14:57:01.477+00,,,FALSE,unlabelled_graphs
+7620c34c-6b60-4d9d-90c4-259b4cd61cfd,f0b5e4a3-6367-4466-8e62-c5d13b2d7796,TRUE,"Chart 1: Total Profit ($)
+L2: Total profit is 91,523, which was mostly contributed by Copiers with a profit of 17,023, Phones 12,315, Binders 11,268, and Accessories 11,196.
+L3: The profit trend shows that Copiers' profit is steady and shows a significant jump at the end of the year, while other products are fluctuating throughout the year.
+L4: The percentage increase of period-change indicates that the profit growth is broadly distributed across products, yet Machines' 84% decline represents a structural outlier that, if unaddressed, could erode the total profit.
+
+Chart 2: Product performance
+L2: The Copiers are the product that impacts the profit the most, with the highest profit of $3,360.
+L3: Copiers product showing the right side of the area indicating profit, with the Machines product being the far left indicating loss, while other products show a stable profit in the middle area.
+L4: Most profits are contributed by the products within the middle line, and a larger circle size may reflect that the profits are pushed by the quantity of sales.
+
+Chart 3: Product order cadence
+L2: Staples has the highest product order at 81, with an average of $8.6 profit per unit in multiple products, and 221.2 orders per month. 
+L3: Staples and Staple envelopes dominate order volume, doubling the remaining three products, while their order cadence shows spikes in between periods.
+L4: The dominance of low-unit-value consumables in order frequency, against only $8.6 profit per unit, suggests the business's profit relies on the volume-driving products compared to the profit-driving products that Copiers and Phones did.
+
+Chart 4: Customer delivery days
+L2: Each shipping class has its own delivery day range, with same-day resolving within 1 day, first class between 1-3 days, second class between 2-5 days, and standard class between 4-7 days.
+L3: The only outliers shown here are the first class having a late delivery in 3.5 days and the standard class having a one-day faster than the average of its class.
+L4: This distribution of shipping mode is normal, where people prefer cheaper delivery over faster shipping times with standard class.",,,2026-03-22 12:18:40.798381+00,2026-04-21 23:48:29.107+00,,,FALSE,
+7646977d-c943-4546-8492-ab363e9c9ebc,5e6d9deb-9646-4e5c-872a-267b09987764,FALSE,,,,2026-04-07 10:21:07.190761+00,2026-04-07 10:21:07.029+00,,,FALSE,only_one_chart
+769ae703-579f-4298-999b-aa641cb8f933,557d8416-1bee-4c43-a161-9916b210aeb1,FALSE,,,,2026-04-08 21:23:07.629146+00,2026-04-08 21:23:07.569+00,,,FALSE,incorrect_dataset
+78ba9562-4854-4d24-9fb2-a05124667715,6841343c-aa2c-4166-ab3e-1bc3176b2e52,FALSE,,,,2026-04-07 10:23:34.07775+00,2026-04-07 10:23:33.919+00,,,FALSE,only_one_chart
+79130240-36e4-4a0b-9240-bbd08934c9d0,a285e04a-0984-44df-b5d3-c8c844e6adf0,FALSE,,,,2026-04-08 19:46:49.117365+00,2026-04-08 19:46:49.012+00,,,FALSE,unlabelled_graphs
+7a0f43a8-8a1d-4495-97fe-d65160ef4534,4868b479-3d69-4654-9a0a-1291c46405f0,FALSE,,,,2026-03-19 19:08:28.422789+00,2026-04-06 14:11:27.419+00,,,FALSE,require_interaction
+80615d46-32da-4d7a-83ad-50aa4005a7f2,5b458db6-b609-49d2-8d25-4ae7f3f471b8,FALSE,,,,2026-03-22 11:53:25.687741+00,2026-04-06 15:08:12.963+00,,,FALSE,unlabelled_graphs
+8112a5a7-2cec-4007-b9d3-503b4e15cc1f,010066ea-30e9-4e7b-9654-2bdea83cacb4,FALSE,,,,2026-03-22 12:13:31.72628+00,2026-04-06 15:14:01.973+00,,,FALSE,only_one_chart
+81e7d94e-fca5-4551-9e73-0e1af5d806d9,1901e2a5-3dbc-4c6d-8525-fc1525fda62f,FALSE,,,,2026-03-22 12:19:51.487828+00,2026-04-06 15:18:27.992+00,,,FALSE,only_one_chart
+82172b1d-3f35-4156-a0bd-2f050c65f1c0,198b7ed3-ab12-4de1-b933-1bab9690cf3b,FALSE,,,,2026-03-21 19:36:44.116384+00,2026-04-06 14:50:25.115+00,,,FALSE,only_one_chart
+82ec4941-93d1-431c-8458-27062e56f562,f255183e-e2d9-418c-8a49-a6c9655fbf23,FALSE,,,,2026-04-05 14:55:59.862948+00,2026-04-06 13:51:38.939+00,,,FALSE,incorrect_dataset
+830b6b29-12b3-4dfb-8678-1ce9b9740b61,6270f5e3-9892-40ee-9590-c00c810892bb,FALSE,,,,2026-04-07 10:22:03.548199+00,2026-04-07 10:22:03.382+00,,,FALSE,only_one_chart
+84097aa9-99d2-43c7-9235-4bb8a5427405,c0307748-1079-4ddc-903b-4203c48380d0,FALSE,,,,2026-03-22 11:53:57.81384+00,2026-04-06 15:08:54.55+00,,,FALSE,unlabelled_graphs
+845f056f-0f39-49aa-82bb-f2337753d859,62e32dba-8e7a-4fe3-9f86-11d773364735,FALSE,,,,2026-04-08 20:28:50.175905+00,2026-04-08 20:28:49.982+00,,,FALSE,unlabelled_graphs
+8501edaf-6097-4ab7-b382-ac18f9525f32,604668c2-0f6e-4039-80ce-7c6ffb6ad86c,FALSE,,,,2026-03-21 17:17:29.877682+00,2026-04-06 14:45:59.776+00,,,FALSE,learning_template
+8506218f-c200-40d1-8ec8-1dc2c398db72,38e2096d-a953-413b-9bf6-05f37c894f8a,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are $2.3M, profit is $286.4K, total orders are 5,009, and the number of customers is 793.
+L3: Overall, the business is growing well with an upward trend towards the end of the year.
+L4: Overall, the business is growing well, but it is too over-reliant on profiting at the end of the year rather than having stable profit in every period, monthly or quarterly.
+
+Chart 2: Profit | By State
+L2: Profit is indicated by larger circles on the map, which are concentrated in eastern states.
+L3: NOT APPLICABLE
+L4: The dependency of profit from the East area may suggest the need to identify a different penetration in other states in other regions.
+
+Chart 3: Profit | By Segment
+L2: The highest profit by segment is Consumer at $134.1K.
+L3: The profit distribution shows a clear dominance of the Consumer segment with a significant gap toward others.
+L4: This lower profit by Corporate and Home Office may suggest a lower demand for corporate-related products or a smaller profit margin.
+
+Chart 4: Profit | By Top 5 Products
+L2: Canon is the product with the highest profit at $25.2K.
+L3: The profit distribution shows a clear dominance of Canon products with a significant gap toward others.
+L4: Either the demand for Canon products is high, or the smaller profit margin for other products, showing a significant gap that would need further analysis.
+
+Chart 5: Profit | By Category
+L2: The highest profit by category is Technology at $145.5K.
+L3: The profit distribution shows a clear dominance of the Technology category with a significant gap toward others.
+L4: Technology surpassing office supplies may suggest that higher unit prices outweigh sales volume, resulting in larger profits.
+
+Chart 6: Profit | By Top 5 Sub-Category
+L2: Copiers led the profit in the top 5 sub-category at $55.6K.
+L3: NOT APPLICABLE
+L4: While being the number one, Copiers have slightly higher profit than other products, indicating highly similar profits across products. 
+
+Chart 7: Profit | By Top 5 Customers
+L2: The first highest profit from a customer is Tamara Chand at $9.0K.
+L3: NOT APPLICABLE
+L4: While being the number one profitable customer, Tamara Chand has a slightly higher profit compared to other customers, indicating a highly uniform or homogeneous top-tier client base. ",,,2026-04-28 11:48:31.050264+00,2026-04-28 11:48:30.227+00,,,FALSE,
+851b2427-594a-47cb-96bc-b12a235a6201,918e7c09-7971-4705-ae3d-8b574d1f580e,FALSE,,,,2026-03-22 11:37:42.259161+00,2026-04-06 15:00:04.91+00,,,FALSE,unlabelled_graphs
+85539c65-f7fa-4b44-be7b-605dd001c509,2774fecb-0401-4f7a-b97f-509c77cdf074,FALSE,,,,2026-04-08 21:24:28.821722+00,2026-04-08 21:24:28.725+00,,,FALSE,require_interaction
+855ba0bd-cbf3-4875-b19c-a8dc5cfaf9ff,8372744c-75a8-40a5-bb5d-d8dbdf3a5576,FALSE,,,,2026-03-21 19:59:45.554332+00,2026-04-06 14:58:11.672+00,,,FALSE,require_interaction
+868919f5-ed7c-4a09-8264-80f341f58390,ea428b8b-bdfc-4b70-9891-8b5a63bac7fd,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $745.6K, profit is $95.9K, orders are 1,723, and the number of customers is 704.
+L3: Overall, the trend shows an increase in sales, orders, and customers towards the end of the year, while profit is highest early in the year and increases steadily afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales by Month
+L2: The highest sales peak in November at $118.5K (+49.2%). 
+L3: The trend shows that the sales are at their lowest and lower than the prior year in the first semester, while at their highest in the second semester, with December dipping lower than the previous sales performance.
+L4: This year's performance suggests a higher demand in the holiday season towards the end of the year, but with lower performance in December.
+
+Chart 3: Sales by Country and State
+L2: United States with sales of $733.2K (+20.4%) and Canada with sales of $12.4K (+161.3%).
+L3: Coastal states, especially the West and East regions, dominate the larger circles, indicating higher sales.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 4: Sales by Category
+L2: The highest sales by category are Technology at $272.4K, up 20.2%.
+L3: The sales distribution shows a dominance of the Technology category with a slight gap toward other categories.
+L4: Technology surpassing office supplies may suggest that the higher unit price surpasses the sales with the quantity.
+
+Chart 5: Sales by Segment
+L2: The highest sales by segment are in the Consumer segment at 334.9K, up 11.7%.
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward other segments.
+L4: Overall, each segment shows a good sales performance compared to the prior year, indicating a higher demand in all segments this year.
+
+Chart 6: By Customer (Top 10)
+L2: The first highest sales by customer is Raymond Buch at $14.2K.
+L3: NOT APPLICABLE
+L4: While being the number one, Raymond Buch has slightly higher sales compared to other customers, indicating a highly uniform or homogeneous top-tier client base. ",,,2026-04-28 08:55:42.736347+00,2026-04-29 11:21:17.242+00,,,FALSE,
+86a885ea-c3bc-459e-8b92-c0c2a9e52cdc,3941d386-97f1-429f-82a0-67a23584fa40,FALSE,no color legends to ease readers' understanding,,,2026-03-22 12:17:44.655134+00,2026-04-06 15:15:19.471+00,,,FALSE,unlabelled_graphs
+86dabd3e-7150-4af3-855e-af862c6192f9,848540c3-e85a-496d-9b11-d1127829fb2f,FALSE,,,,2026-04-08 19:37:05.870685+00,2026-04-08 19:37:05.713+00,,,FALSE,only_one_chart
+87044871-d573-4ce6-9a83-2f8041eea673,af2b1396-adb3-4157-b30c-f3268be9fa0d,FALSE,,,,2026-03-22 12:52:58.070342+00,2026-04-06 15:33:02.394+00,,,FALSE,learning_template
+88083c4c-16e1-4686-87a8-f37f56122e2f,05d6545f-e269-4800-aa2b-f33b0dbc2e42,FALSE,"Even though there are six charts, they would be treated as one Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-03-21 19:36:56.973362+00,2026-04-06 15:06:52.309+00,,,FALSE,only_one_chart
+88d78439-085a-4c9b-bc30-657ee7586b0b,8d8d0715-572a-44c1-850d-287d7069ff71,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are €733.2K (+20.6% vs PY), profit is €93.4K (+14.2% vs PY), orders are 1,687 (+28.3% vs PY), and the number of customers is 693 (+8.6% vs PY).
+L3: Overall, the trend shows an increase in sales, orders, and customers towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may indicate a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales by Segment
+L2: The highest sales by segment are in the Consumer segment at €331.9K.
+L3: The sales distribution shows a clear dominance of the consumer segment with a significant gap between it and the other segments.
+L4: This may indicate that there is a stronger demand for consumer goods rather than Corporate and home office-related products.
+
+Chart 3: Sales by Category
+L2: The highest sales by category are Technology at €271.73K
+L3: The distribution shows a slight difference in sales performance between categories.
+L4: Technology surpassing office supplies may suggest that higher unit prices outweigh sales volume.
+
+Chart 4: Sales by State
+L2: Most large circles are around the coastal area, with the largest one in California.
+L3: A small group of states contributes a disproportionate share of total sales, with coastal and large‑population states dominating.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.",,,2026-04-27 09:05:01.813856+00,2026-04-29 10:47:02.336+00,,,FALSE,
+8c8c2e88-f558-4944-bfc2-dea99df1fe58,bdc13a80-9636-4641-ae38-cedc8d55c525,FALSE,,,,2026-03-21 17:18:00.850599+00,2026-04-06 14:47:06.219+00,,,FALSE,learning_template
+8cc728d8-4223-40d9-82d9-29a809980699,181ee4e9-ff04-454f-a549-545a827530da,FALSE,,,,2026-04-08 21:24:51.547814+00,2026-04-08 21:24:51.493+00,,,FALSE,require_interaction
+8db2406e-e35d-42d6-9995-340727401d98,98cb82c8-2a18-4576-a73d-0f09dfbf2695,FALSE,,,,2026-03-22 12:19:45.441013+00,2026-04-06 17:38:45.517+00,,,FALSE,scraper_failure
+8e0da790-6b01-4737-9282-54e0bec78ec5,fbdc09db-a04b-42ae-a52f-4329a6133c99,FALSE,,,,2026-04-07 10:19:59.706439+00,2026-04-07 10:19:59.539+00,,,FALSE,unlabelled_graphs
+8e37da83-b39e-4a26-b21e-2b352c9f1470,277025b1-fcda-48b6-9891-d1ae09dac5d9,FALSE,,,,2026-03-21 20:31:41.968673+00,2026-04-06 14:59:17.858+00,,,FALSE,learning_template
+8ee6d85e-0fef-4090-b331-79d75d8765f7,3ee6a20a-5db5-4676-b587-49f3b0730dbb,FALSE,,,,2026-03-22 12:09:57.05136+00,2026-04-06 15:11:53.845+00,,,FALSE,learning_template
+92e53655-242c-4f56-8a05-35e6851d1873,3f3753fc-803d-4ab5-9280-3c614ac00562,FALSE,,,,2026-04-07 10:26:11.612821+00,2026-04-07 10:26:11.503+00,,,FALSE,unlabelled_graphs
+9422cc00-221f-4188-9fec-b9e70762e199,212e8493-90a1-435f-b1f1-ea4fd5fe6496,FALSE,"Not using US Superstore dataset, but the EU one.",,,2026-02-05 15:57:22.744905+00,2026-04-06 13:54:31.557+00,,,FALSE,incorrect_dataset
+94ceb756-6897-4e47-9ac5-fce37650b2bb,20885fd1-069f-4c64-9ae7-e869c8c5e000,FALSE,,,,2026-04-08 21:12:34.997246+00,2026-04-08 21:12:34.915+00,,,FALSE,unlabelled_graphs
+955a780f-fd9e-4a71-acc5-56014158fd32,3594e45b-d909-4ac4-b853-ca94419ab6a1,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.
+
+The map chart is also unlabelled and the color legend is not clear.",,,2026-04-05 14:56:10.801092+00,2026-04-06 15:06:33.039+00,,,FALSE,only_one_chart
+9965300c-edcd-4a77-94b8-f31e5973df1f,4c3cf82e-88af-4da7-8243-f13620a812ab,FALSE,,,,2026-04-07 10:23:18.360364+00,2026-04-07 10:23:18.138+00,,,FALSE,incorrect_dataset
+996881cd-ec79-49fb-9161-298d4bf59936,190a0b2a-1204-441f-89a1-f56070521947,FALSE,,,,2026-03-22 11:53:44.126326+00,2026-04-06 15:09:25.166+00,,,FALSE,learning_template
+9a02b482-2835-4386-ae72-a6bef42ca87d,e7442c32-1acb-4581-af52-5c359f573159,FALSE,,,,2026-04-08 21:22:20.877945+00,2026-04-08 21:22:20.819+00,,,FALSE,require_interaction
+9a70a18a-f7fb-43a1-a9d4-4cdc47f1451f,014a0a28-5295-4b3f-814d-f5b8a5bc1208,FALSE,,,,2026-03-22 11:39:32.846764+00,2026-04-06 15:00:54.609+00,,,FALSE,incorrect_dataset
+9af54b8b-f742-4116-a351-687903d00a54,a0d22f3a-eadd-43c7-a7e3-f10864034668,FALSE,,,,2026-03-18 05:11:07.269356+00,2026-04-06 13:59:51.772+00,,,FALSE,incorrect_dataset
+9c54ccf8-62e6-45e8-beff-a8c4090d39e0,57eb3cd7-5b9b-494e-bfae-a4f3e7cba0a2,FALSE,,,,2026-03-22 12:50:48.020584+00,2026-04-06 15:28:20.546+00,,,FALSE,learning_template
+9d86dac0-fbbe-4e18-9d48-d1fe53d10153,ee9aff18-ae63-4cd7-9376-fa5ff0cf8225,FALSE,,,,2026-03-22 12:45:08.227079+00,2026-04-06 17:38:39.787+00,,,FALSE,scraper_failure
+9d8f6bca-1571-4ef5-99bb-8a620575dc3e,7fd74c8d-b8d3-4c55-90b7-d15d0e4a608d,FALSE,,,,2026-04-08 21:55:56.969618+00,2026-04-08 21:55:56.888+00,,,FALSE,require_interaction
+9e95f307-becf-4367-80a0-40c657750ee8,2616199a-d752-48ac-a1f2-ff1812db7549,FALSE,,,,2026-03-22 11:40:11.234026+00,2026-04-06 15:02:08.769+00,,,FALSE,incorrect_dataset
+9f635edc-6eae-4077-bf36-c515b1cf4512,2fe9bc1d-9d8b-46a2-a1a6-b00084073262,FALSE,,,,2026-04-07 10:32:20.530366+00,2026-04-07 10:32:20.422+00,,,FALSE,learning_template
+9fa9dba9-7ba2-41ad-bfd3-bdfe843f995e,a2d84dd1-cbfd-4185-b3ff-022c0df9e65b,FALSE,,,,2026-03-22 12:51:05.312257+00,2026-04-06 15:28:43.376+00,,,FALSE,incorrect_dataset
+9fa9fe36-2ae6-4704-a7dc-67818107cb5b,8f86e4ad-f092-4943-b350-295b577f8e1c,FALSE,,,,2026-04-08 19:01:36.497455+00,2026-04-08 19:01:36.235+00,,,FALSE,unlabelled_graphs
+a05a8d5d-1b9a-4579-9e43-694a961aa7bf,d20a8aa7-c811-4052-bbf4-866e08d8a23d,FALSE,,,,2026-03-22 12:08:59.898268+00,2026-04-06 15:10:52.567+00,,,FALSE,learning_template
+a1958001-898d-48c6-9ce4-12c05b08b61b,f8d3be46-479b-42cd-b3af-2ffd4fe0d0dd,FALSE,,,,2026-04-08 21:22:44.474328+00,2026-04-08 21:22:44.413+00,,,FALSE,unlabelled_graphs
+a220c5a1-75e3-46a7-a7ca-751f1f4e7b62,9881e844-de6f-45e5-b530-f262fd26012c,FALSE,,,,2026-03-22 12:44:37.996774+00,2026-04-06 15:21:01.998+00,,,FALSE,incorrect_dataset
+a2f659a4-f8cf-4f2e-95e9-c395e627eb9b,f203089e-101f-4b7d-9080-6b51c3e97ee7,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales value is at 745,568 (+21.4% vs PY), profit is 95,926 (+16.0% vs PY), and profit ratio is 12.9% (-0.6pp vs PY).
+L3: Overall, the sales show an upward trend towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, in line with the profit ratio's lower performance than the prior year, pushing the sales strategy with a smaller profit margin.
+
+Chart 2: Sales by segments
+L2: The consumer segment has the highest sales at 334.9K, followed by Corporate and Home Office, where all segments successfully surpassed their previous year's sales.
+L3: The trend also shows an increase in sales toward the end of the year.
+L4: However, as we can see more clearly, the consumer was having successful sales at the end line, while both Corporate and Home Office saw their sales drop at the end, suggesting a combination of seasonal business slowdowns, employee vacations, and strategic financial decisions.
+
+Chart 3: Sales by states
+L2: The highest sales by state are in California at 146K.
+L3: Overall, by the color legends, most blues are dominated by the West and East regions, and in the coastal areas.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 4: Sales by category
+L2: The highest sales by category are Technology at $272.4K
+L3: The sales distribution shows a dominance of the Technology category with a slight gap toward other categories.
+L4: Technology surpassing office supplies may suggest that the higher unit price surpasses the sales with the quantity.
+
+Chart 5: Sales by region
+L2: The highest sales are in the West region at $258.2K.
+L3: The sales trend of West, East, and South shows an upward trend toward the end of the year, with all surpassing the prior year's sales, while the Central region has the highest sales in January and dips and fluctuates afterward with lower sales compared to the previous year.
+L4: West and East region sales may be driven by population, while other regions have to follow the West region to improve their sales performance throughout the year and avoid relying on the holiday season and end-of-year sales.
+
+Chart 6: Sales HeatMap
+L2: The highest sales is Office Supplies in Corporate segment from the West region at 40.1K.
+L3: Overall, the blue color is prominent in Consumer column and West rows.
+L4: This HeatMap summarize all the previous analysis with the dominant sales from West region, Technology category, and Consumer segment.
+",,,2026-04-27 19:50:58.741105+00,2026-04-29 11:06:14.713+00,,,FALSE,
+a470d26b-0165-46a5-a394-c085c9b50b3b,de2ee6fd-ac1d-42fc-8fec-c3c8fdd439c9,FALSE,,,,2026-03-21 17:14:40.280206+00,2026-04-06 14:24:34.28+00,,,FALSE,incorrect_dataset
+a57cedcd-bab8-44d5-aeff-7b321e038f6b,95fa9d40-2c20-4116-9937-68549fcb8958,FALSE,,,,2026-03-22 11:44:53.137621+00,2026-04-06 15:07:37.132+00,,,FALSE,incorrect_dataset
+a5c857f9-02b7-4cde-a254-e932fe1cc704,4d1d5476-9b11-4e28-91d8-57e4fb20800b,FALSE,,,,2026-03-22 12:13:38.877906+00,2026-04-06 15:14:23.325+00,,,FALSE,only_one_chart
+a6fe510f-fa65-4128-b6fd-39af00b7d6e6,8505165e-e142-473e-b222-63443df38f79,FALSE,,,,2026-03-21 17:11:32.914067+00,2026-04-06 14:23:55.58+00,,,FALSE,incorrect_dataset
+a927d596-2aac-48d7-84eb-fca7dee293be,10656648-6508-446b-bded-cdeca2a4385b,FALSE,,,,2026-03-21 17:18:08.232668+00,2026-04-06 14:47:21.648+00,,,FALSE,unlabelled_graphs
+a9f1a197-6b78-4add-a0f8-78cd029dfbdd,0680041e-4ba2-4935-8f7e-02f264285350,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $733,215 (+20.4% YoY), profit is $93,439 (+14.2% YoY), orders are 1,687 (+28.3% YoY), and the number of customers is 693 (+8.6% YoY).
+L3: Overall, the trend shows an increase in sales, orders, and customers towards the end of the year, with the highest peak in November, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales by State
+L2: California (CA) leads the sales by 146,388.
+L3: A small group of states contributes a disproportionate share of total sales, with coastal and large‑population states dominating.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 3: Sales by Sub-Category
+L2: Phones led the sub-categories in sales at $105,341.
+L3: The sales distribution shows a clear dominance of the Phones and Chairs, with significant gaps toward others.
+L4: The top sales by sub-category are dominated by products that sell at higher unit prices compared to the products with higher sales quantities.
+
+Chart 4: Sales by Segment
+L2: The highest sales by segment are in the Consumer segment at $331,905.
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward others.
+L4: In line with the previous analysis with sales by sub-category, this Consumer segment is where the phone demand comes from, where corporate and home office segmentation would need chairs, binders, and other supply-related products.
+
+Chart 5: Sales by Category
+L2: The highest sales by category are Technology at $271,731
+L3: The sales distribution shows a clear dominance of the Technology category with a significant gap toward others.
+L4: Technology surpassing office supplies may suggest that the higher unit price surpasses the sales with the quantity.",,,2026-04-27 10:41:07.720452+00,2026-04-29 11:00:25+00,,,FALSE,
+aaa4b479-d73d-4b1a-99f9-20ec4187e08a,5269a62b-3da5-4e2f-b12a-934b40c40b4c,FALSE,,,,2026-03-22 12:47:27.802512+00,2026-04-06 15:22:24.828+00,,,FALSE,unlabelled_graphs
+ab3e3317-3d0c-45b1-a138-6f80021bf187,750cc702-45cb-4ba7-b93a-fe552ae9e12e,FALSE,,,,2026-03-22 11:54:31.75216+00,2026-04-06 15:10:11.351+00,,,FALSE,only_one_chart
+ac2de05a-4878-4d44-a5c8-00c61840537a,aa8c2c99-055a-4212-a999-3aeefe2a80e5,FALSE,,,,2026-04-07 10:31:05.676411+00,2026-04-07 10:31:05.507+00,,,FALSE,unlabelled_graphs
+acafd002-7369-4c93-a350-37661483f21a,eff571fd-4178-4f2c-a0c5-a38b3fbfd2d2,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-03-22 11:43:23.143575+00,2026-04-06 15:05:58.178+00,,,FALSE,only_one_chart
+adb30452-04b3-42d5-a778-e100f84f59b5,dcbf2b01-394f-44f6-983c-45953284e118,FALSE,,,,2026-04-08 19:45:48.892902+00,2026-04-08 19:45:48.799+00,,,FALSE,only_one_chart
+ae94769f-7a3d-4202-b683-73d677035f54,b8142491-385a-470c-808c-9d8f2c234357,FALSE,,,,2026-03-21 17:10:45.113958+00,2026-04-06 14:29:13.495+00,,,FALSE,learning_template
+afbd239b-206b-46d7-b6c7-7a3fa5bb2c86,2de96f0b-38cb-42a0-b339-4e70414a48d6,FALSE,,,,2026-04-07 10:28:38.522126+00,2026-04-07 10:28:38.436+00,,,FALSE,unlabelled_graphs
+b10777a4-d9d7-467c-a085-4d8a5055673a,aa528e4a-ad9d-4f99-8217-8722255e505f,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $470.5K (-2.8% vs 2019), profit is $61.6K (+24.4% vs 2019), with 1,038 orders (+7.1% vs 2019), and 573 customers (-3.7% vs 2019).
+L3: The trend shows that all indicators are steadily increasing towards the end of the year, but can be seen as lower performances on Sales and the number of customers compared to the prior year.
+L4: Even though Sales and the number of Customers dropped compared to the previous year, the profit growth of 24.4% may suggest that the profit margin is higher this year, with repeated loyal customers ordering more than before.
+
+Chart 2: Sales by Category
+L2: The highest sales by category are Furniture at $170.5K, surpassing 8.5% of its prior year sales in 2019.
+L3: Compared to the previous year, Furniture is the only category that successfully surpassed the sales, while Technology and Office are underperforming.
+L4: Technology sales are only slightly behind Furniture, but a sharp YoY decline reveals a significant drop in demand after previously leading performance.
+
+Chart 3: Sales Trend by Category
+L2: The highest sales of the Furniture and Office Supplies category are at their highest in November, while for Technology, it was in December.
+L3: The trend showing the rise of sales started to show in September and increased towards the end of the year.
+L4: This trend may suggest promotional holiday sales at the end of the year for Technology, and both Furniture and Office Supplies saw their sales drop in December, suggesting a combination of seasonal business slowdowns, employee vacations, and strategic financial decisions.
+
+Chart 4: Sales by Top 10 Subcategory
+L2: The highest sales are Furniture-Chairs at $71.7K, followed by Technology-Phones at $68.3K. 
+L3: The trend shows that most subcategory products increased steadily towards the end of the year, with Furniture-Tables and Office Supplies-Binders being the exceptions.
+L4: These Furniture-Tables and Office Supplies-Binders may reflect product demand throughout the year from the Corporate and Home Office segments.
+
+Chart 5: Sales by Top 10 Manufacturers
+L2: The highest sales by manufacturer are Other grouping at $63.3K, followed by Hon with $31.2K.
+L3: NOT APPLICABLE
+L4: This may reflect the fairness of sales from different manufacturers without a monopoly, where the first one is a group of others, while the rank two through five manufacturers have just a slight sales difference.
+
+Chart 6: Sales by Top 10 Customers
+L2: The first highest sales by customer is Peter Fuller at $9.0K.
+L3: NOT APPLICABLE
+L4: While being the number one, Peter Fuller has slightly higher sales compared to other customers, indicating a highly uniform or homogeneous top-tier client base. 
+
+Chart 7: Sales by Region
+L2: The highest sales are in the East Region at $156.3K, followed by a slightly lower performance of the West Region at $140.0K.
+L3: The trend shows the uniform increasing sales toward the end of the year, except for the South Region, where it has its own high peaks in every quarter and underperformed compared to the prior year.
+L4: Even with recurring quarterly peaks in the South Region, which may indicate cyclical sales, this did not occur in the final quarter of the year, unlike in other areas; this region should take a different approach to sales strategy.
+
+Chart 8: Sales by State
+L2: California leads the sales by $88.4K, while New York, Texas, and Washington follow with progressively smaller yet still substantial figures.
+L3: The top 4 states with the highest sales mostly underperformed compared to the prior year of 2019, except New York.
+L4: The top states have lower sales performance and need a different sales strategy to keep up the performance and push the demand, while other areas in the middle have to set a distribution channel that could penetrate the market.
+
+Chart 9: Sales by Segment
+L2: Out of the grand total of sales of $470.5K, half of it is contributed by the Consumer segment sales at $266.5K with 56.6% share.
+L3: Even with the high sales performance of Consumer and Corporate, surpassing prior year sales by a slight margin, the grand total sales performance overall is lower because of the underperformed Home Office segment by -16.1%.
+L4: This underperforming Home Office segment is in line with the previous analysis of sales by category, where Office Supplies is also down compared to prior years, suggesting the need for a better sales strategy to improve performance.
+
+Chart 10: % of Target Achieved
+L2: Sales is achieved by 47%, profit is achieved by 30%, and customer target is achieved by 32%.
+L3: NOT APPLICABLE
+L4: All three KPIs are below 50% of their respective targets, with Profit and Customer targets critically underperforming, suggesting that the business is missing its annual objectives across the board and that profit generation is lagging behind.",,,2026-03-22 11:54:18.053117+00,2026-04-29 10:41:07.39+00,,,FALSE,
+b164ac02-5f8b-4b10-ad35-afa018951888,8040a121-e403-4381-bcfd-8d32fb05c5b4,TRUE,"Chart 1: Scoreboard overview
+L2: Sales are about £733K (+20,4% vs PY), profit is £93K (+14.2% vs PY), returns are 4,655 (+59.6% vs PY), and quantity is 12,476 units (+26.8% vs PY).
+L3: Overall, the business is growing in sales and quantity, with a higher trend at the end of the year, and generally improving profit.
+L4: However, while the company is successfully expanding revenue and volume, the return rates should be monitored to ensure growth does not erode profitability or customer satisfaction.
+
+Chart 2: 2023 | Sales vs Targets
+L2: Sales started at around £40K in January and ended the year at around £80K, but it did not reach the target.
+L3: The chart shows green circles for January, June, August, October, and November, which show that the sales surpassed the target.
+L4: In conclusion, sales improved over time, with high‑performing later months helping lift weaker early‑year periods in the next cycle.
+
+Chart 3: Segment | Sales vs Targets
+L2: Consumer and Corporate segments sit below their targets by -£24.3K and -£6.7 K, respectively, while the Home Office exceeds its target by £33.2K.
+L3: NOT APPLICABLE.
+L4: Strategy should probe what is driving Home Office success and apply its tactics to Consumer and Corporate segments to close their gaps.
+
+Chart 4: Top 5 Sub-Categories | Sales vs Targets
+L2: Phones led the sub-categories in sales, with +£10.6K above target, while binders and copiers exceeded their targets, chairs lagged by £5.1K, and storage was just £0.9K below its target.
+L3: NOT APPLICABLE
+L4: The target should be adjusted for chairs, as it is higher than the phones' target, which ranked number one in sales, and is a hot commodity these days.
+
+Chart 5: Sales by Location | Top 5 States
+L2: California leads the sales by £146,388, while New York, Washington, Texas, and Pennsylvania follow with progressively smaller yet still substantial figures.
+L3: A small group of states contributes a disproportionate share of total sales, with coastal and large‑population states dominating the top five.
+L4: This geographic condition suggests expansion into mid-tier states could be the next growth target.
+
+Chart 6: Top 5 Manufacturers chart | Sales vs Targets
+L2: Canon leads with +£6.1K sales above the target, followed by GBC and Fellowes, who have met their targets, while the Global and Hon manufacturers have lagged behind theirs.
+L3: NOT APPLICABLE
+L4: Even though the Global and Hon have their sales ranked in 2nd and 3rd place, the target is too high, and may suggest the need to lower the target.","Chart 1: Scoreboard Overview
+L2: the sales is 733.215 or 20.4% vs PY, profit is 93.439 or 14.2% vs PY, returns are 4,655 or 59.6% vs PY, and total quantity is 12,476 or 26.8% vs PY.
+L3: Sales, profit, and quantity all show a generally upward movement versus the previous year, while returns also rise sharply, indicating that business growth is accompanied by a noticeably stronger increase in returned items.
+L4: This pattern may indicate that the business is scaling in revenue and volume, but the much faster rise in returns could suggest emerging pressure on product quality, fulfillment accuracy, or customer expectation management.
+
+Chart 2: 2023/Year | Sales vs Target
+L2: In 2023, the sales vs target, J is 21.7K, F is -7.3K, and M is 3.2K.
+L3: Monthly sales versus target fluctuate throughout the year, with several months falling below target early on and stronger over-performance appearing more often later in the year.
+L4: This uneven pattern may indicate that sales attainment is still dependent on stronger late-year execution, suggesting that the business may face inconsistent momentum across months and could be relying on a narrower set of peak periods to close the target gap.
+
+Chart 3: Segment | Sales vs Target
+L2: Consumer sales vs target is -24.3K, corporate is -6.7K, and home office is 33.2K.
+L3: Segment performance against target is mixed, with Home Office standing above target while Consumer and Corporate remain below, creating a clearly uneven pattern across customer groups.
+L4: This contrast may indicate that target-setting or demand strength differs substantially by segment, suggesting that the business may be underperforming in its largest customer groups while a smaller segment shows relatively stronger conversion against expectations.
+
+Chart 4: Top 5 Sub-Categories | Sales vs Targets 
+L2: Top 5 sub-categories are phones, chairs, binders, and copiers.
+L3: The leading sub-categories show mixed target performance, with some categories exceeding target while others remain below, even though all belong to the top sales group.
+L4: This pattern may indicate that high sales alone don't guarantee target attainment, suggesting that some top-performing sub-categories are still underdelivering relative to expectations and may require different pricing, promotion, or inventory strategies than the categories already ahead of target.
+
+Chart 5: Sales by Location | Top 5 States
+L2: California is 146,388, New York is 93,923, Washington is 65,540, Texas is 43,422, and Pennsylvania is 42,688.
+L3: Sales appear concentrated in coastal areas, with California clearly leading and several other top states clustered along the East Coast, while the remaining map shows a broader spread of smaller locations.
+L4: This coastal concentration may indicate that the business is strongest in larger, denser, and more established markets, suggesting that inland states remain comparatively less penetrated and may represent additional room for expansion.
+
+Chart 6: Top 5 Manufactureres | Sales vs Targets
+L2: Top 5 manufacturers are Canon, Global, Hon, GBC, and Fellowes.
+L3: Manufacturer performance against target is uneven, with some of the leading manufacturers exceeding target and others falling short, despite all appearing in the top sales group.
+L4: This contrast may indicate that strong sales volume is not distributed equally in terms of target achievement across suppliers, suggesting that some manufacturer relationships are converting demand more effectively.","Chart 1: Scoreboard Overview
+L2: Sales reached 733,215 (+20.4% vs PY), Profit reached 93,439 (+14.2% vs PY), Returns reached 4,655 (+59.6% vs PY), and Quantity reached 12,476 (+26.8% vs PY).
+L3: Sales, Profit, and Quantity all increased versus the previous year, but Returns rose much more sharply (+59.6%) than the others, making it the most outstanding movement.
+L4: Rising Sales, Profit, and Quantity, combined with a sharper increase in Returns, suggests the business may be growing through stronger demand and transaction volume, but growth quality may be pressured by defects, mismatch, or fulfillment issues.
+
+Chart 2: 2023/Year | Sales vs Targets
+L2: January, June, August, October, and November were months with sales above target.
+L3: Sales exceeded target in several months, with strong positive gaps in January, May, August, and November, while below-target months were fewer and smaller except December, the largest shortfall.
+L4: The shift from weaker target achievement earlier in the year to stronger later performance suggests the business may have benefited from second-half demand, better execution, or seasonal conditions, indicating annual performance was recovered more by late-year acceleration than steady sales.
+
+Chart 3: Segments | Sales vs Targets
+L2: Corporate had the smallest gap to target at 6.7K.
+L3: Target achievement varies sharply, with Home Office outperforming target by +33.2K, while Consumer (-24.3K) and Corporate (-6.7K) fell short, indicating the overall gap was driven more by larger segments.
+L4: Home Office being the only segment above target suggests demand may be shifting toward smaller or more flexible purchasing needs, possibly reflecting stronger work-from-home momentum or independent buyer behavior.
+
+Chart 4: Top 5 Sub-Categories | Sales vs Target
+L2: Binders exceeded target by the largest margin at +13.2K, followed by Copiers at +10.6K, while Chairs and Storage missed target by -5.1K and -0.9K.
+L3: Performance is mixed, with Binders (+13.2K) and Phones (+10.6K) posting the strongest positive gaps, Copiers also above target (+3.4K), while Chairs (-5.1K) and Storage (-0.9K) underperformed.
+L4: Above-target performance in Phones, Binders, and Copiers, contrasted with shortfalls in Chairs and Storage, suggests customers may prioritize functional, productivity-related items over larger or space-dependent purchases.
+
+Chart 5: Sales by Location
+L2: California has the biggest sales with 146,388.
+L3: Sales are concentrated in a few states, with California (146,388) leading, New York (93,923) second, and Washington, Texas, and Pennsylvania contributing at lower levels.
+L4: Sales concentration in California, New York, and a few other states, alongside many smaller bubbles elsewhere, suggests revenue may depend on high-density markets with stronger customer concentration, while geographic depth remains uneven.
+
+Chart 6: Top 5 Manufacturers | Sales vs Targets
+L2: Fellowes exceeded target by +9.8K, followed by GBC (+6.8K) and Canon (+6.1K), while Global (-3.9K) and Hon (-11.3K) below target.
+L3: Sales versus target is mixed across the top five manufacturers, with Fellowes, GBC, and Canon exceeding target, while Global and especially Hon fall short, showing uneven attainment among leading manufacturers.
+L4: Canon, GBC, and Fellowes being above target while Global and Hon fall short suggests manufacturer performance may depend more on product-market fit, pricing strength, or demand reliability than supplier size alone.",2026-02-20 06:17:08.454643+00,2026-04-29 10:29:25.321+00,2026-04-25 21:53:11.462+00,2026-04-25 07:39:09.493+00,TRUE,
+b1e619f5-8558-4a64-a1a8-9a5677e3ab3a,97a93bdf-138f-411e-9760-375a16b9565e,FALSE,"Even though there are six charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-03-22 12:17:54.512647+00,2026-04-06 15:37:39.945+00,,,FALSE,only_one_chart
+b497b441-409b-47f9-8d7e-ca1de1c43e09,6c1ac1b5-8182-4657-9f28-885e07324a56,FALSE,,,,2026-03-22 12:48:09.703207+00,2026-04-06 15:23:35.09+00,,,FALSE,unlabelled_graphs
+b4cd2268-9104-47d6-b864-e9b40cde6bed,ea431c80-7f06-49d3-b811-dd57c92360fd,FALSE,,,,2026-03-22 12:23:59.7924+00,2026-04-06 15:19:41.594+00,,,FALSE,learning_template
+b547703d-16af-44d2-9f83-5cd36e0440db,18ccd882-7e37-46d5-b1b9-90d600dd5e93,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are $86,762 (+0.8% YoY), total profit is $12,045 (+6.7% YoY), total volume is 1,508 (+35.9% YoY), and total sales per customer are $482 (-18.8% YoY).
+L3: Overall, the trend in total sales and profit fluctuates, with dips at the end of the year, while total volume shows an upward trend, contrasting with total sales per customer.
+L4: The sharp increase in volume alongside a decline in sales per customer suggests growth is being driven by more transactions rather than higher customer spending, which is the main reason for a discount sales and promotional strategy pushing more sales by volume.
+
+Chart 2: Profit by State
+L2: A state in the west shows green color, indicating a profitable state, while a state in the south shows red, indicating a loss.
+L3: South-to-central areas are showing grey to red colors, indicating losses across several states.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 3: Sales by Sub-Category
+L2: Phones led the sub-categories in sales at 15,187.
+L3: Almost half of the sub-category products have a lower performance than the previous year.
+L4: Phones, with the highest sub-category sales, are in line with previous analysis, where Technology dominates category sales, indicating higher demand for phones this year.
+
+Chart 4: Sales by State
+L2: California, the state with the highest sales at 19,434, has lower performance than the prior year.
+L3: The sales distribution shows a clear dominance of California with a significant gap toward other states.
+L4: While California has the highest sales, its lower performance compared to the previous year may indicate a sales strategy that relies on discounts and promotional pricing.",,,2026-04-27 21:14:21.925198+00,2026-04-29 11:09:14.265+00,,,FALSE,
+b58fcaf9-1b34-4a1c-b43f-5e1fee780e59,7dfbfec8-a94c-4684-99a2-338377509018,FALSE,,,,2026-04-08 20:30:35.706023+00,2026-04-08 20:30:35.564+00,,,FALSE,learning_template
+b62ceea9-ce7c-4984-bdce-99b9853a3456,4103b24a-7707-4594-a56f-f4bc52cc5e96,FALSE,,,,2026-03-22 12:48:26.880259+00,2026-04-06 15:25:20.631+00,,,FALSE,incorrect_dataset
+b75da198-58c6-4999-b7f2-17017fca18de,2504afc9-8288-4bd4-b02d-61f75887c7a8,FALSE,,,,2026-04-07 10:21:40.902204+00,2026-04-07 10:21:40.74+00,,,FALSE,unlabelled_graphs
+b822071e-4972-47b0-b395-6f4ae3f791aa,325b0649-3f93-488d-bf07-1db6a301945c,FALSE,,,,2026-04-08 21:09:58.730255+00,2026-04-08 21:09:58.617+00,,,FALSE,learning_template
+b9160be3-92e1-4933-93af-387d8e081f2c,41aedfbb-480b-4a86-98bf-7c70541b3353,FALSE,,,,2026-03-22 11:38:06.930704+00,2026-04-06 15:00:11.297+00,,,FALSE,only_one_chart
+b9cda1d4-000c-405e-b001-284471a86310,12966311-7a12-468b-80a4-681359e67c18,FALSE,,,,2026-04-08 19:40:07.033626+00,2026-04-08 19:40:06.876+00,,,FALSE,unlabelled_graphs
+ba2d2e1d-65f0-46ac-93e5-59849149ab21,4ea85845-b4c8-48be-913b-50ef9636fc6a,FALSE,,,,2026-04-08 21:11:49.232906+00,2026-04-08 21:11:49.168+00,,,FALSE,incorrect_dataset
+baca069a-416f-4e62-a414-e19d5fb274ab,aa95ffcc-e6f4-4869-9784-92bd011b3b79,TRUE,"Chart 1: Product Performance | Sales
+L2: The highest performing product is Chairs with sales of 14,966, higher than its previous month (14,561) and successfully surpassing its monthly target by 2.8%.
+L3: Overall daily trend showing random noises and only seven products that are capable of surpassing their own sales targets.
+L4: This month's sales performance needs further analysis, especially with high target sales such as Phones, which underperformed by half of its own target and the prior year. 
+
+Chart 2: What month has the highest sales by category?
+L2: From the color encoding, we can see that the darkest color is in March 2019 for the Copiers product.
+L3: Overall, the trend shows that sales across categories are cumulative between September and December.
+L4: These products are related to the consumers' demand toward the holiday season at the end of the year, while some office-related products, like Storage, show steady sales across the year.",,,2026-04-22 10:33:41.13857+00,2026-04-29 10:42:01.943+00,,,FALSE,
+bcbfc6ad-c06b-46f5-bc59-6957f8bfb767,f1aedffc-9d86-4501-a8ce-a176ddccc435,FALSE,,,,2026-03-21 19:58:08.130255+00,2026-04-06 14:57:56.615+00,,,FALSE,unlabelled_graphs
+bd822df8-9084-415d-a31d-6e4f4b559cb1,b31c3586-c29b-404c-b4cc-947082cce503,FALSE,,,,2026-04-07 10:20:58.749529+00,2026-04-07 10:20:58.59+00,,,FALSE,incorrect_dataset
+be3af2fb-499f-4f93-b74a-2cf6320229df,5cad03c2-5b5f-4018-89c5-63b6e51714a3,FALSE,,,,2026-04-07 10:25:21.24681+00,2026-04-07 10:25:21.15+00,,,FALSE,incorrect_dataset
+bec67065-048c-458d-ab86-ecf309c45cea,4bb10b2d-b349-4ce5-b9c3-f6fdd27af71c,FALSE,,,,2026-03-21 20:30:55.352761+00,2026-04-06 14:58:58.923+00,,,FALSE,learning_template
+bed40669-03f2-4831-87da-1b58672c8781,3903b35e-4bc9-48b4-9037-0289f8ec162d,FALSE,,,,2026-03-18 05:11:19.405882+00,2026-04-06 14:00:01.032+00,,,FALSE,learning_template
+bfad2ffb-7298-4f77-9870-c47043dfbea9,708d028c-8c7d-4d0b-acf4-a5238d51c645,FALSE,,,,2026-04-08 19:38:14.155101+00,2026-04-08 19:38:14.029+00,,,FALSE,only_one_chart
+c0cb79ac-f75f-456f-be00-544f12a7c57e,7eb8449c-e9ae-409e-a16b-39f5b82a36da,FALSE,,,,2026-03-22 12:45:53.691755+00,2026-04-06 15:21:51.677+00,,,FALSE,require_interaction
+c19f6f2e-85a8-4bcd-b245-f3c55b342e85,d9bb5f47-08e3-414c-8c14-f76b8ce53f98,FALSE,,,,2026-03-22 11:59:49.661503+00,2026-04-08 18:54:14.062+00,,,FALSE,only_one_chart
+c1c00ab2-139a-4712-9fea-8e87f6d7e70c,ba445ab0-8ff3-45ad-8cb5-ec7275baab13,TRUE,"Chart 1: Scoreboard Overview
+L2: Corporate sales are $248,244.1, consumer sales are $334,911.9, and home office sales are $162,411.5, cumulating to $745,568 total sales with profit of $95,926 and the profit ratio of 12.9%.
+L3: NOT APPLICABLE
+L4: The consumer segment has the highest share of sales with 44.9%, suggesting the sales strategy is in demand of product category that attracts to the Consumer rather than the Corporate and Home Office.
+
+Chart 2: Sales By City
+L2: The top performing cities by sales are New York City at $86,939.6, followed by Seattle at $56,990.8, and Los Angeles at $48,875.7.
+L3: From the map, it appears that the coastal cities are dominating the sales performance rather than the middle areas, especially with the West and East regions.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.",,,2026-03-22 12:00:15.325549+00,2026-04-21 21:30:19.152+00,,,FALSE,
+c2aac841-6d1b-4052-bd23-48a132adc9bf,807849f4-6c11-46db-b0a5-68298ebf6a77,FALSE,,,,2026-03-22 12:11:43.654501+00,2026-04-06 15:12:44.616+00,,,FALSE,incorrect_dataset
+c39fdbdf-b671-45fa-8d1a-2bec3f76ff2c,2ef390dc-8d4f-4e62-b4cf-4280209fc423,FALSE,,,,2026-03-22 12:22:45.978609+00,2026-04-06 15:18:51.275+00,,,FALSE,require_interaction
+c49e642a-aae7-495f-a894-a62a2ac24aea,0db294be-cc36-4c09-969d-02173c1c6af3,FALSE,,,,2026-03-22 12:48:16.148311+00,2026-04-06 15:23:47.495+00,,,FALSE,incorrect_dataset
+c5f390a6-612e-49f8-8a53-915ce04ed99c,2f4c9c76-a484-4a11-8db6-a1dbef8673e5,FALSE,,,,2026-04-27 08:09:34.479438+00,2026-04-27 08:09:32.513+00,,,FALSE,unlabelled_graphs
+c6c530b9-8d33-4ba9-925f-4e6222a6f74d,124195e1-c99d-4f1e-95d6-bf35ea039d6d,FALSE,,,,2026-04-07 10:34:47.707071+00,2026-04-07 10:34:47.601+00,,,FALSE,unlabelled_graphs
+c9d35f0e-337a-424f-b615-3dedf602c098,9a39be24-7a45-4b8a-9fa0-ad4becf934c7,FALSE,,,,2026-04-08 21:21:17.347203+00,2026-04-08 21:21:17.061+00,,,FALSE,incorrect_dataset
+cc336307-8ea1-41b1-a558-361c787e07f3,19155b7b-ac79-4da8-bf26-a068bb83d9ff,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-03-21 17:14:48.948266+00,2026-04-06 15:06:41.017+00,,,FALSE,only_one_chart
+ccd8b84e-9b05-4e68-9198-b5a5f34ecd35,245429a7-88d9-4b8b-9b44-bb64f9e8149b,FALSE,,,,2026-03-22 12:17:22.188884+00,2026-04-06 15:14:43.797+00,,,FALSE,require_interaction
+cd32ceab-d843-4130-987e-abe113780fdf,425d6d5a-3174-4af2-84f6-0efc88f2c3b2,FALSE,,,,2026-04-07 10:21:29.205707+00,2026-04-07 10:21:29.045+00,,,FALSE,unlabelled_graphs
+cdbe1d8e-f280-4787-9f8c-a0b5c48c479d,111e90d3-49be-405a-9bb5-e7c0af7b1908,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are about $733.22K (+20.36% compared to PY), total profit is $93.44K (+14.24%), discount is 15.62% (+10.80%), profit ratio is 12.47%, top city is New York City at $256,368, and sales per customer are $1.06K.
+L3: Overall, the sales indicator shows an upward trend towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit ratio this year may suggest a different sales strategy where sales are pushed higher with a smaller profit margin.
+
+Chart 2: Segment
+L2: The highest sales by segment are in the Consumer segment at 1,161.4K.
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward others.
+L4: This pattern is in line with previous analysis, where demand drops in December while the Consumer remains high; the Home Office and Corporate may suggest a combination of seasonal business slowdowns, employee vacations, and strategic financial decisions.
+
+Chart 3: Category
+L2: The highest sales by category are Technology at $836.2K,
+L3: The sales distribution shows a dominance of the Technology category with a slight gap toward other categories.
+L4: Technology surpassing Office Supplies and Furniture may suggest that the higher unit price surpasses the sales with the quantity.
+
+Chart 4: Region
+L2: The highest sales are in the west region at $725.5K.
+L3: The sales distribution shows a clear dominance of both West and East regions, with significant gaps toward others.
+L4: West and East region sales may be driven by population, indicating a need for different expansion strategies in mid-tier states than in coastal areas, which could be the next growth target.",,,2026-04-28 09:19:13.108875+00,2026-04-29 11:24:45.711+00,,,FALSE,
+cdd95df2-e142-48c8-849c-7a606ba743a0,b8fd251d-0b72-4c91-9b8d-fba21223f200,FALSE,,,,2026-04-08 21:12:12.037527+00,2026-04-08 21:12:11.822+00,,,FALSE,require_interaction
+cfbec3a8-c370-4a73-a559-592e1e09f3f7,9fe138e1-0a7a-46c3-872c-8af932dfb83e,FALSE,,,,2026-04-07 10:32:55.424926+00,2026-04-07 10:32:55.313+00,,,FALSE,unlabelled_graphs
+cfe29540-1433-470e-9dc8-612e018bd8b6,abee2e83-6384-4c23-abfd-e5ede8b5a7bf,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are about $733.2K, profit is $93.4K, orders are 1,687, and quantity is 12,476 units.
+L3: Overall, the trend shows an increase in sales, orders, and quantity towards the end of the year, while profit is highest early in the year and increases steadily afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales Target
+L2: With total sales of $733.2K (73.3%), which is still less than the target of $1.0M.
+L3: NOT APPLICABLE
+L4: The sales target is not achieved, maybe due to relying on the end-of-year sales alone, suggesting the need to employ a different sales strategy to ensure steady sales across the year.
+
+Chart 3: Monthly Target
+L2: Out of the monthly sales, only in November could the sales surpass their target of $100K.
+L3: Overall, early-year sales are underperforming, while in September, we see an uptrend through the end of the year, but we are not able to achieve the target.
+L4: The sales target is not achieved due to having the same target each month of $100K, suggesting the need for a different approach to making a realistic target.
+
+Chart 4: Sales by State
+L2: California leads the sales by $146,4K, while New York, Washington, Texas, and Pennsylvania follow with progressively smaller yet still substantial figures.
+L3: A small group of states contributes a disproportionate share of total sales, with coastal and large‑population states dominating the top five.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 5: Sales by Sub-Category
+L2: Phones led the sub-categories in sales at $105K
+L3: While all sub-categories' sales surpassed the previous year's sales, Tables' sales remain the same as the previous year with no increase (0%).
+L4: We can see from this year's sales that the phone is the product with the best sales performance, while last year Chairs were expected to be the best, but this year their performance has dropped to rank two, suggesting different customer needs this year.
+
+Chart 6: Sales
+L2: Current year sales of $733,215 surpassing 20.4% of the previous year.
+L3: The monthly trend shows that early-year sales have lower performance compared to the previous year, while after June, the sales are higher than the previous year.
+L4: This suggests an increase in sales performance toward the end of the year, while still needing evaluation in the early year months, such as February, April, and May.
+
+Chart 7: Sales by Segments
+L2: The consumer segment has the highest sales at $332K, followed by Corporate and Home Office, where all segments successfully surpassed their previous year's sales.
+L3: The trend also shows an increase in sales toward the end of the year, with sales distribution of the Consumer segment showing a clear dominance of sales distribution with a significant gap toward others.
+L4: However, as we can see more clearly, the consumer was having successful sales in November and December, while both Corporate and Home Office saw their sales drop in December, suggesting a combination of seasonal business slowdowns, employee vacations, and strategic financial decisions.","Chart 1: Scoreboard Overview
+L2: Total sales are $733.2K, total profit is $93.4K, total orders are 1,687, and the number of quantity is 12,476.
+L3: Sales, orders, and quantity shows and shared almost-same same upward pattern, only the profit is different.
+L4: This pattern may indicate that the business is expanding in transaction volume, but profitability is likely influenced by changes in product mix, discounting, or operating efficiency, which means revenue growth may not always translate proportionally into profit improvement.
+
+Chart 2: Sales Target
+L2: Total sales is $733.2K, Target Sales $1.0M, and the percent of target 73.3%.
+L3: NOT APPLICABLE
+L4: Reaching only part of the annual sales target indicating that stronger contribution from key products, markets, or peak periods is still required.
+
+Chart 3: Monthly Target
+L2: Only in November achieve the target of $100K.
+L3: Monthly sales remain below the target in most periods, with only one visible spike crossing the threshold.
+L4: This pattern likely reflects dependency on a limited peak period to achieve target, suggesting that sales generation is still uneven across the year and may need to be stabilised beyond the strongest month.
+
+Chart 4: Sales by State
+L2: California is $146.4K, New York is $93.9K, Washington is $65.5K, Texas is $43.4K, and Pennsylvania is $42.7K.
+L3: Sales appear concentrated in a small number of standout states, with California clearly separated from the rest, while other concentration is appeared in coastal-area.
+L4: This concentration may indicate that the business depends heavily on a few strong geographic markets, e.g. coastal area, suggesting both a solid foundation in core states and a potential need to strengthen market penetration in lower-performing areas.
+
+Chart 5: Sales by Sub-Category
+L2: Sub-Category with the most sales in the current year is Phones by $105K.
+L3: Phones leading the group with chairs, while the remaining categories form a lower tier with smaller visual differences.
+L4: This pattern suggests that sales performance is driven disproportionately by a limited number of high-demand product lines.
+
+Chart 6: Sales
+L2: Current year sales is $733,215, goes up by 20.4% compared with last year.
+L3: Current-year sales show a generally rising path with stronger movement toward the later months, and the current-year pattern appears to stay above the previous-year line in many periods
+L4: This trend may indicate that the business has built positive YoY, but the stronger dependence on later-month improvement could also reflect seasonal concentration that may expose performance to end-of-year volatility.
+
+Chart 7: Sales by segment
+L2: Segment with the highest Sales is Consumer by $332K.
+L3: Consumer stands out as the largest segment by a visible margin, while Corporate forms a middle tier and Home Office is the smallest contributor, creating a clear three-level structure.
+L4: The dominance of the Consumer segment may indicate that the business is more dependent on broad retail demand than on smaller institutional segments, suggesting that future growth and resilience could benefit from balancing this mix with stronger Corporate or Home Office development.
+","Chart 1: Scoreboard Overview
+L2: 2022 Sales is 733.2K, Profit is 93.4K, Orders count is 1,687, and Quantity sold is 12,476.
+L3: Sales, Orders, and Quantity show an upward trajectory with stronger levels toward the end, while Profit is volatile, indicating activity growth was not consistently matched by profitability.
+L4: The upward movement in Sales, Orders, and Quantity, contrasted with volatile Profit, suggests the business may be scaling volume faster than margin quality, reflecting growing demand but also pressure from cost control, discounts, or product mix.
+
+Chart 2: Sales Target
+L2: Total sales is 733.2K, equal to 73.3% of the 1.0M target.
+L3: Total sales reached 733.2K against the 1.0M target, meaning performance stands at 73.3% and remains below target.
+L4: Falling short at 73.3% suggests the business generates meaningful revenue but underperforms against expected growth, which may indicate demand, execution, or conversion levels are not strong enough to meet goals.
+
+Chart 3: Monthly Target
+L2: November has the highest sales, above 110K.
+L3: November is the only month exceeding the 100K target, while all other months remain below that benchmark.
+L4: The sharp increase in November suggests the business may rely on seasonal demand or a Q4 sales push, indicating planning is more focused on peak months than evenly distributed across the year.
+
+Chart 4: Sales by State
+L2: California outperforms other states with 146.4K sales.
+L3: Sales are concentrated in a few large states, with California (146.4K) leading, New York (93.9K) second, and Washington, Texas, and Pennsylvania at lower levels.
+L4: The concentration in California, New York, and other large states suggests stronger performance in major commercial markets with higher customer density and purchasing activity, while indicating room to expand in less penetrated states.
+
+Chart 5: Sales by Sub-Category
+L2: Tables sales stayed the same as the previous year at 0% difference, while Phones had the biggest increase with 33% higher sales.
+L3: All shown sub-categories are at or above previous-year levels, with Binders (+47%), Phones (+33%), and Copiers (+27%) showing the strongest gains, while Tables is flat at 0%, suggesting growth is concentrated in selected items.
+L4: Stronger YoY gains in Binders, Phones, and Copiers, compared with flat Tables performance, suggest the sales mix may be shifting toward operational and technology items rather than larger furniture purchases.
+
+Chart 6: Sales
+L2: Current year sales is 733,215, 20.4% higher than the previous year.
+L3: Current year sales are up 20.4% overall versus the previous year, driven by several later months despite some mid-year months falling below trend.
+L4: Current year sales being 20.4% above the previous year suggests stronger demand conversion through better sales execution, pricing, or product mix, indicating growth may reflect improved commercial performance beyond seasonality.
+
+Chart 7: Sales by Segments
+L2: Consumer segment is the biggest portion with 45%, compared to Corporate with 33% and Home Office with 22%.
+L3: Consumer is dominant at 332K (45%), followed by Corporate at 242K (33%) and Home Office at 159K (22%), with performance driven more by the two larger segments than Home Office.
+L4: The larger Consumer contribution suggests the business may rely more on individual demand than institutional purchasing, reflecting stronger mass-market reach but possibly less stability than a balanced mix with business customers.",2026-04-08 21:33:25.694812+00,2026-04-29 10:35:49.632+00,2026-04-25 21:01:55.645+00,2026-04-25 06:32:53.242+00,TRUE,
+d05b4523-90ba-4ad2-87d0-4a88e179cdc1,d1dd2f66-c35b-4c85-a18a-09efdcb4327a,FALSE,,,,2026-03-22 12:53:35.991136+00,2026-04-06 15:34:35.351+00,,,FALSE,incorrect_dataset
+d07554ea-7889-4666-abd9-2caf28e69099,20ea1a03-1281-45ce-a31f-cc85501c19bf,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are about $733,215 (20.36% over PY), profit is $93,439 (14.24% over PY), margin is 12.74% (-5.09% over PY), and profit per order is $28.21 (-10.77% over PY).
+L3: Overall, sales performance shows an upward trend, with the last quarter managing to get above the average, while profit indicators are at their highest early in the year and increase afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Trend by Category
+L2: The highest profit trend by Category is Technology, with its highest peak in the first quarter, around $10,000.
+L3: Overall, the Furniture and Office Supplies categories show a fluctuating trend with no clear patterns, while Technology has its peak demand in the first quarter and manages to increase profit throughout the rest of the year.
+L4: Even though Furniture and Office Supplies managed to stabilize profit in the first semester, their second-semester performance seems to be dropping, which may indicate a promotional sales strategy or a decrease in demand.
+
+Chart 3: Profitability by Category
+L2: In line with the previous analysis, the most profitable category is Technology, with 81.57% of orders profitable and 18.43% at a loss.
+L3: Technology and Office Supplies share the same contribution to profit, with a significant gap from the Furniture.
+L4: The furniture category requires a different approach to selling higher-margin products to maintain revenue and improve performance.
+
+Chart 4: Profit by Category
+L2: The highest sales by category are Technology at $50,684.
+L3: The sales distribution shows a clear dominance of the Technology category with a significant gap toward others.
+L4: Technology surpassing office supplies may suggest that higher unit prices outweigh sales volume.
+
+Chart 5: Profit by State
+L2: The highest profit by state is California at $29,366, and Texas is the largest loss with $8,839.
+L3: Most loss with red color comes from the South to the Central areas, while the West dominates the green profit.
+L4: This geographic condition suggests expansion into mid-tier states could be the next growth target.",,,2026-04-28 08:21:51.621117+00,2026-04-29 11:16:41.923+00,,,FALSE,
+d0e8727f-7113-47ac-9e85-134e8b1a0503,7fb0fa94-8d82-455a-8df1-c40b39766bfc,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $733.2K (+20.4% vs PY), profit is $93.4K (+14.2% vs PY), orders are 1,687 (+28.3% vs PY), and the number of customers is 693 (+8.6% vs PY).
+L3: Overall, the trend shows an increase in sales, orders, and customers towards the end of the year, while profit is highest early in the year and fluctuates afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales Comparison by Category
+L2: The highest sales by category are in Technology, at 20.0% increase compared to the previous period.
+L3: The sales distribution shows a clear dominance of the Technology category with a significant gap toward others.
+L4: Technology surpassing office supplies may suggest that higher unit prices outweigh sales volume.
+
+Chart 3: Sales Comparison by Segment
+L2: The highest sales growth by segment is in the Consumer segment at 11.8% increase compared to the previous period.
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward other segments.
+L4: Overall, each segment shows a good sales performance compared to the prior year, indicating a higher demand in all segments this year.
+
+Chart 4: Sales Comparison by Shipping
+L2: The highest shipping method is using standard class at 6.2% increase compared to the previous period.
+L3: The ship mode distribution shows a clear dominance of the standard class shipping with a significant gap toward other shipping modes.
+L4: This distribution of shipping modes is normal, with people preferring cheaper delivery to faster shipping times.
+
+Chart 5: Sales by State (Top 10)
+L2: The highest sales are in California at 11.3% increased compared to the previous period, followed by New York with 30.7%.
+L3: Overall, the sales performance is higher than the prior year, while the sales are dominated by coastal states with high populations.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.",,,2026-04-27 22:04:47.601278+00,2026-04-29 11:15:42.207+00,,,FALSE,
+d1615439-f310-46e8-8a8d-9f88d411f7ee,49f4108b-7217-4d93-8443-03c1077cce8e,FALSE,,,,2026-03-22 12:00:26.966764+00,2026-04-06 15:10:43.178+00,,,FALSE,unlabelled_graphs
+d1dd4877-9715-488e-95ac-8b7abee1c4d3,efb8dacc-0466-4708-8980-c80049a39429,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-04-07 10:19:44.746106+00,2026-04-07 10:19:44.539+00,,,FALSE,only_one_chart
+d2c745e0-0ce7-42e2-becf-57e8c73e9986,b35783f2-8466-4caf-a197-4159ea1762a3,FALSE,,,,2026-03-22 12:09:39.732164+00,2026-04-06 15:11:30.955+00,,,FALSE,require_interaction
+d31ac3d7-186a-4521-9fd9-a4362fa3feee,f167aa48-2aec-41c2-8ffc-aca1831850aa,FALSE,,,,2026-03-22 12:09:48.338051+00,2026-04-06 15:11:45.781+00,,,FALSE,incorrect_dataset
+d5aa5972-160b-4ff6-be69-ffac637701d3,e8682c6f-c6b3-4af5-85e3-9bb59d6f4cdb,FALSE,,,,2026-04-07 10:20:33.818276+00,2026-04-07 10:20:33.649+00,,,FALSE,unlabelled_graphs
+d6ee8941-047f-45f6-b135-74a4db576965,170cd90e-dfd5-4c72-af3b-37b8a9ccdc49,FALSE,,,,2026-04-07 10:19:11.819334+00,2026-04-07 10:19:11.626+00,,,FALSE,only_one_chart
+d74d640e-01b5-4b3c-8490-07dc9caf4a8d,365b9e04-e3b5-455c-9711-7ba19c562c75,FALSE,,,,2026-04-07 10:23:48.635919+00,2026-04-07 10:23:48.469+00,,,FALSE,incorrect_dataset
+d76622f8-6b9d-4b66-a3ee-49845f541af5,af14b6d0-c226-4277-aa00-23769748326e,FALSE,,,,2026-03-31 18:57:57.954349+00,2026-04-06 13:52:00.712+00,,,FALSE,incorrect_dataset
+d77747e7-f240-4f84-b0dd-7a45dc1dedd9,7a1d782b-394c-41c3-b9dc-b5327f6a7d13,FALSE,,,,2026-03-22 12:50:05.39536+00,2026-04-06 15:27:06.746+00,,,FALSE,incorrect_dataset
+d793047b-e52c-413d-9218-c37aa12503a9,b1f89441-1caf-4171-8ac5-7a2459541ee2,FALSE,"even though there are four different graphs with different charts inside, the VLMs would only generate one chart because it is a scorecard dashboard",,,2026-04-08 19:45:16.567523+00,2026-04-08 19:45:16.246+00,,,FALSE,only_one_chart
+d8b989b0-e9fc-4107-b12d-41d208bfcba5,a01c1776-b950-4afc-b2c3-60f25443f9d2,FALSE,,,,2026-02-05 18:56:01.633616+00,2026-04-06 13:54:38.889+00,,,FALSE,incorrect_dataset
+d8d551f9-3a5f-4a14-a6e9-5b96cafa6c80,c2160ab3-105d-42e9-b382-68d2627fd16d,FALSE,,,,2026-03-22 12:50:16.809892+00,2026-04-06 15:27:25.671+00,,,FALSE,incorrect_dataset
+d98bae3f-d5f8-49d7-bdfc-3cbc71304b64,d37e3877-b992-4d6d-ad88-5b1bc8cb97ac,FALSE,,,,2026-03-22 12:51:11.967644+00,2026-04-06 15:31:24.866+00,,,FALSE,incorrect_dataset
+dafbb70f-7f70-4fc0-b0ad-fc2d83980bf6,46457fee-1835-4530-a7f6-8e0b3761c67a,FALSE,,,,2026-03-21 17:16:48.379729+00,2026-04-06 14:27:49.525+00,,,FALSE,learning_template
+dbed06fd-f4a5-4271-b6e1-cd2e026a1637,aeeb6563-85e7-4b78-9e11-4b825ff7c072,FALSE,,,,2026-03-30 18:33:23.584571+00,2026-04-06 15:34:51.417+00,,,FALSE,incorrect_dataset
+dc09d834-178b-48e2-990d-94464475d0fa,a3e6d04a-444c-46d2-8d46-9ee057933a80,TRUE,"Chart 1: Scoreboard Overview
+L2: The highest orders are contributed by the consumer segment at 2,586 orders, followed by corporate with 1,514 orders, and the lowest is the home office segment at 909 orders.
+L3: The order distribution shows a clear dominance of the Consumer segment with a significant gap toward other segments.
+L4: This segmentation contribution is healthy, where the consumer takes all the higher order quantity, followed by the corporate level, and the lowest of the home office, which would take only a small quantity of orders.
+
+Chart 2: Region Summary
+L2: The west region is dominating the sales at 1,611 orders, followed by the East at 1,401 orders, the Central at 1,175, and the South with 822 orders.
+L3: The order distribution shows a clear dominance of the two regions of West and East, with significant gaps in the Central and South areas.
+L4: The dominance of the West region indicates the higher population in the US state of California, while the East is condensed with many populated states, cumulating the total orders.
+
+Chart 3: Customers by # Orders Placed Summary
+L2: There are 134 customers who each placed 5 orders in a year, followed by 116 customers who each placed 7 orders.
+L3: This pattern may suggest a normal distribution with slight right skew, suggesting customers may have repeated orders throughout the year.
+L4: The highest orders were in the range of 4 to 9 orders, reflecting the customers' loyalty, while the other should be analyzed using analytical tools to support targeting for campaign planning or bundling strategy.
+
+Chart 4: Ship Mode Summary
+L2: The highest shipping method is using standard class at 2,994 orders, while the lowest is the same day at 264.
+L3: The order distribution shows a clear dominance of the standard class shipping with a significant gap toward other shipping modes.
+L4: This distribution of shipping modes is normal, with people preferring cheaper delivery to faster shipping times.
+
+Chart 5: Monthly Orders Details
+L2: The highest orders occurred in November 2019 at around 250 orders.
+L3: The yearly trend over four years shows that the orders are increasing each year, while the monthly trends suggest the same patterns in each year, where orders are surging starting from September throughout the end of the year.
+L4: The yearly increase may suggest inflation, while the monthly trend is always increasing from September, suggesting holiday season demands.
+
+Chart 6: Orders by Sub Category Details
+L2: Binders have the highest orders at 1,316, followed by papers at 1,191, with the lowest being Copiers at 68. 
+L3: From the Category colors, we can see that the grey Office Supplies legend dominates the orders.
+L4: These two highest-order placements suggest high sales volume due to low per-unit price, with patterns similar to those of other sub-categories of office supplies.","Chart 1: Segment 
+L2: Consumer is 2,586, Corporate is 1,514, and Home Office is 909. 
+L3: Orders appear to be heavily concentrated in consumer segment with a clear gap with corporate and home office.
+L4: The strong concentration in consumer segment suggest the business may be rely more on retail than institutional buyer, this could reflect that the products more fit on everyday purposes than procurement cycles.
+
+Chart 2: Region 
+L2: West is 1,611, East is 1,401, Central is 1,175, and South is 822. 
+L3: the West and the East form the main concentration of orders, while central at the centre, and the south lower than the rest.
+L4: the concentration on west and east could reflect product-fit, better penetration, or dominance in the regions.
+
+Chart 3: Customers by Orders Placed
+L2: 5 orders placed is the highest with 134 customers. 
+L3: the distribution is concentrated in the middle, it peaks on 5-7, then tapering off.
+L4: within years on the data (4 years) and the peak is on the middle, we can assume that the customer base may be driven more by occasional repeat buyers than by loyal heavy purchasers, indicating an opportunity to strengthen retention strategies.
+
+Chart 4: Ship Mode
+L2: first class is 787, same day is 264, second class is 964, and standard class is 2,994.
+L3: standard class dominates the shipping mode by a wide margin, while first and second class sit in the centre and the same day way much in the low.
+L4: The clear dominance of Standard Class suggests customers may be relatively price-sensitive.
+
+Chart 5: Monthly Orders
+L2: Ranging from 2016 to 2019, almost every month in every year, the number of the later year is more than the earlier.
+L3: Orders are generally rising over months while over years it shares a seasonal pattern.
+L4: the seasonal pattern, spike and dip, should be indicate the urgency to do an alignment for staffing, inventory, etc.
+
+Chart 6: Orders by Sub Category
+L2: Binders in Office Supplies is the highest order with 1,316 orders and Copiers in Technology with 68 orders is the lowest.
+L3: Order volume is unevenly distributed across sub-categories, with a few categories standing out clearly above the rest.
+L4: the wide disparity over the subcategory suggesting that some product has a strong market fit but also revealing some weak market fit product that need to be reviewed or repositioned.","Chart 1: Segment Summary
+L2: Consumer count is 2,586, Corporate is 1,514, and Home Office is 909.
+L3: Consumer clearly dominates with 2,586 records, followed by Corporate at 1,514, while Home Office is the smallest at 909, showing demand is more concentrated in consumer customers than business segments.
+L4: The larger Consumer segment suggests the business may depend more on individual demand than institutional buying, reflecting strong mass-market reach but potentially less revenue stability than a more balanced business customer mix.
+
+Chart 2: Region Summary
+L2: West orders count is the biggest with 1,611, East is 1,401, Central is 1,175, and South is 822.
+L3: West has the highest count at 1,611, followed by East and Central, while South is clearly the smallest at 822, showing activity is concentrated more in the western and eastern regions.
+L4: Concentration in West and East suggests stronger market presence, customer density, and commercial access there, while the smaller South share may indicate an underpenetrated market with room for regional expansion.
+
+Chart 3: Customer by # Orders Placed Summary
+L2: Customer number 5 is the biggest with 134 orders placed.
+L3: Customer count rises from low order frequency to a peak at 5 orders, remains high through 7 orders, then declines toward higher order counts, showing most customers place a middle range number of orders.
+L4: The concentration around 4 to 7 orders suggests a stable base of moderately repeat customers, indicating healthy retention but also an opportunity to convert this middle segment into high value buyers.
+
+Chart 4: Ship Mode Summary
+L2: Standard Class is the biggest with 2,994 orders, followed by Second Class with 964, First Class with 787, and Same Day with 264.
+L3: Standard Class dominates with 2,994 shipments, far exceeding Second Class (964), First Class (787), and Same Day (264), indicating shipping activity is heavily concentrated in the slowest delivery mode.
+L4: The dominance of Standard Class suggests customers are likely more cost-sensitive and rely on routine, cost-efficient purchasing rather than urgent delivery, making Standard Class efficiency important for profitability.
+
+Chart 5: Monthly Orders Details
+L2: 2019 has the biggest monthly orders compared with 2018, 2017, and 2016.
+L3: Across all four years, monthly orders were moderate from January to August, rose sharply in September, dipped in October, and rebounded strongly in November, with 2019 consistently recording the highest order levels and largest peak.
+L4: The recurring September to November surge suggests a strong late-year demand cycle, possibly driven by budget spending, promotions, or holiday purchasing. The higher 2019 level may also indicate stronger market traction or more effective programs over year
+
+Chart 6: Orders by SubCategory Details
+L2: Binders is the biggest subcategory with 1,316 orders and Copiers is the lowest with 63.
+L3: Order volume is dominated by Office Supplies, especially Binders (1,316) and Paper (1,191), while Furniture shows mid-range demand and Technology is uneven, with strong orders for Phones (814) and Accessories (718) but much lower volumes for Copiers (68) and Machines (112).
+L4: The dominance of Binders and Paper, along with strong volume in other Office Supplies, suggests order activity may be driven by routine replenishment rather than infrequent purchases, indicating demand is more consistent in operational items than in Furniture or parts of Technology.",2026-04-08 21:55:18.042798+00,2026-04-29 10:48:27.921+00,2026-04-25 20:32:32.618+00,2026-04-25 06:04:55.921+00,TRUE,
+dcd1dfb5-5f0e-45ef-9469-2259ead3822b,2079f54b-9040-4391-95cf-d215dabce43c,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $733.2K (+20.4% vs PY), profit is $93.4K (+14.2% vs PY), orders are 1,687 (+28.3% vs PY), and customer numbers are 693 (+8.6% vs PY).
+L3: Overall, every indicator shows a higher performance than the previous year, with the trend in 2023 showing an increase in sales, orders, and customers together towards the end of the year, but with the profit at its highest peak in March, dropping in April, and increasing steadily afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales by State
+L2: The blue color and larger bubbles show California as the highest sales compared to other states.
+L3: Coastal areas have the overall higher sales than in the middle cluster, with the west dominated by a single location, while the east is dominated by several locations.
+L4: This finding may be because the coastal areas have higher population numbers compared to the middle, or the distribution infrastructure and sales coverage that need to be investigated further.
+
+Chart 3: Sales by Region
+L2: The West region has the highest sales at $250.1K with an increase of 33.4% compare to the prior year.
+L3: The Central region has a slightly lower sales performance compared to the previous year, while the other regions have successfully surpassed it, with the West region showing a clear dominance of sales distribution with a significant gap toward others.
+L4: This may suggest the need for a different sales strategy and approach to keep up the performance of the central areas.
+
+Chart 4: Sales by Segment
+L2: The consumer segment has the highest sales at $331.9K, followed by Corporate and Home Office.
+L3: Overall, all segments successfully surpassed their previous year's sales, with the Consumer segment showing a clear dominance of sales distribution with a significant gap toward others.
+L4: The comparison to the prior year suggests the same pattern over these three segments, but with the home office showing a significant growth over the previous year, reflecting a successful sales strategy in this segment.
+
+Chart 5: Sales by Category
+L2: The highest sales by category are Technology at $271.73K.
+L3: Overall, all categories successfully surpassed their previous year's sales, with the Technology category showing a clear dominance of sales distribution with a significant gap toward others.
+L4: Technology surpassing office supplies may suggest that the higher unit price surpasses the sales with the quantity.
+
+Chart 6: Sales by Top 10 Sub-Category
+L2: Phones led the sub-categories in sales at $105.3K.
+L3: While all sub-categories' sales surpassed the previous year's sales, Machines' sales are the only exception, which is lower than the prior year.
+L4: We can see from this year's sales that the phone is the product with the best sales performance, while last year Chairs were expected to be the best, but this year their performance has dropped to rank two, suggesting different customer needs this year.
+",,,2026-04-07 10:34:08.86263+00,2026-04-29 10:34:02.802+00,,,FALSE,
+de517a74-1e39-4684-8905-b68353f49b8d,5cf1c654-7e3e-4bbe-8254-bdcb1aa69d3c,FALSE,,,,2026-03-31 18:47:34.778663+00,2026-04-06 15:36:12.585+00,,,FALSE,require_interaction
+dedab5fe-ce20-40ea-a788-7898b6135000,351ad4e8-bf4e-4e9a-bb13-8d194c0d1644,FALSE,,,,2026-03-21 17:15:01.955466+00,2026-04-06 14:24:46.673+00,,,FALSE,incorrect_dataset
+dee605e8-5e59-4884-a6ea-92c87431d142,f1a73df5-6495-4500-9d61-10d680df4881,FALSE,,,,2026-03-22 12:49:19.498472+00,2026-04-06 15:25:28.481+00,,,FALSE,learning_template
+e08b1841-d016-4152-b5a9-bfbd33538ad5,52d261de-2b94-40fa-b022-81937a620dca,FALSE,,,,2026-03-22 12:52:51.442671+00,2026-04-06 15:33:10.495+00,,,FALSE,unlabelled_graphs
+e1e6780d-5e30-4903-a312-0c9f1218f38d,50264896-d606-4aea-a0d5-39ea615dacaf,FALSE,,,,2026-04-08 20:30:14.351476+00,2026-04-08 20:30:14.203+00,,,FALSE,unlabelled_graphs
+e225db4f-8794-4c22-9484-a393457584e5,10f30eee-637a-4392-9e08-9ffa46e7ce92,FALSE,,,,2026-03-21 17:17:54.453616+00,2026-04-06 14:46:59.234+00,,,FALSE,require_interaction
+e421e4cf-ba35-4ef5-a962-2ae7e7211917,9d09171f-8e46-418c-b889-d2c8fa355d68,FALSE,,,,2026-03-31 18:47:07.605102+00,2026-04-06 15:35:43.152+00,,,FALSE,unlabelled_graphs
+e59cf510-2310-453a-a325-e2650b8336fd,d0571186-1352-4c3f-bc81-be07f457ee2b,FALSE,,,,2026-03-30 18:33:41.527459+00,2026-04-06 15:35:00.402+00,,,FALSE,incorrect_dataset
+e637eb4a-49a3-4ae6-b0f0-bdaa34f30bb1,c93f9423-a0ba-4f84-aa77-d6ae84072d82,FALSE,,,,2026-03-22 11:43:02.361534+00,2026-04-08 19:56:54.925+00,,,FALSE,incorrect_dataset
+e656dc1d-d387-4ea6-b863-5628de7c58cb,49a6a02a-8e16-4159-a6a8-d5c8899616e5,FALSE,,,,2026-03-22 12:47:40.685148+00,2026-04-06 15:23:26.344+00,,,FALSE,unlabelled_graphs
+e6f47de9-6499-4943-9ea5-8a33b2f2d36a,ee87f028-0bf2-4c03-81c5-6b974a4cfcb5,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $60.7K, profit is $15.0K, total orders are 245, and total customers are 118.
+L3: All the indicators perform higher compared to the previous year, and from the trend, we can see an increase in sales, orders, and customers towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales Overtime
+L2: The highest sales are in November, around 100K, while the highest profit is in March.
+L3: Sales appear to fluctuate with an overall upward trend toward the end of the year, while profit is at its highest peak in March and stabilizes until the end of the year.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 3: Sales by Product Category
+L2: The highest sales by product category is Technology at $33.4K with 55.0% share.
+L3: The sales distribution shows a clear dominance of the Technology category with a significant gap toward others.
+L4: Technology surpassing office supplies may suggest that the higher unit price surpasses the sales with the quantity.
+
+Chart 4: Sales by Subcategory
+L2: Copiers are the highest sales by sub-category at $21.3K. 
+L3: NOT APPLICABLE
+L4: Copiers show clear dominance in the sub-category, with a significant gap over others, suggesting strong demand for this product.
+
+Chart 5: Customer Data Breakdown
+L2: Raymond Buch from Ohio is the customer with the highest sales of $14.2K, profitting from him at $6.8K, and a profit ratio of 47.7%
+L3: NOT APPLICABLE
+L4: As the number one customer, Raymond Buch has slightly higher sales than other customers, indicating a highly uniform or homogeneous top-tier client base. ",,,2026-04-27 17:34:51.040459+00,2026-04-27 17:34:50.132+00,,,FALSE,
+e722c13a-0beb-4680-8d23-ae0c4f8496d1,69cc180e-7000-4c52-a837-34e286c96583,FALSE,,,,2026-03-22 12:09:10.325039+00,2026-04-06 15:11:08.527+00,,,FALSE,unlabelled_graphs
+e743f36f-e3b6-49b6-85a2-c678e553d8a1,d6292274-531d-4f96-9601-f306fd9c63a9,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales of $2,327K with an average of $228.23 per transaction from a total of 804 customers and a total of 1,862 products.
+L3: NOT APPLICABLE
+L4: An average of $228.23 across 804 customers suggests a mid-market customer profile, where each individual transaction value is enough to warrant targeted account-level retention strategies.
+
+Chart 2: Sales By Location
+L2: California has the highest sales among the states at $458K.
+L3: Coastal areas have the overall higher sales than in the middle cluster, with the west dominated by a single location, while the east is dominated by several locations.
+L4: This finding may be because the coastal areas have higher population numbers compared to the middle, or the distribution infrastructure and sales coverage that need to be investigated further.
+
+Chart 3: Sales By Sub-Category
+L2: Chairs have the highest sales by sub-category at $336K, followed by phones at $332K, and the lowest sales are in Fasteners at $9K.
+L3: The sales distribution shows a clear dominance of both Chairs and Phones, with significant gaps toward others.
+L4: These two highest sales of sub-categories may result from the higher unit price rather than the lower sales, like fasteners, which would be cheaper in price and rely on quantity sales.
+
+Chart 4: Sales By Date
+L2: The highest sales happened in November 2022 at $118K, while the lowest was in early 2019 at $5K.
+L3: The trend suggests that each year the sales are getting higher, with the end of each year showing a pattern of increased sales.
+L4: This sales trend may reflect the inflation in each year and the holiday season sales at the end of the year, where people were buying stuff before the end of the year.","Chart 1: Scoreboard Overview
+L2: Total customers are 804, total products are 1,862, total sales are $2,327K, and average sales are $228.23.
+L3: NOT APPLICABLE
+L4: The combination of a broad customer base, a large product catalog, and high total sales suggests the business operates at substantial scale.
+
+Chart 2: Sales By Location
+L2: With sales across locations ranging between $1K and $458K, the top 3 locations are California ($458K), New York ($311K), and Texas ($170K).
+L3: ales appear concentrated in a few leading locations, with California standing clearly ahead, New York following at a lower level, and a noticeable drop after the top states while many other locations remain much lighter.
+L4: This geographic concentration may indicate that the business depends heavily on a small number of strong markets, suggesting that established large states provide the core revenue base while many other locations contribute more thinly.
+
+Chart 3: Sales By Sub-Category
+L2: The first sub-category on the bar chart is Accessories, at $167K (7.2%).
+L3: Sales are unevenly distributed across sub-categories, with a few bars such as Chairs and Phones standing noticeably taller than the rest, while many smaller sub-categories contribute only a limited share.
+L4: This pattern suggests that overall revenue is concentrated in a relatively small set of product lines, indicating where the business likely has the strongest market demand and where assortment priorities may have the greatest influence on total sales performance.
+
+Chart 4: Sales By Date
+L2: The lowest sales figure is $5K and the highest sales figure is $118K.
+L3: Sales fluctuate substantially over time, with repeated rises and dips but a general tendency toward stronger peaks later in the series, culminating in the highest level near the end of the period.
+L4: This pattern may indicate a business with recurring seasonality and strengthening later-period demand, suggesting that sales performance is influenced by cyclical peaks rather than a perfectly steady upward path.","Chart 1: Scoreboard Overview
+L2: Total Customer are 804, total products is 1,862, Sales is 2,327K and average Sales is 228.23
+L3: NOT APPLICABLE
+L4: The combination of a relatively broad product (1,862 products) with 804 customers and average sales of $228.23 suggests the business may be operating on assortment variety and mid-sized transactions rather than a small number of high-ticket purchases, which could indicate that future growth will depend more on improving product mix, discount and repeat buying efficiency
+
+Chart 2 : Sales by Location
+L2: The highest sales is located in California with sales of 458K and the lowest is Virginia with 71K
+L3: Sales are heavily concentrated in a small number of states, with California (458K) and New York (311K) clearly dominating, Texas standing out as the strongest non-coastal market, and most other states showing comparatively low sales.
+L4: The strong concentration of sales in California and New York, with a sharp drop after the top few states, suggests demand is likely focused in economically large markets with stronger customer reach and purchasing power, which may indicate both successful penetration in major hubs and a potential overreliance on a limited set of geographies for revenue growth, especially on central region.  
+
+Chart 3 : Sales by Sub-Category
+L2: Chairs outsold other sub-category products with 336K, followed by Phones with 332K
+L3: Sales are concentrated in a handful of sub-categories, with Chairs (336K) and Phones (332K) leading, followed by Storage (225K), Tables (208K), and Binders (207K), while Fasteners (9K), Labels (13K), and Envelopes (17K) contribute only marginally
+L4: Sales concentration in Chairs and Phones, with Storage, Tables, and binders while several smaller sub categories contribute very little, suggests the business may be driven by a handful of office products, which could indicate that growth and profitability will depend more on optimizing these dominant categories than treating all sub-categories as equally strategic
+
+Chart 4 : Sales by Date
+L2: The highest sales by date is 118K
+L3: Sales follow a volatile but overall upward trajectory, rising from about $5K at the start of 2019 to a peak around  $118K near the end of 2022
+L4: The overall upward but volatile sales trajectory, ending at its highest level in late 2022, suggests the business may be expanding over time while still being influenced by seasonal demand, which could reflect healthy growth momentum but also indicate that performance is not yet fully stable each year",2026-03-22 12:19:28.704568+00,2026-04-29 10:21:39.286+00,2026-04-25 21:57:30.325+00,2026-04-25 05:03:08.462+00,TRUE,
+e7f2183c-c507-421f-8116-c74949214e91,52c77641-e8d4-490e-a1f5-24dc72d41fdd,FALSE,,,,2026-03-31 18:47:15.652093+00,2026-04-06 15:35:58.015+00,,,FALSE,incorrect_dataset
+e84d8f96-478d-482b-9774-10658de80e11,02ed6cc4-8e25-4e23-b9ea-89510ba0f042,FALSE,,,,2026-04-07 10:24:50.161773+00,2026-04-07 10:24:49.903+00,,,FALSE,incorrect_dataset
+eb0d3f70-34b6-4f98-a067-72e572b636b1,03ee7dec-81aa-4d2c-8848-22a0b49059ec,FALSE,,,,2026-03-22 12:45:01.875744+00,2026-04-06 15:21:27.844+00,,,FALSE,only_one_chart
+eba48669-e3dc-43c3-b37c-59fe61dfface,0f14796b-d843-4123-bd62-391f16cae229,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are about $733.2K (+20.36% vs PY), profit is $93.4K (+14.24% vs PY), profit ratio is 11.6% (-0.11% vs PY), and quantity is 12.5K (+26.83% vs PY).
+L3: Overall, the trend shows an increase compared to the prior year, except for the profit ratio, which decreases 0.11%.
+L4: The lower profit ratio this year may suggest a different sales strategy 
+where sales are pushed higher with a smaller profit margin.
+
+Chart 2: Sales Comparison by Month
+L2: The highest sales peak in November with around 100K. 
+L3: The trend shows that the sales are at their lowest and lower than the prior year in the first semester, while at their highest in the second semester, with December dipping lower than the previous sales performance.
+L4: This year's performance suggests a higher demand in the holiday season towards the end of the year, but with lower performance in December.
+
+Chart 3: Sales Comparison by State
+L2: The highest sales are in California state at 146.4 K, accumulating the West region with around 200K.
+L3: Overall, the sales performance is higher than the prior year, except for the Central region, which is slightly lower, and the West region dominates the sales.
+L4: The dependency of the West area, especially with California, with the highest sales, may suggest the need to identify a different penetration in other areas.
+
+Chart 4: Sales Comparison by Segment
+L2: The highest sales by segment are in the Consumer segment at 331.9K.
+L3: The trend shows that the Home Office and Corporate segments have a similar pattern, where they increase toward the end of the year and dip in December.
+L4: This pattern is in line with previous analysis, where demand drops in December while the Consumer remains high; the Home Office and Corporate may suggest a combination of seasonal business slowdowns, employee vacations, and strategic financial decisions.
+
+Chart 5: Sales Comparison by Category
+L2: The highest sales by category are Technology at $271.73K.
+L3: The trend for each category shows a similar pattern where it would increase toward the end of the year and dip in the last month of December.
+L4: Technology surpassing office supplies may suggest that higher unit prices outweigh sales volume.",,,2026-04-27 08:37:04.018929+00,2026-04-29 10:50:52.96+00,,,FALSE,
+ecbe3889-009e-48c6-8f21-c20058d7ede9,944fcc3d-ea10-495c-aa0e-e8fc510cf7c4,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are £745.6K (+21.4% YoY), total profit is £95.9K (+16.0% YoY), total orders are 1.7K (+28.6% YoY), and profit ratio is 12.9% (-4.4% YoY).
+L3: Overall, the trend shows an increase in sales and orders towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit and ratio at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales by Region
+L2: The highest sales are in the West region at £258.2K with an increase of 37%.
+L3: The sales trend of West, East, and South are surpassing the prior year's sales, while the Central has lower sales compared to the previous year.
+L4: West and East region sales may be driven by population, while the central region may require a different sales strategy to boost performance.
+
+Chart 3: Sales by State
+L2: California leads the sales by £457.7K, while New York, Texas, Washington, and Pennsylvania follow with progressively smaller yet still substantial figures.
+L3: A small group of states contributes a disproportionate share of total sales, with coastal and large‑population states dominating the top five.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 4: Sales by Segment
+L2: The highest sales by segment are in the Consumer segment at £334.9K with an increase of 12%.
+L3: The sales distribution shows a clear dominance of the Consumer segment with a significant gap toward other segments.
+L4: Overall, each segment shows a good sales performance compared to the prior year, indicating a higher demand in all segments this year.
+
+Chart 5: Sales by Category
+L2: The highest sales by category are Technology at £272.4K with an increase of 20%.
+L3: The sales distribution shows a dominance of the Technology category with a slight gap toward other categories.
+L4: Technology surpassing office supplies may suggest that the higher unit price surpasses the sales with the quantity.
+
+Chart 6: Sales by Sub-Category
+L2: Phones led the sales in the sub-category, followed by Chairs.
+L3: Overall, the trend shows sales were increasing toward the end of the year, with the only exception being Copiers, which had the highest sales in March.
+L4: These patterns show the over-reliance of sales on the holiday season, suggesting the need for a different sales strategy throughout the year.",,,2026-04-27 21:53:09.086305+00,2026-04-29 11:13:47.674+00,,,FALSE,
+ed063f8a-d680-46c9-b51f-2cc8afbf550c,f05e56d2-fb5e-4cce-aa7a-b995d645ecef,FALSE,,,,2026-04-28 12:12:06.285313+00,2026-04-28 12:12:06.121+00,,,FALSE,incorrect_dataset
+ed6255a2-4dbf-4ff7-8c27-0e49b0cadc32,9b43d0a2-2cca-4d99-bf6c-98e87a497a7d,FALSE,,,,2026-03-22 12:10:09.443529+00,2026-04-08 19:53:33.955+00,,,FALSE,scraper_failure
+edc1a8f2-1d71-4cbb-8435-1d5cfc1df333,01625d03-aa0c-412a-9197-5e5d59a879ed,FALSE,,,,2026-03-22 12:52:09.504676+00,2026-04-06 15:32:23.755+00,,,FALSE,incorrect_dataset
+ee28d5bc-cde0-407a-a4d6-a2c315384bdf,eca22c25-da6f-4918-8def-fd8358e817bb,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-04-07 10:30:46.589016+00,2026-05-24 08:13:04.507+00,,,FALSE,only_one_chart
+efbaeccf-0f92-48eb-878c-c9caa74d089a,a44efaff-1a73-48f9-a59a-8771a5532712,TRUE,"Chart 1: Scoreboard Overview
+L2: Sales are $745.57K (+21.4% vs PY), profit is $95.93K (+16.0% vs PY), quantity is 12,737 (+27.1% vs PY), and the number of customers is 3,379 (+28.3% vs PY).
+L3: Overall, the trend shows an increase in sales, quantity, and customers towards the end of the year, while profit is highest early in the year and increases afterward.
+L4: The lower profit rate at the end of the year may suggest a promotional strategy where sales depend on the discounted price, so the profit margin is small.
+
+Chart 2: Sales by Monthly
+L2: Out of the monthly sales, the highest peak was in November.
+L3: Overall, early-year sales are underperforming, while at the start of the second semester, we see an uptrend through the end of the year, but dipped in December.
+L4: This year's performance suggests a higher demand in the holiday season towards the end of the year, but with lower performance in December.
+
+Chart 3: Sales | by Top 5 State
+L2: California leads the sales by 146,388, while New York, Washington, Texas, and Pennsylvania follow with progressively smaller yet still substantial figures.
+L3: A small group of states contributes a disproportionate share of total sales, with coastal and large‑population states dominating the top five.
+L4: This geographic condition suggests that a different expansion into mid-tier states than the coastal areas could be the next growth target.
+
+Chart 4: Sales | by KPI
+L2: Sales this year reached 745,568, or 93.20% of the annual target of 800,000.
+L3: NOT APPLICABLE
+L4: The over-reliance on the end-of-the-year sales may be one of the reasons they did not manage to reach the sales target, suggesting the need for a sales strategy that could increase sales throughout the year.
+
+Chart 5: Sales | by Ship Mode
+L2: The highest shipping method is using standard class, which made $405,798 sales, up 8.2%.
+L3: The ship mode distribution shows a clear dominance of the standard class shipping with a significant gap toward other shipping modes.
+L4: This distribution of shipping modes is normal, with people preferring cheaper delivery to faster shipping times.
+
+Chart 6: Sales | by Top 5 Customer List
+L2: The first highest sales by customer is Raymond Buch at 14,203.
+L3: NOT APPLICABLE
+L4: As the number one customer, Raymond Buch has slightly higher sales than other customers, indicating a highly uniform or homogeneous top-tier client base. 
+
+Chart 7: Sales | by Category & Segment Pie Chart & Segment
+L2: The highest sales contributor by category is Technology at 36.54%, and by segment is Consumer by 44.92%.
+L3: Each category shows a similar distribution towards the sales, while the sales distribution in the segment shows a dominance of the Consumer segment with a clear gap towards other segments.
+L4: This segmentation shows where businesses have to focus and increase their sales toward other lower shares of sales.
+
+Chart 8: Sales | by Top 5 Sub-Category Bar Chart
+L2: Binders led the sales at 73,651 with an increase of 42.8%, followed by accessories, appliances, bookcases, and art.
+L3: Overall, the top 5 sub-category products have all managed to surpass the previous year's sales performance.
+L4: These types of products may indicate that sales are driven more by volume than by a higher per-unit price.",,,2026-04-28 10:12:41.133642+00,2026-04-29 11:27:34.582+00,,,FALSE,
+f024e2dc-d1fb-4bfd-b571-25a63dab7bc5,0f97d7bd-5844-4585-a428-a4ade4e4fd04,FALSE,,,,2026-03-22 12:23:49.676295+00,2026-04-06 15:19:33.705+00,,,FALSE,incorrect_dataset
+f0623619-c35f-42e9-9d37-722c9e3b2431,47d1ecae-fb64-4c42-a1b0-ce860cfa8761,TRUE,"Chart 1: Scoreboard Overview
+L2: The 2023 revenue is $609,206 (+29% vs PY), profit is $81,795 (+33% vs PY), profit margin is 13.43% (13.10% YoY), and total orders are 1315 (+27% vs PY).
+L3: Each indicator shows an upward trend toward the end of the year, where each has its highest peak around the fourth quarter, and managed to surpass the target.
+L4: This performance may suggest the need to adjust each of KPI's target to be more realistic to reach for each month.
+
+Chart 2: Revenue by State | Top Performers
+L2: The highest revenue by state is CA at 131,552, surpassing its prior year's revenue, followed by NY, TX, and PA, which are lower than the previous year.
+L3: From the map, it appears that the coastal cities are dominating the sales performance rather than the middle areas, especially with the West and East regions.
+L4: NY, with the second-highest revenue, shows lower performance than the prior year and does not meet the target, while other areas should also be expanded with a different sales strategy.
+
+Chart 3: Top City by Revenue
+L2: Los Angeles is the highest city by Revenue with around 40K.
+L3: NOT APPLICABLE
+L4: New York City, the second-highest city by revenue, has lower performance than the prior year and does not meet its target; it may need further analysis to identify the reasons.
+
+Chart 4: Top Postal Code by Revenue
+L2: 10009 is the number one postal code by revenue, with around 20K.
+L3: NOT APPLICABLE
+L4: Almost all postal code met their revenue target, with the exception of 10035 and 10024, which both have lower performance than the prior year and do not meet the target, which is too high compared to the number one's target.
+
+Chart 5: Revenue by Segment
+L2: The highest revenue by segment is Consumer at $296,864, an increase of 10.22% from the prior year, accounting for 49% of total revenue.
+L3: The revenue distribution shows a clear dominance of the Consumer segment with a significant gap toward others.
+L4: Overall, each segment shows a good sales performance compared to the prior year, indicating a higher demand in all segments this year.
+
+Chart 6: Revenue by Ship Mode
+L2: The highest revenue by ship mode is standard class with around 350K.
+L3: Overall, total revenue performance is higher than the target and the previous year across all shipping modes except first class.
+L4: This distribution of shipping modes is normal, with people preferring cheaper delivery to faster shipping times.",,,2026-04-28 12:11:17.363118+00,2026-04-28 12:11:17.142+00,,,FALSE,
+f15a72ad-c737-427b-9106-a2899c19c848,44e00d43-61ee-4b04-bf1a-6d1e5bb5cdb7,FALSE,"Even though there are multiple charts, they would be treated as a single Scoreboard Overview chart by VLMs and therefore excluded.",,,2026-03-31 18:57:12.735203+00,2026-04-06 15:36:33.398+00,,,FALSE,only_one_chart
+f1e82eb4-2076-4c03-8d35-1383d6950bcb,574356ca-da0e-4543-9c61-889771b170cd,FALSE,,,,2026-04-08 21:21:39.145237+00,2026-04-08 21:21:39.085+00,,,FALSE,only_one_chart
+f263c213-b9d5-4b08-aa48-ed9270a63b77,886f0008-5adb-47c0-b5eb-01ddfaca025a,FALSE,,,,2026-03-22 12:45:45.700965+00,2026-04-06 15:22:06.616+00,,,FALSE,require_interaction
+f2b75c41-fbdc-4e02-abc9-c3f8c1d9c960,30b5b843-2231-4a9a-afbd-bc60b3ac094d,FALSE,,,,2026-03-21 20:31:16.869378+00,2026-04-06 14:59:07.582+00,,,FALSE,only_one_chart
+f3f700a5-d432-411f-afc9-0464d56a2ff3,c6fe91dc-1eef-40b0-859f-9a406d8ba12e,FALSE,,,,2026-02-27 20:09:23.533039+00,2026-04-06 13:59:19.558+00,,,FALSE,incorrect_dataset
+f4501dd0-42bc-4cb4-904e-7b26d31bbfba,f0745d59-3e8a-4f80-bc87-fc798757fd9d,FALSE,,,,2026-04-07 10:31:36.997486+00,2026-04-07 10:31:36.895+00,,,FALSE,only_one_chart
+f451d481-b828-40ed-a9a4-fc7fd6d6caf2,3de1a247-98df-43a9-966d-af74b2354dde,TRUE,"Chart 1: Scoreboard Overview
+L2: From 793 customers and total orders of 5,009, resulting in total sales of $2,297,201 and $286,397 profit.
+L3: NOT APPLICABLE
+L4: An average of 6 orders per customer, suggesting repeated orders by loyal customers, resulting in high profit.
+
+Chart 2: Sales by State
+L2: The highest sales by state are in the West area at $725K, followed by the East at $679K.
+L3: Monthly trend sales between January 2016 and 2020 show that West and East have the same pattern each year, with the end of the year having higher sales than the rest, while Central and South have no pattern, especially in South, where the highest sales peak at around the first semester of 2016.
+L4: This suggests the need for different sales strategies and promotions in the Central and South areas than in the West and East to push at least the same trend and keep up the sales performance.
+
+Chart 3: West Sales by Sub-Category
+L2: The highest sales are in the Chairs sub-category at $101.8K.
+L3: The sales distribution shows a clear dominance of both Chairs and Phones, with significant gaps toward others.
+L4: This ranked sub-category by sales, suggesting the items with a higher price unit surpassed the ones that rely on sales from quantity, like paper, supplies, envelopes, and fasteners.
+
+Chart 4: Top 10 Products in the West
+L2: Canon ImageCLASS 2200 advanced copier, with sales of $14.0K, ranks first as the top product in the west.
+L3: NOT APPLICABLE
+L4: Canon ImageCLASS 2200 advanced copier outperforms other listed products, suggesting strong market fit and indicating the business could benefit from prioritizing stock availability and marketing this product to sustain demand.","Chart 1: Scoreboard Overview
+L2: Total customers are 793, total orders are 5,009, total nominal of sales is $2,297,201, and the profit is $286,397.
+L3: NOT APPLICABLE
+L4: The combination of a large customer base, a high order count, and strong total sales suggests the business operates at substantial scale, while the level of profit indicates that this scale is also translating into meaningful earnings rather than volume alone.
+
+Chart 2: Sales by State
+L2: West State's Sales is $725K, Central is $501K, South is $392K, and East is $679K.
+L3: Sales appear concentrated in the coastal regions, with the West standing slightly ahead of the East, while Central and South sit noticeably lower and the state-level distribution across the interior looks lighter overall.
+L4: This coastal concentration may indicate that the business performs strongest in denser and more commercially developed markets, suggesting that the West and East provide the core sales base while inland and southern areas remain comparatively less penetrated.
+
+Chart 3: West Sales by Sub-Category
+L2: Sub-Category with the highest sale in the West is Chairs by $101.8K and the lowest is Fasteners by $0.9K.
+L3: Sales across West sub-categories are highly uneven, with a few leading categories such as Chairs, Phones, and Tables standing clearly above the rest, while the lower-ranked items taper off into a long tail.
+L4: This pattern suggests that sales in the West are driven disproportionately by a small set of sub-categories, indicating where customer demand is strongest and where assortment, stocking, and promotional focus may have the greatest impact on regional performance.
+
+Chart 4: Top 10 Products in the West
+L2: Product with the highest sales in the West is Canon imageCLASS 2200 Advanced Copier by $14.0K.
+L3: The gap between the top two products and the rest is noticeably wider, suggesting a clear split between a small leading tier and the remaining products.
+L4: This pattern may indicate that, beyond the two standout products, the products ranked three to ten still form a strong secondary tier, suggesting a valuable opportunity to widen the next sales period’s growth base by promoting these products more actively rather than relying too heavily on only the top leaders.","Chart 1: Scoreboard Overview 
+L2: Customer count is 793, total orders is 5,009, Sales is 2,297,201 and  Profit is 286,397
+L3: The business records 793 customers and 5,009 total orders, while generating 2,297,201 in sales and 286,397 in profit, showing substantially higher order volume than customer count alongside strong revenue and positive profitability
+L4: The combination of 5,009 orders from 793 customers and 286,397 profit on 2.30M in sales suggests the business may be generating revenue through strong repeat purchasing rather than customer count alone, which could indicate a reasonably engaged customer base and solid monetization efficiency if that order activity is being sustained.
+
+Chart 2:  Sales by State
+L2: Sales of West are 725K, East 679K, Central 501K, and South 392K. West is highest and South is lowest.
+L3: Overall sales are concentrated in the West (725K) and East (679K), with California standing out as the largest state contributor, while Central (501K) and especially South (392K) lag behind despite all regions showing fluctuating sales patterns over time.
+L4: Sales are concentrated in the West and East, with the West leading overall, which may indicate the business performs strongest in larger and more commercially active coastal markets, while the differing regional trend patterns could show uneven market maturity, customer density, or sales execution across regions rather than a uniformly distributed national demand base.
+
+Chart 3: West Sales by Sub Category
+L2: Chairs Sales is the highest in West with 101.8K and fasteners is the lowest with 0.9K
+L3: West sales are concentrated in a few leading sub-categories, with Chairs (101.8K) and Phones just behind as the top contributors, followed by Tables (84.8K) and Storage (70.5K), while smaller sub categories such as Art, Labels, Envelopes and Fasteners contribute only marginally
+L4: West sales concentration in Chairs, Phones, Tables, and Storage suggests the region may be driven by a mix of workspace setup and productivity-related demand, which could indicate stronger commercial traction in practical office items categories than in smaller accessory.
+
+Chart 4: Top 10 Products in the West
+L2: Canon imageCLASS 2200 Advanced Copier, with sales of 14.0K , outsold other products.
+L3: Product sales in the West are led by a small top tier, with the Canon imageCLASS 2200 Advanced Copier (14.0K) and the High Speed Automatic Electric Letter Opener (13.1K) ahead, while the remaining top products cluster tightly in the roughly 6K–10K range
+L4: The copiers, office furniture, and business equipment among the top selling products in the West suggests regional demand may be affected by workplace and business purchasing needs rather than mainly by casual consumer items, which could reflect a customer base with stronger demand for functional, higher utility office items",2026-04-08 21:52:50.404585+00,2026-04-29 10:20:54.796+00,2026-04-26 12:19:39.569+00,2026-04-26 15:13:19.344+00,TRUE,
+f5cf6e3b-38a5-498e-ad54-29ed658d23d7,0e4dd1b1-d35f-4f41-aac2-7c2d9d4925a9,FALSE,,,,2026-02-05 18:58:40.830523+00,2026-04-06 13:58:40.329+00,,,FALSE,incorrect_dataset
+f696813d-7d96-4b77-a1ea-71cff08452a3,4572c9f5-c78e-4f5e-9caa-6adb26605b45,FALSE,,,,2026-03-22 12:20:02.588288+00,2026-04-06 15:18:43.273+00,,,FALSE,incorrect_dataset
+f74f571c-3007-4eb0-affb-3b1a9ac6513a,34329e1b-771f-4fe2-8b71-a5c5457809fb,FALSE,,,,2026-03-22 12:11:50.55741+00,2026-04-06 15:12:51.404+00,,,FALSE,incorrect_dataset
+f7895b43-34f3-414a-8bc0-fe1655a70c8d,141fc560-5b9e-4d9b-a2d2-a3856486a6b2,FALSE,,,,2026-03-31 18:47:41.727863+00,2026-04-06 15:36:20.623+00,,,FALSE,learning_template
+f9f5b240-a4ef-4e54-b610-bd835ea689fe,ea033b18-c500-421d-8b79-17fb82868a2c,TRUE,"Chart 1: Scoreboard Overview
+L2: Total sales are $745,567.53 (+21.4% vs PY), profit is $95,926.35 (+16.0% vs PY), total orders are 3,379 (+28.3% vs PY), and returned orders are 1,255 (+59.1% vs PY).
+L3: Overall, the business is growing in sales and orders, with a higher trend at the end of the year, and generally improving profit.
+L4: However, while the company is successfully expanding revenue and volume, the return rates should be monitored to ensure growth does not erode profitability or customer satisfaction.
+
+Chart 2: Regional Profit
+L2: The highest profit of the current year is in the West region (86.76%).
+L3: East and West dominate the profit compared to other regions, but have lower performances compared to the previous year, except South, where the blue bar is higher than the grey bar.
+L4: The decreases in profit across three regions compared to the previous year may suggest a different sales strategy, in which discounts and promotions resulted in a smaller profit margin.
+
+Chart 3: Profit by Segment
+L2: The highest profit by segment is Consumer with an increase of 27.4% compared to the previous year.
+L3: Corporate follows the consumer segment in profitability but shows lower performance than the previous year, while the Home Office segment surpasses the prior year.
+L4: This declining profit by Corporate may suggest a lower demand for products or a smaller profit margin.
+
+Chart 4: State Breakdown
+L2: California is the highest performing state with sales of $146,388, profit of $29,366, and 663 returned orders with a value of 615.
+L3: Between the three regions in the chart, the trend shows similar patterns between sales, profit, and returned orders, where it increases toward the end of the year.
+L4: In line with the aggregated scoreboard, the return rates should be monitored to ensure growth does not erode profitability or customer satisfaction.",,,2026-04-27 09:14:20.767193+00,2026-04-29 10:53:41.366+00,,,FALSE,
+fcdc835c-c151-4157-aa91-4574a50dfb96,384020da-48ad-4f77-b26d-ca99070dd6c1,FALSE,,,,2026-03-21 17:11:03.806992+00,2026-04-06 14:11:07.779+00,,,FALSE,require_interaction
+fd1bdbe0-7199-4ec4-81c3-bbb0258e1b2e,7ca53b3d-07f0-4cfc-a60c-8a23e6964149,FALSE,,,,2026-03-22 12:50:33.275015+00,2026-04-06 15:27:53.571+00,,,FALSE,incorrect_dataset
+fead6cf7-64d0-488c-8f29-df56012fe662,8db8ebf3-692d-42f1-b98b-448ba7ffaca3,FALSE,,,,2026-03-21 19:39:00.294148+00,2026-04-06 14:57:17.99+00,,,FALSE,incorrect_dataset
+ff38b817-bd6f-4df0-8fb8-b41062960df6,17b6145e-9143-4f8b-8b2d-9103e59c6747,FALSE,,,,2026-04-08 20:30:46.64559+00,2026-04-08 20:30:46.493+00,,,FALSE,unlabelled_graphs
